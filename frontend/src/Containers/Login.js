@@ -9,7 +9,7 @@ const BackIcon = (props) => (
 );
 
 export default function DetailsScreen ({ navigation }) {
-  
+
   const themeContext = React.useContext(ThemeContext);
 
   const navigateBack = () => {
