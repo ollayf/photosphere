@@ -7,22 +7,17 @@ from rest_framework.response import Response
 from rest_framework import status
 import firebase_admin
 from firebase_admin import firestore
-from env import service_acc_key
 import hashlib
 import datetime
-
-# Create your views here.
-def say_hello(request):
-    db = firestore.client()
-    ref = db.collection(u'users')
-    docs = ref.stream()
-    for doc in docs:
-        print(doc.to_dict())  
-    return HttpResponse(repr(docs))
+from passlib.hash import pbkdf2_sha256
 
 @api_view(["GET"])
 @parser_classes([JSONParser])
 def username_exists(req):
+    required_data = {
+        "username": str
+    }
+
     uname = req.data["username"]
 
     db = firestore.client()
@@ -39,18 +34,67 @@ def username_exists(req):
 @api_view(["POST"])
 @parser_classes([JSONParser])
 def add_user(req):
+    required_data = {
+        'username': str,
+        'password': str, # raw text
+        'firstname': str,
+        'lastname': str,
+        'type': str,
+        'power': int,
+    }
+
     data = req.data
     data["dateJoined"] = datetime.datetime.now(tz=datetime.timezone.utc)
+    password = data["password"] 
+    pw_hash = pbkdf2_sha256.encrypt(password, rounds=12000, salt_size=32)
+    data['pw_hash'] = pw_hash
+    data.pop('password')
     db = firestore.client()
+
+    # empty for a fresh account
+    data['friends'] = []
+    data['spheres'] = []
     ref = db.collection(u'users').document().set(data)
     # docs = ref.stream()
     # for doc in docs:
     #     print(doc.to_dict())  
     return Response(status=status.HTTP_201_CREATED)
 
-@api_view(["POST"])
+@api_view(["GET"])
+@parser_classes([JSONParser])
+def verify_password(req):
+    required_data = {
+        'username': str,
+        'password': str, # raw text
+    }
+
+    data = req.data
+    uname = data['username']
+
+    db = firestore.client()
+    col_ref = db.collection(u'users')
+    query = col_ref.where(u'username', u'==', u'{}'.format(uname))
+    users = query.get()
+    user_ref = users[0]
+    user_info = user_ref.to_dict()
+    pw_hash = user_info['pw_hash']
+
+    password_input = data['password']
+    pw_hash = pbkdf2_sha256.verify(password_input, pw_hash)
+
+    if pw_hash:
+        return Response(status=status.HTTP_200_OK)
+    return Response(status=status.HTTP_404_NOT_FOUND)
+
+@api_view(["PUT"])
 @parser_classes([JSONParser])
 def edit_user(req):
+    required_data = {
+        'username': str,
+        'field': str,
+        'result': None # the final result of the edit
+    }
+
     data = req.data
     field = data["field"]
 
