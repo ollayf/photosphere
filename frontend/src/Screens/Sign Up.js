@@ -4,13 +4,35 @@ import { Button, Divider, Icon, Layout, Text, Input, TopNavigation, TopNavigatio
 import {AppLoading} from 'expo';
 import { ThemeContext } from '../../theme-context';
 import Smallerlogo from '../Components/Smallerlogo'
+import Passwordinput from '../Components/Passwordinput';
 
 const BackIcon = (props) => (
   <Icon {...props} name='arrow-back' />
 );
 
+
+
+
 export default function SignUpScreen ({ navigation }) {
 
+
+  const [formData, setFormData] = useState({ 
+    name: '', 
+    email: ' ', 
+    password: '', 
+    //password2: ''
+  })
+  
+  const {name, email, password} = formData
+
+  
+  const onChange = (e) => {
+    setFormData((prevState) => ({
+      ...prevState, 
+      [e.target.name]: e.target.value, 
+    }))
+
+  }
   const themeContext = React.useContext(ThemeContext);
 
   const navigateBack = () => {
@@ -53,7 +75,6 @@ export default function SignUpScreen ({ navigation }) {
       <Input 
       style={styles.input}
       placeholder= 'Name'
-      size='large'
       > 
       </Input> 
 
@@ -61,22 +82,27 @@ export default function SignUpScreen ({ navigation }) {
       style={styles.input}
       placeholder= 'Email'
       keyboardType= 'email-address'
-      size='large'
+      
+      
       > 
      
       </Input> 
+    
+     
+      <Passwordinput> 
+      </Passwordinput> 
+      <Text style={styles.captionText}>
+      Should contain at least 1 uppercase, 1 lowercase and 1 special character
+      </Text>
       
-      <Input 
-      style={styles.input}
-      placeholder= 'Password'
-      size='large'
-      > 
-      </Input>
+
       <Button 
       style= {styles.SignUpButton}
       appearance= 'filled'
       status= 'primary'
-      size = 'giant'>
+      size = 'giant'
+      onPress = {navigate}
+      >
       
       SIGN UP 
       </Button>
@@ -125,8 +151,6 @@ ChangeMode: {
 loginoptions: { 
   marginTop: 0,
   alignItems: 'center',
-  
-  
 },
 
 input:{ 
@@ -134,15 +158,15 @@ input:{
   borderColor: 'indigo',
   padding: 8, 
   margin: 2, 
-  width: 200, 
+  width: 300, 
   justifyContent: 'center',
   alignItems: 'center',
   
 }, 
 
 SignUpButton: {
-  marginTop: 1,
-  marginBottom: 5,
+  marginTop: 15,
+  marginBottom:-5,
   width: 250,
   backgroundColor: 'teal'
 },
@@ -150,6 +174,12 @@ AlreadyHaveAccountText:{
   marginTop: 10
 },
 Login: { 
-  marginBottom: 50
+  marginBottom: 20
+},
+captionText: {
+  fontSize: 11,
+  fontWeight: "800",
+  color: "#8F9BB3",
+  
 },
 })

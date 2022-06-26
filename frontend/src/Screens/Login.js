@@ -3,7 +3,7 @@ import { SafeAreaView, View, StyleSheet } from 'react-native';
 import {  Button, Divider, Icon, Input, Layout, Text, TopNavigation, TopNavigationAction } from '@ui-kitten/components';
 import {AppLoading} from 'expo';
 import { ThemeContext } from '../../theme-context'
-import Passwordicon from '../../src/Components/Passwordicon'
+import Passwordinput from '../Components/Passwordinput'
 import { EMaskUnits } from 'react-native-svg';
 //import * as React from 'react';
 
@@ -54,16 +54,14 @@ export default function DetailsScreen ({ navigation }) {
       style={styles.input}
       placeholder= 'Email'
       keyboardType= 'email-address'
-      size='large'
+      
       > 
      
       </Input> 
-      <Input 
-      style={styles.input}
-      placeholder= 'Password'
-      size='large'
-      > 
-      </Input>
+
+      <Passwordinput> 
+      </Passwordinput> 
+
 
       <Button
       style= {styles.forgotpassword} 
@@ -132,7 +130,7 @@ input:{
   borderColor: 'indigo',
   padding: 8, 
   margin: 2, 
-  width: 200, 
+  width: 300, 
   justifyContent: 'center',
   alignItems: 'center',
 }, 
@@ -155,4 +153,5 @@ CreateAccount: {
   marginBottom: 20
 },
 
+  
 })

@@ -25,7 +25,7 @@ export default function Passwordicon ( ...props ) {
     return (
       <View style={styles.captionContainer}>
         {AlertIcon(styles.captionIcon)}
-        <Text style={styles.captionText}>Should contain at least 1 uppercase, 1 lowercase and 1 special character</Text>
+        
       </View>
     )
   }
@@ -33,12 +33,12 @@ export default function Passwordicon ( ...props ) {
   return (
     <Input
       value={value}
-      label='Password'
-      placeholder='Place your Text'
+      placeholder='Password'
       caption={renderCaption}
       accessoryRight={renderIcon}
       secureTextEntry={secureTextEntry}
       onChangeText={nextValue => setValue(nextValue)}
+      style={styles.passwordinput}
     />
   );
 };
@@ -48,8 +48,18 @@ const styles = StyleSheet.create({
     display: 'flex',
     flexDirection: 'row',
     alignItems: 'center',
-    marginLeft: 10, 
+    marginLeft: 0, 
     marginRight: 10, 
+    marginBottom: -15
+  },
+  passwordinput: { 
+    borderWidth: 3, 
+    borderColor: 'indigo',
+    padding: 8, 
+    margin: 2, 
+    width: 300, 
+    justifyContent: 'center',
+    alignItems: 'center',
   },
   captionIcon: {
     width: 10,
@@ -57,10 +67,6 @@ const styles = StyleSheet.create({
     marginRight: 10
 
   },
-  captionText: {
-    fontSize: 12,
-    fontWeight: "400",
-    color: "#8F9BB3",
-  }
+ 
 });
 
