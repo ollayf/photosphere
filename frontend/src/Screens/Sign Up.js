@@ -1,10 +1,13 @@
 import React, { useState } from 'react';
 import { SafeAreaView, StyleSheet } from 'react-native';
-import { Button, Divider, Icon, Layout, Text, Input, TopNavigation, TopNavigationAction } from '@ui-kitten/components';
+import { Button, ApplicationProvider, IconRegistry, Divider, Icon, Layout, Text, Input, TopNavigation, TopNavigationAction } from '@ui-kitten/components';
 import {AppLoading} from 'expo';
 import { ThemeContext } from '../../theme-context';
 import Smallerlogo from '../Components/Smallerlogo'
 import Passwordinput from '../Components/Passwordinput';
+import * as eva from '@eva-design/eva';
+
+import { EvaIconsPack } from '@ui-kitten/eva-icons';
 
 const BackIcon = (props) => (
   <Icon {...props} name='arrow-back' />

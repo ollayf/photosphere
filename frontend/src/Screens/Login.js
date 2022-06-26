@@ -34,6 +34,10 @@ export default function LoginScreen ({ navigation }) {
     navigation.navigate('ForgetPassword');
   };
 
+  const navigateAppMainPage = () => {
+    navigation.navigate('AppMainPage');
+  };
+
 
  
   return (
@@ -76,7 +80,9 @@ export default function LoginScreen ({ navigation }) {
       style= {styles.LoginButton}
       appearance= 'filled'
       status= 'primary'
-      size = 'giant'>
+      size = 'giant'
+      onPress = {navigateAppMainPage}
+      >
       
       LOGIN 
       </Button>
