@@ -26,13 +26,13 @@ export default function SignUpScreen ({ navigation }) {
   const {name, email, password} = formData
 
   
-  const onChange = (e) => {
-    setFormData((prevState) => ({
-      ...prevState, 
-      [e.target.name]: e.target.value, 
-    }))
+ // const onChange = (e) => {
+    //setFormData((prevState) => ({
+     // ...prevState, 
+   //   [e.target.name]: e.target.value, 
+   // }))
 
-  }
+ // }
   const themeContext = React.useContext(ThemeContext);
 
   const navigateBack = () => {
@@ -51,7 +51,7 @@ export default function SignUpScreen ({ navigation }) {
 
   return (
     <SafeAreaView style={styles.container}>
-    <TopNavigation title='MyApp' alignment='center' accessoryLeft={BackAction}/>
+    <TopNavigation title='Sign Up' alignment='center' accessoryLeft={BackAction}/>
     <Divider/>
     <Layout style={styles.ChangeMode}>
       <Button style={{ marginVertical: 4 }} onPress={themeContext.toggleTheme}>CHANGE MODE</Button>
@@ -101,7 +101,7 @@ export default function SignUpScreen ({ navigation }) {
       appearance= 'filled'
       status= 'primary'
       size = 'giant'
-      onPress = {navigate}
+      //onPress = {navigate}
       >
       
       SIGN UP 

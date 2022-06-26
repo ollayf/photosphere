@@ -14,7 +14,7 @@ const BackIcon = (props) => (
 <Icon {...props} name='arrow-back' />
 );
 
-export default function DetailsScreen ({ navigation }) {
+export default function LoginScreen ({ navigation }) {
   
   const themeContext = React.useContext(ThemeContext);
 
@@ -38,7 +38,7 @@ export default function DetailsScreen ({ navigation }) {
  
   return (
     <SafeAreaView style={styles.container}>
-      <TopNavigation title='MyApp' alignment='center' accessoryLeft={BackAction}/>
+      <TopNavigation title='Login' alignment='center' accessoryLeft={BackAction}/>
       <Divider/>
       <Layout style={styles.ChangeMode}>
         <Button style={{ marginVertical: 4 }} onPress={themeContext.toggleTheme}>CHANGE MODE</Button>
