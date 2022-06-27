@@ -34,8 +34,8 @@ export default function LoginScreen ({ navigation }) {
     navigation.navigate('ForgetPassword');
   };
 
-  const navigateAppMainPage = () => {
-    navigation.navigate('AppMainPage');
+  const navigateProfile = () => {
+    navigation.navigate('Profile');
   };
 
 
@@ -81,7 +81,7 @@ export default function LoginScreen ({ navigation }) {
       appearance= 'filled'
       status= 'primary'
       size = 'giant'
-      onPress = {navigateAppMainPage}
+      onPress = {navigateProfile}
       >
       
       LOGIN 

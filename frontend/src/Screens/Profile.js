@@ -5,14 +5,12 @@ import {AppLoading} from 'expo';
 import { ThemeContext } from '../../theme-context';
 import Smallerlogo from '../Components/Smallerlogo'
 import Passwordinput from '../Components/Passwordinput';
-import { Avatar, Title, Caption, Text, TouchabeRipple } from 'react-native-paper';
+import { Avatar, Title, Caption, Text, TouchableRipple } from 'react-native-paper';
 
 
 const ProfileScreen = () => {
   return (
       <SafeAreaView style={styles.container}>
-      <TopNavigation title='My App' alignment='center'/>
-        <Divider/>
         <View style = {styles.userInfoSection}>
         <View> 
           <Avatar.Image
@@ -38,12 +36,7 @@ const ProfileScreen = () => {
 
 
 
-        
-        </SafeAreaView>
-        )
-  }
-
-  const styles = StyleSheet.create({
+const styles = StyleSheet.create({
 container: {
 flex: 1,
 
