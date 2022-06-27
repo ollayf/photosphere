@@ -7,6 +7,9 @@ import Smallerlogo from '../Components/Smallerlogo'
 import Passwordinput from '../Components/Passwordinput';
 import * as eva from '@eva-design/eva';
 
+import { Avatar } from '@ui-kitten/components';
+
+
 import { EvaIconsPack } from '@ui-kitten/eva-icons';
 
 const BackIcon = (props) => (
@@ -38,66 +41,6 @@ export default function ProfileScreen ({ navigation }) {
  // }
   const themeContext = React.useContext(ThemeContext);
 
-  const navigateBack = () => {
-    navigation.goBack();
-  };
-
-  const BackAction = () => (
-    <TopNavigationAction icon={BackIcon} onPress={navigateBack}/>
-  );
-  
-  const navigateConvert = () => {
-    navigation.navigate('Convert');
-  };
-
-  const navigateExplore = () => {
-    navigation.navigate('Explore');
-  };
-
-  const navigateProfile = () => {
-    navigation.navigate('Profile');
-  };
-  const navigateAppMainPage = () => {
-    navigation.navigate('AppMainPage');
-  };
-
-  const ProfileIcon = (props) => (
-    <Icon 
-    {...props} 
-    name='person-outline'
-    onPress = {navigateProfile}
-
-    />
-  );
-
-  const ConvertIcon = (props) => (
-    <Icon 
-    {...props} name='swap-outline'
-    onPress = {navigateConvert}
-    />
-  );
-
-  const ExploreIcon = (props) => (
-    <Icon
-     {...props} 
-     name = 'compass-outline'
-     onPress = {navigateExplore}
-     />
-  );
-
-  const ViewIcon = (props) => (
-    <Icon 
-    {...props} 
-    name='eye-outline'
-    onPress = {navigateAppMainPage}
-    />
-  );
-
-  const useBottomNavigationState = (initialState = 0) => {
-    const [selectedIndex, setSelectedIndex] = React.useState(initialState);
-    return { selectedIndex, onSelect: setSelectedIndex };
-  };
-  const bottomState = useBottomNavigationState();
   
   
   
@@ -146,15 +89,24 @@ justifyContent: 'flex-end',
 alignItems: 'center' ,
 },
 
-header: {
-flex: 1, 
-justifyContent: 'center',
-alignItems: 'center',
-fontSize: 20, 
+userInfoSection: { 
+  paddingHorizontal: 30,
+  marginBottom: 25, 
+},
 
+title: { 
+  fontSize: 14, 
+  lineHeight: 14, 
+  fontWeight: '500', 
 }, 
 
-BottomNavigation: { 
-marginVertical:8, 
+row:{ 
+  flexDirection: 'row',
+  marginBottom: 10,
 },
-  })
+
+infoBoxWrapper: {
+  borderBottomColor: '#ddddddd'
+}
+
+})
