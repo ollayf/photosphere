@@ -6,6 +6,11 @@ import SignUpScreen from '../Screens/Sign Up';
 import LoginScreen from '../Screens/Login';
 import ForgetPasswordScreen from '../Screens/ForgetPassword';
 import ProfileScreen from '../Screens/Profile'
+import ConvertImageScreen from '../Screens/Convertimage';
+import ViewImageScreen from '../Screens/ViewImage';
+import ExploreScreen from '../Screens/Explore';
+import {createBottomTabNavigator} from '@react-navigation/bottom-tabs'
+import Icon from 'react-native-vector-icons/Ionicons'
 // import {AuthNavigator} from './auth.navigator'
 
 
@@ -18,10 +23,16 @@ const HomeNavigator = () => (
     <Screen name='Login' component={LoginScreen}/>
     <Screen name='ForgetPassword' component={ForgetPasswordScreen}/>
     <Screen name='Profile' component={ProfileScreen}/>
-  
+    <Screen name= 'View Image'component={ViewImageScreen}/>
+    <Screen name= 'Convert Image'component={ConvertImageScreen}/>
+    <Screen name= 'Explore'component={ExploreScreen}/>
+    <Screen name= 'Profile'component={ProfileScreen}/>
 
   </Navigator>
 );
+
+
+
 
 export const AppNavigator = () => (
   <NavigationContainer>
@@ -29,3 +40,14 @@ export const AppNavigator = () => (
     {/* <AuthNavigator /> */}
   </NavigationContainer>
 );
+
+/*const Stack = createStackNavigator();
+
+function HomeStackScreen () {
+  return( 
+    <Stack.Navigator> 
+    <Stack.screen> name = "Home"</Stack.screen>
+    
+    </Stack.Navigator>
+  )
+}*/
