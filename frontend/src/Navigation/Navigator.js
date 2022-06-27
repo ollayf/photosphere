@@ -1,16 +1,18 @@
 import React from 'react';
-import { NavigationContainer } from '@react-navigation/native';
+import { NavigationContainer, StackActions } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import HomeScreen from '../Screens/Home';
 import SignUpScreen from '../Screens/Sign Up';
 import LoginScreen from '../Screens/Login';
 import ForgetPasswordScreen from '../Screens/ForgetPassword';
 import ProfileScreen from '../Screens/Profile'
-import ConvertImageScreen from '../Screens/Convertimage';
-import ViewImageScreen from '../Screens/ViewImage';
+import EditProfileScreen from '../Screens/EditProfile';
+//import ConvertImageScreen from '../Screens/Convertimage';
+/*import ViewImageScreen from '../Screens/ViewImage';
 import ExploreScreen from '../Screens/Explore';
+import EditProfileScreen from '../Screens/EditProfileScreen'
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs'
-import Icon from 'react-native-vector-icons/Ionicons'
+import Icon from 'react-native-vector-icons/Ionicons'*/
 // import {AuthNavigator} from './auth.navigator'
 
 
@@ -23,20 +25,51 @@ const HomeNavigator = () => (
     <Screen name='Login' component={LoginScreen}/>
     <Screen name='ForgetPassword' component={ForgetPasswordScreen}/>
     <Screen name='Profile' component={ProfileScreen}/>
-    <Screen name= 'View Image'component={ViewImageScreen}/>
-    <Screen name= 'Convert Image'component={ConvertImageScreen}/>
-    <Screen name= 'Explore'component={ExploreScreen}/>
-    <Screen name= 'Profile'component={ProfileScreen}/>
-
+    <Screen name='EditProfile' component={EditProfileScreen}/>
   </Navigator>
 );
 
+/*const Stack = createStackNavigator();
 
+
+function ViewImageStackScreen() {
+  return ( 
+    <Stack.Navigator> 
+      <Stack.Screen name="ViewImage" component={ViewImageScreen}/>
+    
+    </Stack.Navigator>
+
+  )
+}
+
+function ExploreStackScreen() {
+  return ( 
+    <Stack.Navigator> 
+      <Stack.Screen name="Explore" component={ExploreScreen}/>
+    
+    </Stack.Navigator>
+
+  )
+}
+
+function ProfileStackScreen() {
+  return ( 
+    <Stack.Navigator> 
+      <Stack.Screen name="Profile" component={ProfileScreen}/>
+      <Stack.Screen name= "EditProfile" component={EditProfileScreen}> </Stack.Screen> 
+    
+    </Stack.Navigator>
+
+  )
+  }
+
+  const Tab = createBottomTabNavigator(); */ 
 
 
 export const AppNavigator = () => (
   <NavigationContainer>
     <HomeNavigator/>
+   
     {/* <AuthNavigator /> */}
   </NavigationContainer>
 );

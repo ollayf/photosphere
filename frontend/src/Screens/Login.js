@@ -57,8 +57,7 @@ export default function LoginScreen ({ navigation }) {
       <Input 
       style={styles.input}
       placeholder= 'Email'
-      keyboardType= 'email-address'
-      
+      keyboardType= 'email-address' 
       > 
      
       </Input> 

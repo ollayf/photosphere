@@ -10,6 +10,10 @@ const ProfileScreen = ({navigation}) => {
   const navigateLogin = () => {
     navigation.navigate('Login');
   };
+
+  const navigateEditProfile = () => {
+    navigation.navigate('EditProfile');
+  };
   return (
       <SafeAreaView style={styles.container}>
         <View style = {styles.userInfoSection}>
@@ -24,7 +28,22 @@ const ProfileScreen = ({navigation}) => {
           style = {styles.title}> 
           John Doe 
           </Title>
-          <Caption style = {styles.caption}> @j_doe </Caption> 
+
+          <View style= {{flexDirection:'row'}}>
+              <Caption style = {styles.caption}> @j_doe </Caption> 
+              <TouchableRipple 
+              onPress= {navigateEditProfile}
+
+              style = {{}}
+              
+              >
+              <Icon name = 'pencil'
+              size = {25}
+              style = {{marginLeft: 50}}></Icon>
+              </TouchableRipple>
+           </View>
+
+         
           </View>
         </View> 
        </View> 
