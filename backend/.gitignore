@@ -1,3 +1,4 @@
 env.py
 *firebase-adminsdk*.json
 db.sqlite3
+venv
