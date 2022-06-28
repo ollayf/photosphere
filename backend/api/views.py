@@ -17,7 +17,7 @@ def username_exists(req):
     required_data = {
         "username": str
     }
-
+    print( 'HERE3RERERE',req.data)
     uname = req.data["username"]
 
     db = firestore.client()
