@@ -1,12 +1,27 @@
-import React from 'react';
+import React, {useState} from 'react';
 import { SafeAreaView, StyleSheet, View } from 'react-native';
 import { Button, Divider, Layout, TopNavigation, Text } from '@ui-kitten/components';
 import Logo from '../Components/Logo'
 
 export default function HomeScreen ({ navigation }) {
-
   const navigateLogin = () => {
-    navigation.navigate('Login');
+    fetch('http://192.168.10.143:8000/api/verifyPassword/',
+      {
+        method: 'POST',
+        body: JSON.stringify({ 
+          username: "chailatte",
+          password: "hello123"
+        }),
+        headers: {
+          'Content-Type': 'application/json'
+          // 'Content-Type': 'application/x-www-form-urlencoded',
+        },
+      }).then((res) => {
+        if (res.status == 200) {
+          navigation.navigate('Login');
+        }
+      })
+    // navigation.navigate('Login');
   };
   const navigateSignUp = () => {
     navigation.navigate('Sign Up');
