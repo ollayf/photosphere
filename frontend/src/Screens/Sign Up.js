@@ -1,11 +1,12 @@
 import React, { useState } from 'react';
 import { SafeAreaView, StyleSheet } from 'react-native';
-import { Button, ApplicationProvider, IconRegistry, Divider, Icon, Layout, Text, Input, TopNavigation, TopNavigationAction } from '@ui-kitten/components';
+import { Button, ApplicationProvider, IconRegistry, Divider, Layout, Text, Input, Icon, TopNavigation, TopNavigationAction } from '@ui-kitten/components';
 import {AppLoading} from 'expo';
 import { ThemeContext } from '../../theme-context';
 import Smallerlogo from '../Components/Smallerlogo'
 import Passwordinput from '../Components/Passwordinput';
 import * as eva from '@eva-design/eva';
+import IonicIcon from 'react-native-vector-icons/Ionicons'
 
 import { EvaIconsPack } from '@ui-kitten/eva-icons';
 
@@ -18,16 +19,13 @@ const BackIcon = (props) => (
 
 export default function SignUpScreen ({ navigation }) {
 
-
-  const [formData, setFormData] = useState({ 
-    name: '', 
-    email: ' ', 
-    password: '', 
-    //password2: ''
-  })
+  const [name, setName] = useState('')
+  const [email, setEmail] = useState('')
+  const [password1, setPassword1] = useState('')
+  const [password2, setPassword2]= useState('')
   
-  const {name, email, password} = formData
-
+  
+  
   
  // const onChange = (e) => {
     //setFormData((prevState) => ({
@@ -47,6 +45,7 @@ export default function SignUpScreen ({ navigation }) {
   );
   
   const navigateLogin = () => {
+    
     navigation.navigate('Login');
   };
   
@@ -78,25 +77,43 @@ export default function SignUpScreen ({ navigation }) {
       <Input 
       style={styles.input}
       placeholder= 'Name'
+      value = {name} 
+      onChangeText= { text => setName(text)}
       > 
       </Input> 
 
       <Input 
       style={styles.input}
       placeholder= 'Email'
-      keyboardType= 'email-address'
-      
-      
+      keyboardType= 'email-address' 
+      value = {email} 
+      onChangeText= { text => setEmail(text)}
       > 
-     
       </Input> 
     
      
-      <Passwordinput> 
-      </Passwordinput> 
+      <Input 
+      style={styles.input}
+      placeholder= 'Password'
+      //keyboardType= '' 
+      value = {password1} 
+      onChangeText= { text => setPassword1(text)}
+      secureTextEntry
+      >
+
+      </Input>
       <Text style={styles.captionText}>
       Should contain at least 1 uppercase, 1 lowercase and 1 special character
       </Text>
+
+      <Input 
+      style={styles.input}
+      placeholder= 'Re-type your password'
+      //keyboardType= '' 
+      value = {password2} 
+      onChangeText= { text => setPassword2(text)}
+      secureTextEntry
+      ></Input>
       
 
       <Button 
