@@ -24,7 +24,7 @@ with open('../setup/django_secret_key.txt', 'r') as keyfile:
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition

@@ -11,7 +11,7 @@ import hashlib
 import datetime
 from passlib.hash import pbkdf2_sha256
 
-@api_view(["GET"])
+@api_view(["POST"])
 @parser_classes([JSONParser])
 def username_exists(req):
     required_data = {
@@ -60,7 +60,7 @@ def add_user(req):
     #     print(doc.to_dict())  
     return Response(status=status.HTTP_201_CREATED)
 
-@api_view(["GET"])
+@api_view(["POST"])
 @parser_classes([JSONParser])
 def verify_password(req):
     required_data = {
