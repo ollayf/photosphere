@@ -8,14 +8,15 @@ import LoginScreen from '../Screens/Login';
 import ForgetPasswordScreen from '../Screens/ForgetPassword';
 import ProfileScreen from '../Screens/Profile'
 import EditProfileScreen from '../Screens/EditProfile';
+import ConvertImageScreen from '../Screens/ConvertImage'; 
+import ViewImageScreen from '../Screens/ViewImage';
+import ExploreScreen from '../Screens/Explore';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import IonicIcon from 'react-native-vector-icons/Ionicons'
 import { ToastAndroid } from 'react-native';
-import ConvertImageScreen from '../Screens/Convertimage';
-import ViewImageScreen from '../Screens/ViewImage';
-import ExploreScreen from '../Screens/Explore';
 
-// import {AuthNavigator} fro m './auth.navigator'
+
+/*import {AuthNavigator} from './auth.navigator'
 
 
 const LoggedOutStack = createStackNavigator();
@@ -24,7 +25,7 @@ const ConvertImageStack = createStackNavigator();
 const ViewImageStack = createStackNavigator();
 const ExploreStack = createStackNavigator (); 
 
-const LoggedOutStackScreen = () => { 
+function LoggedOutStackScreen{ 
   <LoggedOutStack.Navigator> 
     <LoggedOutStack.Screen name = "LoggedOut" component={HomeScreen} />
     <LoggedOutStack.Screen name = "Sign Up" component={SignUpScreen}/>
@@ -33,27 +34,27 @@ const LoggedOutStackScreen = () => {
   </LoggedOutStack.Navigator>
 }
 
-const ProfileStackScreen = () => { 
+function ProfileStackScreen{ 
   <ProfileStack.Navigator> 
     <ProfileStack.Screen name = "Profile" component={ProfileScreen} />
     <ProfileStack.Screen name = "Edit Profile" component={EditProfileScreen}/>
   </ProfileStack.Navigator>
 }
 
-const ViewImageStackScreen = () => { 
+function ViewImageStackScreen { 
   <ViewImageStack.Navigator> 
     <ViewImageStack.Screen name = "Explore" component={ViewImageScreen} />
   </ViewImageStack.Navigator>
 }
 
-const ConvertImageStackScreen = () => { 
+function ConvertImageStackScreen { 
   <ConvertImageStack.Navigator> 
     <ConvertImageStack.Screen name = "Convert Image" component={ConvertImageScreen} />
   </ConvertImageStack.Navigator>
 }
 
 
-const ExploreStackScreen = () => { 
+function ExploreStackScreen { 
   <ExploreStack.Navigator> 
     <ExploreStack.Screen name = "Explore" component={ExploreScreen} />
   </ExploreStack.Navigator>
@@ -61,7 +62,7 @@ const ExploreStackScreen = () => {
 
 const Tab = createBottomTabNavigator ();
 
-export default function LoggedInNavigation (props) { 
+export function LoggedInNavigation (props) { 
   return (
     <NavigationContainer> 
       <Tab.Navigator
@@ -113,7 +114,7 @@ export default function LoggedInNavigation (props) {
       </Tab.Navigator>
     </NavigationContainer>
   )
-} 
+} */
 const { Navigator, Screen } = createStackNavigator();
 
 const LoggedOutNavigator = () => (
@@ -129,7 +130,7 @@ const LoggedOutNavigator = () => (
 
 
 
-
+/*
 export const HomeScreenNavigator = () => (
   <NavigationContainer>
     <LoggedOutNavigator/>
@@ -141,7 +142,7 @@ export const LoggedInNavigator = () =>  (
     <LoggedInNavigator/>
   </NavigationContainer>
 )
-
+*/
 
 export const AppNavigator = () => (
   <NavigationContainer> 

@@ -9,18 +9,7 @@ import { EMaskUnits } from 'react-native-svg';
 
 import Logo from '../Components/Logo'
 
-import fetch, {
-  Blob,
-  blobFrom,
-  blobFromSync,
-  File,
-  fileFrom,
-  fileFromSync,
-  FormData,
-  Headers,
-  Request,
-  Response,
-} from 'node-fetch'
+
 
 const BackIcon = (props) => (
 <Icon {...props} name='arrow-back' />
