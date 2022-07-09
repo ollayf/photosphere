@@ -5,11 +5,23 @@ import {AppLoading} from 'expo';
 import { ThemeContext } from '../../theme-context';
 import { Avatar, Title, Caption, Text, TouchableRipple } from 'react-native-paper';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons'
+//import Share from 'react-native-share'
 
 const ProfileScreen = ({navigation}) => {
   const navigateLogin = () => {
     navigation.navigate('Login');
   };
+
+  /*const shareWithFriends = async() => { 
+    const shareOptions = { 
+      message: 'This is a test message',
+    }
+    try{ 
+      const shareResponse = await Share.open(shareOptions); 
+    } catch(error) {
+      console.log('Error =>', error);
+        }
+    }*/
 
   const navigateEditProfile = () => {
     navigation.navigate('EditProfile');
@@ -99,7 +111,7 @@ const ProfileScreen = ({navigation}) => {
           </View>
         </TouchableRipple>
 
-        <TouchableRipple onPress= {() => {}}>
+        <TouchableRipple onPress= {() => {} }> 
           <View style = {styles.menuItems}> 
             <Icon 
             name = 'share-outline' 
@@ -186,7 +198,7 @@ marginTop: 20,
 // alignItems:'center'
 }, 
 
-ChangeMode: { 
+changeMode: { 
 flex: 0, 
 flexDirection: 'row',
 justifyContent: 'flex-end',

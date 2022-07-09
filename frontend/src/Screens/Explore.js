@@ -79,7 +79,7 @@ searchBar: {
 
 },
 
-ChangeMode: { 
+changeMode: { 
 flex: 0, 
 flexDirection: 'row',
 justifyContent: 'flex-end',

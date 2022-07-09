@@ -1,173 +1,245 @@
-import React from 'react'
-import { View, Text, TouchableOpacity, ImageBackground, Divider, TextInput, StyleSheet, Button, Layout, TopNavigation, TopNavigationAction } from 'react-native'
-import  Icon  from 'react-native-vector-icons/MaterialCommunityIcons' 
-import  Feather from 'react-native-vector-icons/Feather'
-import FontAwesome from 'react-native-vector-icons/FontAwesome'
-import { ThemeContext } from '../../theme-context'
+import React, { useState } from 'react';
+import { SafeAreaView, StyleSheet, View, ScrollView, Image } from 'react-native';
+import { ApplicationProvider, IconRegistry, Divider, Layout, Input, TopNavigation, TopNavigationAction } from '@ui-kitten/components';
+import {AppLoading} from 'expo';
+import { ThemeContext } from '../../theme-context';
+import { Avatar, Title, Caption, Text, TouchableRipple, Button } from 'react-native-paper';
+import Icon from 'react-native-vector-icons/MaterialCommunityIcons'
+//import Share from 'react-native-share'
 
-
-
-const BackIcon = (props) => (
-  <Icon {...props} name='arrow-back' />
-  );
+const ViewImageScreen = ({navigation}) => {
   
-const ViewImageScreen = () => {
+  return (
+      <SafeAreaView style= {styles.container}>
 
-  const navigateBack = () => {
-    navigation.goBack();
-  };
+        <ScrollView style = {styles.topPadding}>
 
-  const BackAction = () => (
-    <TopNavigationAction icon={BackIcon} onPress={navigateBack}/>
-  );
-    return ( 
-      
-        <View style = {styles.container}>      
-            <View style ={{margin: 20}}> 
-                <View style = { {alignItems: 'center'}}>
-                    <TouchableOpacity onPress = { () => {}} > 
-                        <View style = {styles.image}>
-                            <ImageBackground 
-                            style = {styles.image}
-                            source ={require('../Components/Avatar.png')}
-                             size = {100}>
-                             </ImageBackground>
-                             
-                                <View> 
-                                    <Icon 
-                                    name= 'camera'
-                                    size= {35}
-                                    color= 'black' 
-                                    style= {styles.camera}
-                                    >
+          <View style = {styles.topBox}> 
+          
 
-                                    </Icon>
-                                </View>
-                        </View>
-                    </TouchableOpacity> 
+            <View style = {styles.titleWrapper}> 
 
-                    <Text style = {styles.name}> 
-                     John Doe
-                     </Text>
-                </View>
-                </View> 
+            <Text style = {styles.textTitle}> 
+            View your 360 degrees images </Text> 
+            <Icon 
+            name = 'panorama-sphere'
+            size = {22}
+            /> 
+            <Icon 
+            name = 'image'
+            size = {22}
+            /> 
 
-                <View style = {styles.inputWrapper}>
-                    <FontAwesome name = 'user-o' size = {20} />
-                    <TextInput 
-                        placeholder='First Name'
-                        placeholderTextColor= '#666666'
-                        style = {styles.input}
-                        autoCorrect = {false}
-                        >
+            </View>
+          </View>
 
-                        </TextInput>                        
-                </View> 
+          <View style = {styles.listOfImages}>
 
-                <View style = {styles.inputWrapper}>
-                    <FontAwesome name = 'envelope-o' size = {20} />
-                    <TextInput 
-                        placeholder='Email'
-                        placeholderTextColor= '#666666'
-                        style = {styles.input}
-                        autoCorrect = {false}
-                        >
+            <View style = {styles.imageWrapper}> 
+              <Image 
+                source = {require('../Components/Avatar.png')}
+                style = {styles.image}/>
 
-                        </TextInput>                        
-                </View> 
+               <Text style = {styles.imageLabel}> Image Label (eg. Bali Uluwatu temple) </Text>
 
-                <View style = {styles.inputWrapper}>
-                    <FontAwesome name = 'globe' size = {20} />
-                    <TextInput 
-                        placeholder='Country'
-                        placeholderTextColor= '#666666'
-                        style = {styles.input}
-                        autoCorrect = {false}
-                        >
+               <Text style = {styles.dateOfImage}> 13/07/2022 (Date converted) </Text>
+            </View> 
 
-                        </TextInput>    
+            
 
-                         </View>   
-                        <View style = {styles.inputWrapper}>
-                            <Icon name = 'map-marker-outline' size = {20} />
-                                 <TextInput 
-                                     placeholder='City '
-                                        placeholderTextColor= '#666666'
-                                        style = {styles.input}
-                                         autoCorrect = {false}
-                                 >
+            <Button 
+           
+            icon = 'panorama-variant'
+            labelStyle = {{fontSize: 12}}
+            onPress ={()=>{}}> Click to view 
+            </Button>
 
-                                </TextInput>                        
-                                 
-                </View> 
+           
+            
+            
 
-                <TouchableOpacity style = {styles.submitButton}> 
-                <Text 
-                style={styles.submitText}>
-                Submit
-                </Text>
-                </TouchableOpacity>
-        </View>
-    )
+          </View>
+
+          <View style = {styles.listOfImages}>
+
+            <View style = {styles.imageWrapper}> 
+              <Image 
+                source = {require('../Components/Avatar.png')}
+                style = {styles.image}/>
+
+               <Text style = {styles.imageLabel}> Sentosa  </Text>
+
+               <Text style = {styles.dateOfImage}> 13/07/2022  </Text>
+            </View> 
+
+            <Button 
+            
+            icon = 'panorama-variant'
+            labelStyle = {{fontSize: 12}}
+            onPress ={()=>{}}> Click to view 
+            </Button>
+            
+            
+
+          </View>
+
+          <View style = {styles.listOfImages}>
+
+            <View style = {styles.imageWrapper}> 
+              <Image 
+                source = {require('../Components/Avatar.png')}
+                style = {styles.image}/>
+
+               <Text style = {styles.imageLabel}> Mount Fuji </Text>
+
+               <Text style = {styles.dateOfImage}> 13/07/2022 (Date converted) </Text>
+            </View> 
+
+            <View> 
+             <Button 
+              
+              icon = 'panorama-variant'
+              labelStyle = {{fontSize: 12}}
+              onPress ={()=>{}}> Click to view 
+            </Button>
+            </View>
+            
+            
+
+          </View>
+
+          <View style = {styles.listOfImages}>
+
+            <View style = {styles.imageWrapper}> 
+              <Image 
+                source = {require('../Components/Avatar.png')}
+                style = {styles.image}/>
+
+               <Text style = {styles.imageLabel}> Image Label (eg. Bali Uluwatu temple) </Text>
+
+               <Text style = {styles.dateOfImage}> 13/07/2022 (Date converted) </Text>
+            </View> 
+
+            <Button 
+            
+            icon = 'panorama-variant'
+            labelStyle = {{fontSize: 12}}
+            onPress ={()=>{}}> Click to view 
+            </Button>
+            
+            
+
+          </View>
+
+          
+        
+
+        </ScrollView>
+
+       
+
+
+      </SafeAreaView> 
+
+  )
+
 }
 
 export default ViewImageScreen; 
+  
+  
+  
+const styles = StyleSheet.create({
+container: {
+marginTop: 10,
+flex: 1,
 
-const styles = StyleSheet.create({ 
-    container: {
-        flex: 1,
-        alignItems: 'center',
-        marginTop: 30, 
-    }, 
-    image: { 
-        height: 100, 
-        width: 100,
-        borderRadius: 10, 
-        justifyContent: 'center',
-        alignItems: 'center',
-    },
-    cameraIcon: { 
-        opacity: 0.7, 
-        alignItems: 'center', 
-        justifyContent: 'center', 
-        borderWidth: 1, 
-        borderColor: '#fff', 
-        borderRadius: 10, 
+//justifyContent: 'center',
+// alignItems:'center'
+}, 
 
-    },
+topPadding:{ 
+  paddingTop: 10, 
+  paddingBottom: 20,
 
-    name: { 
-        marginTop: 20, 
-        fontSize: 18, 
-        fontWeight: 'bold'
-    }, 
+},
 
-    inputWrapper: { 
-        flexDirection: 'row', 
-        marginTop: 10, 
-        marginBottom: 10, 
-        borderBottomWidth: 1, 
-        borderBottomColor: '#f2f2f2',
-        paddingBottom: 5,
-        marginLeft: 15,
-       
-    },
-    input: {
-        width: 500,
-        flex: 1,
-        paddingLeft: 15, 
-        color: '#05373a',
-        
-    },
-    submitButton:{ 
-        marginTop: 10,
-        padding: 15, 
-        borderRadius: 10, 
-        backgroundColor: 'teal',
-        width: 100,
-    },
-    submitText: {
-        fontSize: 20,
+topBox:{
+  height: 50, 
+  backgroundColor: 'teal',
+  flex: 1,
+  marginTop: 5,
 
-    },
-    })
+},
+
+titleWrapper:{
+  marginTop: 0,
+  flexDirection: 'row', 
+  justifyContent: 'center',
+  marginTop: 12,
+},
+
+textTitle:{
+  fontWeight: 'bold',
+  fontSize: 15,
+  color: 'white',
+
+
+},
+
+listOfImages:{
+  flexDirection: 'row', 
+  alignItems: 'center', 
+  flex: 1,
+  marginTop: 30,
+  justifyContent: 'space-between'
+  
+
+},
+
+imageWrapper:{
+  marginLeft: 15, 
+  
+  
+  
+},
+
+buttonWrapper:{
+  marginRight:5
+  
+  
+},
+
+image:{
+  width: 150, 
+  height: 80,
+  borderRadius: 10,
+
+},
+
+imageLabel:{
+  fontSize: 12, 
+  fontWeight: 'bold',
+  marginTop: 10,
+  marginBottom: 10,
+  
+   
+},
+
+dateOfImage:{
+  fontSize: 12, 
+  fontWeight: 'bold',
+  fontStyle: 'italic',
+   
+},
+
+
+changeMode: { 
+flex: 0, 
+flexDirection: 'row',
+justifyContent: 'flex-end',
+alignItems: 'center' ,
+},
+
+
+})

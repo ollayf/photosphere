@@ -49,7 +49,7 @@ export default function LoginScreen ({ navigation }) {
     <SafeAreaView style={styles.container}>
       <TopNavigation title='Login' alignment='center' accessoryLeft={BackAction}/>
       <Divider/>
-      <Layout style={styles.ChangeMode}>
+      <Layout style={styles.changeMode}>
         <Button style={{ marginVertical: 4 }} onPress={themeContext.toggleTheme}>CHANGE MODE</Button>
       </Layout>
 
@@ -83,7 +83,7 @@ export default function LoginScreen ({ navigation }) {
 
 
       <Button
-      style= {styles.forgotpassword} 
+      style= {styles.forgotPassword} 
       appearance= 'ghost'
       size='small'
       status= 'danger'
@@ -92,7 +92,7 @@ export default function LoginScreen ({ navigation }) {
       </Button>
 
       <Button 
-      style= {styles.LoginButton}
+      style= {styles.loginButton}
       appearance= 'filled'
       status= 'primary'
       size = 'giant'
@@ -102,12 +102,12 @@ export default function LoginScreen ({ navigation }) {
       LOGIN 
       </Button>
       <Text 
-      style= {styles.NoAccountText}>
+      style= {styles.noAccountText}>
       Don't have an account?  
      
       </Text> 
       <Button
-      style= {styles.CreateAccount}
+      style= {styles.createAccount}
       appearance= 'ghost'
       onPress={navigateSignUp}
       > 
@@ -129,7 +129,7 @@ container: {
  // alignItems:'center'
  }, 
 
-ChangeMode: { 
+changeMode: { 
   flex: 0, 
   flexDirection: 'row',
   justifyContent: 'flex-end',
@@ -156,21 +156,21 @@ input:{
   alignItems: 'center',
 }, 
 
-forgotpassword:{ 
+forgotPassword:{ 
   marginTop: 1, 
   marginBottom: 20
 },
 
-LoginButton: {
+loginButton: {
   marginTop: 1,
   marginBottom: 5,
   width: 250,
   backgroundColor: 'teal'
 },
-NoAccountText:{ 
+noAccountText:{ 
   marginTop: 5
 },
-CreateAccount: { 
+createAccount: { 
   marginBottom: 20
 },
 

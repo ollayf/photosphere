@@ -1,175 +1,142 @@
 import React, { useState } from 'react';
-import { SafeAreaView, StyleSheet, View } from 'react-native';
-import { Button, ApplicationProvider, IconRegistry, Divider, Layout, Input, TopNavigation, TopNavigationAction } from '@ui-kitten/components';
+import { SafeAreaView, StyleSheet, View, ScrollView, Image } from 'react-native';
+import { ApplicationProvider, IconRegistry, Divider, Layout, Input, TopNavigation, TopNavigationAction } from '@ui-kitten/components';
 import {AppLoading} from 'expo';
 import { ThemeContext } from '../../theme-context';
-import { Avatar, Title, Caption, Text, TouchableRipple } from 'react-native-paper';
+import { Avatar, Title, Caption, Text, TouchableRipple, Button } from 'react-native-paper';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons'
-import Share from 'react-native-share'
+//import Share from 'react-native-share'
 
 const ProfileScreen = ({navigation}) => {
   const navigateLogin = () => {
     navigation.navigate('Login');
   };
-
-  const shareWithFriends = async() => { 
-    const shareOptions = { 
-      message: 'This is a test message',
-    }
-    try{ 
-      const shareResponse = awaitShare.open(shareOptions); 
-    } catch(error) {
-      console.log('Error =>', error);
-        }
-    }
-
-  const navigateEditProfile = () => {
-    navigation.navigate('EditProfile');
-  };
   return (
-      <SafeAreaView style={styles.container}>
-        <View style = {styles.userInfoSection}>
-          <View style = {{flexDirection:'row', marginTop: 15}} > 
-            <Avatar.Image
-              source ={require('../Components/Avatar.png')}
-              size = {80}
-            />
+      <SafeAreaView style= {styles.container}>
 
-        <View style = {{marginLeft: 20}}>
-          <Title 
-          style = {styles.title}> 
-          John Doe 
-          </Title>
+        <ScrollView style = {styles.topPadding}>
 
-          <View style= {{flexDirection:'row'}}>
-              <Caption style = {styles.caption}> @j_doe </Caption> 
-              <TouchableRipple 
-              onPress= {navigateEditProfile}
+          <View style = {styles.topBox}> 
+          
 
-              style = {{}}
+            <View style = {styles.titleWrapper}> 
+
+            <Text style = {styles.textTitle}> 
+            Convert panoramic images to 360 degrees images </Text> 
+            <Icon 
+            name = 'swap-horizontal'
+            size = {22}
+            /> 
+            <Icon 
+            name = 'image'
+            size = {22}
+            /> 
+
+            </View>
+          </View>
+
+          <View style = {styles.listOfImages}>
+
+            <View style = {styles.imageWrapper}> 
+              <Image 
+                source = {require('../Components/Avatar.png')}
+                style = {styles.image}/>
+
+               <Text style = {styles.imageLabel}> Image Label (eg. Bali Uluwatu temple) </Text>
+
+               <Text style = {styles.dateOfImage}> 13/07/2022 (Date converted) </Text>
+            </View> 
+
+            
+
+            <Button 
+           
+            icon = 'panorama-variant'
+            labelStyle = {{fontSize: 12}}
+            onPress ={()=>{}}> Click to view 
+            </Button>
+
+           
+            
+            
+
+          </View>
+
+          <View style = {styles.listOfImages}>
+
+            <View style = {styles.imageWrapper}> 
+              <Image 
+                source = {require('../Components/Avatar.png')}
+                style = {styles.image}/>
+
+               <Text style = {styles.imageLabel}> Sentosa  </Text>
+
+               <Text style = {styles.dateOfImage}> 13/07/2022  </Text>
+            </View> 
+
+            <Button 
+            
+            icon = 'panorama-variant'
+            labelStyle = {{fontSize: 12}}
+            onPress ={()=>{}}> Click to view 
+            </Button>
+            
+            
+
+          </View>
+
+          <View style = {styles.listOfImages}>
+
+            <View style = {styles.imageWrapper}> 
+              <Image 
+                source = {require('../Components/Avatar.png')}
+                style = {styles.image}/>
+
+               <Text style = {styles.imageLabel}> Mount Fuji </Text>
+
+               <Text style = {styles.dateOfImage}> 13/07/2022 (Date converted) </Text>
+            </View> 
+
+            <View> 
+             <Button 
               
-              >
-              <Icon name = 'pencil'
-              size = {25}
-              style = {{marginLeft: 50}}></Icon>
-              </TouchableRipple>
-           </View>
+              icon = 'panorama-variant'
+              labelStyle = {{fontSize: 12}}
+              onPress ={()=>{}}> Click to view 
+            </Button>
+            </View>
+            
+            
 
-         
           </View>
-        </View> 
-       </View> 
 
-       <View style = {styles.userInfoSection}>
-       <View style = {styles.row}>
-       <Icon 
-          name = "map-marker-radius" 
-          size ={20} 
-          color = "#777777"
-          />
-        <Text style = {styles.words}> Singapore </Text>
-         
+          <View style = {styles.listOfImages}>
+
+            <View style = {styles.imageWrapper}> 
+              <Image 
+                source = {require('../Components/Avatar.png')}
+                style = {styles.image}/>
+
+               <Text style = {styles.imageLabel}> Image Label (eg. Bali Uluwatu temple) </Text>
+
+               <Text style = {styles.dateOfImage}> 13/07/2022 (Date converted) </Text>
+            </View> 
+
+            <Button 
+            
+            icon = 'panorama-variant'
+            labelStyle = {{fontSize: 12}}
+            onPress ={()=>{}}> Click to view 
+            </Button>
+            
+            
+
+          </View>
+
+          
         
-        </View>
-      
-        <View style = {styles.row}>
-       <Icon 
-          name = "email" 
-          size ={20} 
-          color = "#777777"
-          />
-        <Text style = {styles.words}> hello@world.com </Text>     
-        </View>    
-       </View> 
 
-
-       <View style = {styles.BoxWrapper}>
-        <View style = {styles.Box}> 
-        <Title> 10  </Title>
-        <Caption> 360 Degree images </Caption>   
-        </View>
-
-        <View style = {styles.Box}> 
-        <Title> 10  </Title>
-        <Caption> Images shared </Caption>       
-        </View>
-       </View> 
-
-       <View styles ={styles.menuWrapper}> 
-
-        <TouchableRipple onPress= {() => {}}>
-          <View style = {styles.menuItems}> 
-            <Icon 
-            name = 'heart-outline' 
-            color = 'teal'
-            size = {25}
-            ></Icon>
-            <Text 
-            style = {styles.menuItemsText}>
-            Favourites
-            </Text> 
-          </View>
-        </TouchableRipple>
-
-        <TouchableRipple onPress= {shareWithFriends}>
-          <View style = {styles.menuItems}> 
-            <Icon 
-            name = 'share-outline' 
-            color = 'teal'
-            size = {25}
-            ></Icon>
-            <Text 
-            style = {styles.menuItemsText}>
-            Share with your friends
-            </Text> 
-          </View>
-        </TouchableRipple>
-
-        <TouchableRipple onPress= {() => {}}>
-          <View style = {styles.menuItems}> 
-            <Icon 
-            name = 'account-check-outline' 
-            color = 'teal'
-            size = {25}
-            ></Icon>
-            <Text 
-            style = {styles.menuItemsText}>
-            Support
-            </Text> 
-          </View>
-        </TouchableRipple>
-
-        <TouchableRipple onPress= {() => {}}>
-          <View style = {styles.menuItems}> 
-            <Icon 
-            name = 'cog-outline'
-            color = 'teal'
-            size = {25}
-            ></Icon>
-            <Text 
-            style = {styles.menuItemsText}>
-            Settings
-            </Text> 
-          </View>
-        </TouchableRipple>
-
-        <TouchableRipple onPress= {navigateLogin}>
-          <View style = {styles.menuItems}> 
-            <Icon 
-            name = 'logout' 
-            color = 'red'
-            size = {25}
-            ></Icon>
-            <Text 
-            style = {styles.menuItemsText}>
-            Log Out
-            </Text> 
-          </View>
-        </TouchableRipple>
-
-
-
-       </View>
+        </ScrollView>
 
        
 
@@ -191,80 +158,94 @@ export default ProfileScreen;
 
 const styles = StyleSheet.create({
 container: {
+marginTop: 10,
 flex: 1,
-marginTop: 20,
 
 //justifyContent: 'center',
 // alignItems:'center'
 }, 
 
-ChangeMode: { 
+topPadding:{ 
+  paddingTop: 10, 
+  paddingBottom: 20,
+
+},
+
+topBox:{
+  height: 50, 
+  backgroundColor: 'teal',
+  flex: 1,
+  marginTop: 5,
+
+},
+
+titleWrapper:{
+  marginTop: 0,
+  flexDirection: 'row', 
+  justifyContent: 'center',
+  marginTop: 12,
+},
+
+textTitle:{
+  fontWeight: 'bold',
+  fontSize: 15,
+  color: 'white',
+
+
+},
+
+listOfImages:{
+  flexDirection: 'row', 
+  alignItems: 'center', 
+  flex: 1,
+  marginTop: 30,
+  justifyContent: 'space-between'
+  
+
+},
+
+imageWrapper:{
+  marginLeft: 15, 
+  
+  
+  
+},
+
+buttonWrapper:{
+  marginRight:5
+  
+  
+},
+
+image:{
+  width: 150, 
+  height: 80,
+  borderRadius: 10,
+
+},
+
+imageLabel:{
+  fontSize: 12, 
+  fontWeight: 'bold',
+  marginTop: 10,
+  marginBottom: 10,
+  
+   
+},
+
+dateOfImage:{
+  fontSize: 12, 
+  fontWeight: 'bold',
+  fontStyle: 'italic',
+   
+},
+
+
+changeMode: { 
 flex: 0, 
 flexDirection: 'row',
 justifyContent: 'flex-end',
 alignItems: 'center' ,
-},
-
-userInfoSection: { 
-  paddingHorizontal: 30,
-  marginBottom: 25, 
-},
-
-title: { 
-  fontSize: 24, 
-  lineHeight: 24, 
-  fontWeight: 'bold',
-  marginTop: 20, 
-  marginBottom: 5, 
-}, 
-
-caption: { 
-  fontSize: 14, 
-  lineHeight: 14, 
-  fontWeight: '500', 
-},
-
-row:{ 
-  flexDirection: 'row',
-  marginBottom: 10,
-},
-
-words:{ 
-  color: '777777', 
-  marginLeft: 20
-},
-
-BoxWrapper: {
-  borderBottomColor: '#dddddd',
-  flexDirection: 'row', 
-  height: 100, 
-  borderTopWidth: 1, 
-  borderTopColor: '#dddddd',
-  borderBottomWidth: 1,
-},
-
-Box: { 
-  width: '50%',
-  alignItems: 'center',
-  justifyContent: 'center',
-  borderRightColor: '#777777',
-  borderRightWidth: 1
-},
-
-menuWrapper: { 
-  marginTop: 10, 
-},
-
-menuItems: { 
-  flexDirection: 'row',
-  paddingVertical: 15, 
-  paddingHorizontal: 30, 
-}, 
-menuItemsText:{ 
-  color: '#777777', 
-  marginLeft: 20, 
-  fontWeight: '600',
-  fontSize: 16,
 },
 
 

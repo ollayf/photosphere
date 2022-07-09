@@ -55,7 +55,7 @@ export default function SignUpScreen ({ navigation }) {
     <SafeAreaView style={styles.container}>
     <TopNavigation title='Sign Up' alignment='center' accessoryLeft={BackAction}/>
     <Divider/>
-    <Layout style={styles.ChangeMode}>
+    <Layout style={styles.changeMode}>
       <Button style={{ marginVertical: 4 }} onPress={themeContext.toggleTheme}>CHANGE MODE</Button>
     </Layout>
 
@@ -117,7 +117,7 @@ export default function SignUpScreen ({ navigation }) {
       
 
       <Button 
-      style= {styles.SignUpButton}
+      style= {styles.signUpButton}
       appearance= 'filled'
       status= 'primary'
       size = 'giant'
@@ -127,12 +127,12 @@ export default function SignUpScreen ({ navigation }) {
       SIGN UP 
       </Button>
       <Text 
-      style= {styles.AlreadyHaveAccountText}>
+      style= {styles.alreadyHaveAccountText}>
       Already have an account?  
      
       </Text> 
       <Button
-      style= {styles.Login}
+      style= {styles.login}
       appearance= 'ghost'
       onPress={navigateLogin} 
     >
@@ -161,7 +161,7 @@ header: {
   alignItems: 'center',
 }, 
 
-ChangeMode: { 
+changeMode: { 
   flex: 0, 
   flexDirection: 'row',
   justifyContent: 'flex-end',
@@ -184,16 +184,16 @@ input:{
   
 }, 
 
-SignUpButton: {
+signUpButton: {
   marginTop: 15,
   marginBottom:-5,
   width: 250,
   backgroundColor: 'teal'
 },
-AlreadyHaveAccountText:{ 
+alreadyHaveAccountText:{ 
   marginTop: 10
 },
-Login: { 
+login: { 
   marginBottom: 20
 },
 captionText: {
