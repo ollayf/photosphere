@@ -2,12 +2,12 @@ import React, { useState } from 'react';
 import { SafeAreaView, View, StyleSheet } from 'react-native';
 import {  Button, Divider, Icon, Input, Layout, Text, TopNavigation, TopNavigationAction } from '@ui-kitten/components';
 import {AppLoading} from 'expo';
-import { ThemeContext } from '../../theme-context'
-import Passwordinput from '../Components/Passwordinput'
+import { ThemeContext } from '../../../theme-context'
+import Passwordinput from '../../Components/Passwordinput'
 import { EMaskUnits } from 'react-native-svg';
 //import * as React from 'react';
 
-import Logo from '../Components/Logo'
+import Logo from '../../Components/Logo'
 
 
 
@@ -47,11 +47,6 @@ export default function LoginScreen ({ navigation }) {
  
   return (
     <SafeAreaView style={styles.container}>
-      <TopNavigation title='Login' alignment='center' accessoryLeft={BackAction}/>
-      <Divider/>
-      <Layout style={styles.changeMode}>
-        <Button style={{ marginVertical: 4 }} onPress={themeContext.toggleTheme}>CHANGE MODE</Button>
-      </Layout>
 
       <Layout style={styles.header}>
         <Logo>    

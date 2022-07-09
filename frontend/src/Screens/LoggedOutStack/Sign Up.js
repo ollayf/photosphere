@@ -2,9 +2,9 @@ import React, { useState } from 'react';
 import { SafeAreaView, StyleSheet } from 'react-native';
 import { Button, ApplicationProvider, IconRegistry, Divider, Layout, Text, Input, Icon, TopNavigation, TopNavigationAction } from '@ui-kitten/components';
 import {AppLoading} from 'expo';
-import { ThemeContext } from '../../theme-context';
-import Smallerlogo from '../Components/Smallerlogo'
-import Passwordinput from '../Components/Passwordinput';
+import { ThemeContext } from '../../../theme-context';
+import Smallerlogo from '../../Components/Smallerlogo'
+import Passwordinput from '../../Components/Passwordinput';
 import * as eva from '@eva-design/eva';
 import IonicIcon from 'react-native-vector-icons/Ionicons'
 

@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { SafeAreaView, StyleSheet, View, ScrollView, Image } from 'react-native';
 import { ApplicationProvider, IconRegistry, Divider, Layout, Input, TopNavigation, TopNavigationAction } from '@ui-kitten/components';
 import {AppLoading} from 'expo';
-import { ThemeContext } from '../../theme-context';
+import { ThemeContext } from '../../../theme-context';
 import { Avatar, Title, Caption, Text, TouchableRipple, Button } from 'react-native-paper';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons'
 //import Share from 'react-native-share'
@@ -37,7 +37,7 @@ const ViewImageScreen = ({navigation}) => {
 
             <View style = {styles.imageWrapper}> 
               <Image 
-                source = {require('../Components/Avatar.png')}
+                source = {require('../../Components/Avatar.png')}
                 style = {styles.image}/>
 
                <Text style = {styles.imageLabel}> Image Label (eg. Bali Uluwatu temple) </Text>
@@ -64,7 +64,7 @@ const ViewImageScreen = ({navigation}) => {
 
             <View style = {styles.imageWrapper}> 
               <Image 
-                source = {require('../Components/Avatar.png')}
+                source = {require('../../Components/Avatar.png')}
                 style = {styles.image}/>
 
                <Text style = {styles.imageLabel}> Sentosa  </Text>
@@ -87,7 +87,7 @@ const ViewImageScreen = ({navigation}) => {
 
             <View style = {styles.imageWrapper}> 
               <Image 
-                source = {require('../Components/Avatar.png')}
+                source = {require('../../Components/Avatar.png')}
                 style = {styles.image}/>
 
                <Text style = {styles.imageLabel}> Mount Fuji </Text>
@@ -112,7 +112,7 @@ const ViewImageScreen = ({navigation}) => {
 
             <View style = {styles.imageWrapper}> 
               <Image 
-                source = {require('../Components/Avatar.png')}
+                source = {require('../../Components/Avatar.png')}
                 style = {styles.image}/>
 
                <Text style = {styles.imageLabel}> Image Label (eg. Bali Uluwatu temple) </Text>
@@ -192,7 +192,8 @@ listOfImages:{
   alignItems: 'center', 
   flex: 1,
   marginTop: 30,
-  justifyContent: 'space-between'
+  justifyContent: 'space-between',
+  marginBottom: 20,
   
 
 },

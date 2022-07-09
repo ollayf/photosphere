@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { SafeAreaView, StyleSheet, View } from 'react-native';
 import { Button, ApplicationProvider, IconRegistry, Divider, Layout, Input, TopNavigation, TopNavigationAction } from '@ui-kitten/components';
 import {AppLoading} from 'expo';
-import { ThemeContext } from '../../theme-context';
+import { ThemeContext } from '../../../theme-context';
 import { Avatar, Title, Caption, Text, TouchableRipple } from 'react-native-paper';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons'
 //import Share from 'react-native-share'
@@ -31,7 +31,7 @@ const ProfileScreen = ({navigation}) => {
         <View style = {styles.userInfoSection}>
           <View style = {{flexDirection:'row', marginTop: 15}} > 
             <Avatar.Image
-              source ={require('../Components/Avatar.png')}
+              source ={require('../../Components/Avatar.png')}
               size = {80}
             />
 

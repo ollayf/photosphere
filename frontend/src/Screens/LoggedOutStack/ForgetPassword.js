@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import { SafeAreaView, StyleSheet } from 'react-native';
 import { Button, Divider, Icon, Layout, Text, Input, TopNavigation, TopNavigationAction } from '@ui-kitten/components';
-import { ThemeContext } from '../../theme-context';
-import Smallerlogo from '../Components/Smallerlogo'
+import { ThemeContext } from '../../../theme-context';
+import Smallerlogo from '../../Components/Smallerlogo'
 
 const BackIcon = (props) => (
     <Icon {...props} name='arrow-back' />
@@ -26,12 +26,7 @@ const BackIcon = (props) => (
 
     return (
     <SafeAreaView style={styles.container}>
-      <TopNavigation title='MyApp' alignment='center' accessoryLeft={BackAction}/>
-      <Divider/>
-
-      <Layout style={styles.ChangeMode}>
-        <Button style={{ marginVertical: 4 }} onPress={themeContext.toggleTheme}>CHANGE MODE</Button>
-      </Layout>
+      
   
       <Layout style={styles.header}>
         <Smallerlogo>

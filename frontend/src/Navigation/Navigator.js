@@ -2,15 +2,15 @@ import React from 'react';
 import { NavigationContainer } from '@react-navigation/native'; 
 import { createStackNavigator } from '@react-navigation/stack';
 import { createAppContainer } from 'react-navigation'
-import HomeScreen from '../Screens/Home';
-import SignUpScreen from '../Screens/Sign Up';
-import LoginScreen from '../Screens/Login';
-import ForgetPasswordScreen from '../Screens/ForgetPassword';
-import ProfileScreen from '../Screens/Profile'
-import EditProfileScreen from '../Screens/EditProfile';
-import ConvertImageScreen from '../Screens/ConvertImage'; 
-import ViewImageScreen from '../Screens/ViewImage';
-import ExploreScreen from '../Screens/Explore';
+import HomeScreen from '../Screens/LoggedOutStack/Home';
+import SignUpScreen from '../Screens/LoggedOutStack/Sign Up';
+import LoginScreen from '../Screens/LoggedOutStack/Login';
+import ForgetPasswordScreen from '../Screens/LoggedOutStack/ForgetPassword';
+import ProfileScreen from '../Screens/ProfileStack/Profile';
+import EditProfileScreen from '../Screens/ProfileStack/EditProfile';
+import ConvertImageScreen from '../Screens/ConvertImageStack/ConvertImage'; 
+import ViewImageScreen from '../Screens/ViewImageStack/ViewImage';
+import ExploreScreen from '../Screens/ExploreStack/Explore';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import IonicIcon from 'react-native-vector-icons/Ionicons'
 import { ToastAndroid } from 'react-native';
@@ -19,21 +19,24 @@ import { ToastAndroid } from 'react-native';
 /*import {AuthNavigator} from './auth.navigator'
 
 
-const LoggedOutStack = createStackNavigator();
+
 const ProfileStack = createStackNavigator(); 
 const ConvertImageStack = createStackNavigator(); 
 const ViewImageStack = createStackNavigator();
-const ExploreStack = createStackNavigator (); 
+const ExploreStack = createStackNavigator (); */
 
-function LoggedOutStackScreen{ 
-  <LoggedOutStack.Navigator> 
-    <LoggedOutStack.Screen name = "LoggedOut" component={HomeScreen} />
-    <LoggedOutStack.Screen name = "Sign Up" component={SignUpScreen}/>
-    <LoggedOutStack.Screen name = "Login" component={LoginScreen}/> 
-    <LoggedOutStack.Screen name = "Forget Password" component={ForgetPasswordScreen}/>
-  </LoggedOutStack.Navigator>
+const Stack = createStackNavigator();
+function LoggedOutStackScreen () { 
+  return(
+  <Stack.Navigator> 
+    <Stack.Screen name = "Home" component={HomeScreen} />
+    <Stack.Screen name = "Sign Up" component={SignUpScreen}/>
+    <Stack.Screen name = "Login" component={LoginScreen}/> 
+    <Stack.Screen name = "Forget Password" component={ForgetPasswordScreen}/>
+  </Stack.Navigator>
+  )
 }
-
+/*
 function ProfileStackScreen{ 
   <ProfileStack.Navigator> 
     <ProfileStack.Screen name = "Profile" component={ProfileScreen} />
@@ -115,7 +118,7 @@ export function LoggedInNavigation (props) {
     </NavigationContainer>
   )
 } */
-const { Navigator, Screen } = createStackNavigator();
+/*const { Navigator, Screen } = createStackNavigator();
 
 const LoggedOutNavigator = () => (
   <Navigator screenOptions={{headerShown: false}}>
@@ -126,7 +129,7 @@ const LoggedOutNavigator = () => (
     <Screen name='Profile' component={ProfileScreen}/>
     <Screen name='EditProfile' component={EditProfileScreen}/>
   </Navigator>
-);
+);*/
 
 
 
@@ -146,7 +149,7 @@ export const LoggedInNavigator = () =>  (
 
 export const AppNavigator = () => (
   <NavigationContainer> 
-    <LoggedOutNavigator/>
+    <LoggedOutStackScreen/>
   
   </NavigationContainer>
 )
