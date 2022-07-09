@@ -1,12 +1,13 @@
 import React, { useState } from 'react';
 import { SafeAreaView, StyleSheet } from 'react-native';
-import { Button, ApplicationProvider, IconRegistry, Divider, Layout, Text, Input, Icon, TopNavigation, TopNavigationAction } from '@ui-kitten/components';
+import { ApplicationProvider, IconRegistry, Divider, Layout, Text, Input, Icon, TopNavigation, TopNavigationAction } from '@ui-kitten/components';
 import {AppLoading} from 'expo';
 import { ThemeContext } from '../../../theme-context';
 import Smallerlogo from '../../Components/Smallerlogo'
 import Passwordinput from '../../Components/Passwordinput';
 import * as eva from '@eva-design/eva';
 import IonicIcon from 'react-native-vector-icons/Ionicons'
+import { Button } from 'react-native-paper';
 
 import { EvaIconsPack } from '@ui-kitten/eva-icons';
 
@@ -53,11 +54,7 @@ export default function SignUpScreen ({ navigation }) {
 
   return (
     <SafeAreaView style={styles.container}>
-    <TopNavigation title='Sign Up' alignment='center' accessoryLeft={BackAction}/>
-    <Divider/>
-    <Layout style={styles.changeMode}>
-      <Button style={{ marginVertical: 4 }} onPress={themeContext.toggleTheme}>CHANGE MODE</Button>
-    </Layout>
+    
 
     <Layout style={styles.header}>
       <Smallerlogo>
@@ -118,10 +115,11 @@ export default function SignUpScreen ({ navigation }) {
 
       <Button 
       style= {styles.signUpButton}
-      appearance= 'filled'
-      status= 'primary'
-      size = 'giant'
-      //onPress = {navigate}
+      icon = 'pencil-plus'
+      color = {'white'}
+      labelStyle= {{fontSize: 22}}
+        
+      onPress = {() => {}}
       >
       
       SIGN UP 
@@ -150,8 +148,7 @@ export default function SignUpScreen ({ navigation }) {
 const styles = StyleSheet.create({
   container: {
   flex: 1,
-  
-  //justifyContent: 'center',
+  justifyContent: 'center',
  // alignItems:'center'
  }, 
 

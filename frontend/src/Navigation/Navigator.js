@@ -16,51 +16,111 @@ import IonicIcon from 'react-native-vector-icons/Ionicons'
 import { ToastAndroid } from 'react-native';
 
 
-/*import {AuthNavigator} from './auth.navigator'
+import {AuthNavigator} from './auth.navigator'
 
 
 
-const ProfileStack = createStackNavigator(); 
-const ConvertImageStack = createStackNavigator(); 
-const ViewImageStack = createStackNavigator();
-const ExploreStack = createStackNavigator (); */
 
-const Stack = createStackNavigator();
+
+const LoggedOutStack = createStackNavigator();
 function LoggedOutStackScreen () { 
   return(
-  <Stack.Navigator> 
-    <Stack.Screen name = "Home" component={HomeScreen} />
-    <Stack.Screen name = "Sign Up" component={SignUpScreen}/>
-    <Stack.Screen name = "Login" component={LoginScreen}/> 
-    <Stack.Screen name = "Forget Password" component={ForgetPasswordScreen}/>
-  </Stack.Navigator>
+  <LoggedOutStack.Navigator initialRouteName='Home'> 
+    <LoggedOutStack.Screen 
+    name = "Home"
+    options ={{
+      title:'                               My home',
+      headerStyle:{
+        backgroundColor: 'teal',
+      },
+      headerTintColor: '#fff',
+      headerTitleStyle:{
+        fontWeight: 'bold',
+      }
+    }} 
+    component={HomeScreen} />
+    <LoggedOutStack.Screen 
+    name = "Sign Up" 
+    component={SignUpScreen}
+    options ={{
+      title:'                     Sign Up',
+      headerStyle:{
+        backgroundColor: 'teal',
+      },
+      headerTintColor: '#fff',
+      headerTitleStyle:{
+        fontWeight: 'bold',
+      }
+    }} 
+    />
+    <LoggedOutStack.Screen 
+    name = "Login" 
+    component={LoginScreen}
+    options ={{
+      title:'                       Login',
+      headerStyle:{
+        backgroundColor: 'teal',
+      },
+      headerTintColor: '#fff',
+      headerTitleStyle:{
+        fontWeight: 'bold',
+      }
+    }} 
+    /> 
+    <LoggedOutStack.Screen 
+    name = "Forget Password" 
+    component={ForgetPasswordScreen}
+    options ={{
+      title:'              Forget Password',
+      headerStyle:{
+        backgroundColor: 'teal',
+      },
+      headerTintColor: '#fff',
+      headerTitleStyle:{
+        fontWeight: 'bold',
+      }
+    }} 
+    />
+  </LoggedOutStack.Navigator>
   )
 }
-/*
-function ProfileStackScreen{ 
-  <ProfileStack.Navigator> 
-    <ProfileStack.Screen name = "Profile" component={ProfileScreen} />
-    <ProfileStack.Screen name = "Edit Profile" component={EditProfileScreen}/>
-  </ProfileStack.Navigator>
-}
 
-function ViewImageStackScreen { 
-  <ViewImageStack.Navigator> 
-    <ViewImageStack.Screen name = "Explore" component={ViewImageScreen} />
-  </ViewImageStack.Navigator>
-}
+const LoggedInStack = createStackNavigator(); 
 
-function ConvertImageStackScreen { 
-  <ConvertImageStack.Navigator> 
-    <ConvertImageStack.Screen name = "Convert Image" component={ConvertImageScreen} />
-  </ConvertImageStack.Navigator>
+function ProfileStackScreen () { 
+
+  return (
+  <LoggedInStack.Navigator> 
+    <LoggedInStack.Screen name = "Profile" component={ProfileScreen} />
+    <LoggedInStack.Screen name = "Edit Profile" component={EditProfileScreen}/>
+  </LoggedInStack.Navigator>
+  )
 }
 
 
-function ExploreStackScreen { 
+function ViewImageStackScreen () {
+  return( 
+  <LoggedInStack.Navigator> 
+    <LoggedInStack.Screen name = "Explore" component={ViewImageScreen} />
+  </LoggedInStack.Navigator>
+  )
+}
+
+function ConvertImageStackScreen () { 
+  return(
+  <LoggedInStack.Navigator> 
+    <LoggedInStack.Screen name = "Convert Image" component={ConvertImageScreen} />
+  </LoggedInStack.Navigator>
+  )
+}
+
+
+function ExploreStackScreen () { 
+  return(
   <ExploreStack.Navigator> 
     <ExploreStack.Screen name = "Explore" component={ExploreScreen} />
   </ExploreStack.Navigator>
+  )
 }
 
 const Tab = createBottomTabNavigator ();
@@ -117,7 +177,7 @@ export function LoggedInNavigation (props) {
       </Tab.Navigator>
     </NavigationContainer>
   )
-} */
+} 
 /*const { Navigator, Screen } = createStackNavigator();
 
 const LoggedOutNavigator = () => (
@@ -129,27 +189,28 @@ const LoggedOutNavigator = () => (
     <Screen name='Profile' component={ProfileScreen}/>
     <Screen name='EditProfile' component={EditProfileScreen}/>
   </Navigator>
-);*/
+);
 
 
 
-/*
+
 export const HomeScreenNavigator = () => (
   <NavigationContainer>
     <LoggedOutNavigator/>
   </NavigationContainer>
 );
+*/
+
+
+export const LoggedOutNavigator = () => (
+  <NavigationContainer> 
+    <LoggedOutStackScreen/>
+  
+  </NavigationContainer>
+)
 
 export const LoggedInNavigator = () =>  ( 
   <NavigationContainer> 
     <LoggedInNavigator/>
-  </NavigationContainer>
-)
-*/
-
-export const AppNavigator = () => (
-  <NavigationContainer> 
-    <LoggedOutStackScreen/>
-  
   </NavigationContainer>
 )

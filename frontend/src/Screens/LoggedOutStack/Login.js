@@ -1,11 +1,12 @@
 import React, { useState } from 'react';
 import { SafeAreaView, View, StyleSheet } from 'react-native';
-import {  Button, Divider, Icon, Input, Layout, Text, TopNavigation, TopNavigationAction } from '@ui-kitten/components';
+import {   Divider, Icon, Input, Layout, Text, TopNavigation, TopNavigationAction } from '@ui-kitten/components';
 import {AppLoading} from 'expo';
 import { ThemeContext } from '../../../theme-context'
 import Passwordinput from '../../Components/Passwordinput'
 import { EMaskUnits } from 'react-native-svg';
 //import * as React from 'react';
+import { Button } from 'react-native-paper';
 
 import Logo from '../../Components/Logo'
 
@@ -35,7 +36,7 @@ export default function LoginScreen ({ navigation }) {
   };
 
   const navigateForgetPassword = () => {
-    navigation.navigate('ForgetPassword');
+    navigation.navigate('Forget Password');
   };
 
   const navigateProfile = () => {
@@ -79,18 +80,18 @@ export default function LoginScreen ({ navigation }) {
 
       <Button
       style= {styles.forgotPassword} 
-      appearance= 'ghost'
-      size='small'
-      status= 'danger'
+      labelStyle= {{fontSize: 10}}
+      color={'red'}
       onPress= {navigateForgetPassword}> 
       Forgot your password?
       </Button>
 
       <Button 
       style= {styles.loginButton}
-      appearance= 'filled'
-      status= 'primary'
-      size = 'giant'
+      icon = 'login-variant'
+      color = {'white'}
+      labelStyle= {{fontSize: 22}}
+      
       onPress = {navigateProfile}
       >
       
@@ -103,7 +104,7 @@ export default function LoginScreen ({ navigation }) {
       </Text> 
       <Button
       style= {styles.createAccount}
-      appearance= 'ghost'
+      
       onPress={navigateSignUp}
       > 
 

@@ -1,8 +1,9 @@
 import React, { useState } from 'react';
 import { SafeAreaView, StyleSheet } from 'react-native';
-import { Button, Divider, Icon, Layout, Text, Input, TopNavigation, TopNavigationAction } from '@ui-kitten/components';
+import { Divider, Icon, Layout, Text, Input, TopNavigation, TopNavigationAction } from '@ui-kitten/components';
 import { ThemeContext } from '../../../theme-context';
 import Smallerlogo from '../../Components/Smallerlogo'
+import { Button } from 'react-native-paper';
 
 const BackIcon = (props) => (
     <Icon {...props} name='arrow-back' />
@@ -58,9 +59,11 @@ const BackIcon = (props) => (
         </Input> 
 
           <Button 
-          style= {styles.RequestEmail} 
-          size='large'
-          appearance = 'filled'
+          style= {styles.RequestEmail}
+          icon = 'email'
+          color = {'white'}
+          labelStyle= {{fontSize: 22}}
+          onPress = { () => {}}
       >
 REQUEST EMAIL
 
