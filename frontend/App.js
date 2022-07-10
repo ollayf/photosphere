@@ -19,6 +19,8 @@ const HomeScreen = () => (
   </Layout>
 );
 
+
+
 export default function App() {
   const [loaded] = useFonts({
     "OpenSans-Regular": require('./assets/OpenSans-Regular.ttf')
@@ -43,7 +45,10 @@ export default function App() {
           theme={eva[theme]}
           customMapping={mapping}>
 
+         
+
           <LoggedInNavigator /> 
+          
         
         </ApplicationProvider>
       </ThemeContext.Provider>
