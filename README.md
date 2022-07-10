@@ -34,7 +34,8 @@ For more details, checkout our [themes.json File](frontend/theme.json)
 This has yet to be fully decided
 
 ## Frontend
-For our frontend, we used React-native because it can be used to create dynamic apps for android, iOS and web. Furthermore, there are many libraries offered, including WebXR that will allow us easier access to many functions.
+For our frontend, we used React-native because it can be used to create dynamic apps for android, iOS and web. Furthermore, there are many libraries offered, including WebXR that will allow us easier access to many functions.  
+**NEW UPDATE** We will be transitioning this project out of expo in order to support VR. More info found in the respective [README](./vrfrontend/README.md)
 
 ### Folder structure (Only relevant sections)
 ```
