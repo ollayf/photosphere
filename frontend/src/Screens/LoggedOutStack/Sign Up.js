@@ -1,12 +1,13 @@
 import React, { useState } from 'react';
 import { SafeAreaView, StyleSheet } from 'react-native';
-import { Button, ApplicationProvider, IconRegistry, Divider, Layout, Text, Input, Icon, TopNavigation, TopNavigationAction } from '@ui-kitten/components';
+import { ApplicationProvider, IconRegistry, Divider, Layout, Text, Input, Icon, TopNavigation, TopNavigationAction } from '@ui-kitten/components';
 import {AppLoading} from 'expo';
-import { ThemeContext } from '../../theme-context';
-import Smallerlogo from '../Components/Smallerlogo'
-import Passwordinput from '../Components/Passwordinput';
+import { ThemeContext } from '../../../theme-context';
+import Smallerlogo from '../../Components/Smallerlogo'
+import Passwordinput from '../../Components/Passwordinput';
 import * as eva from '@eva-design/eva';
 import IonicIcon from 'react-native-vector-icons/Ionicons'
+import { Button } from 'react-native-paper';
 
 import { EvaIconsPack } from '@ui-kitten/eva-icons';
 
@@ -53,11 +54,7 @@ export default function SignUpScreen ({ navigation }) {
 
   return (
     <SafeAreaView style={styles.container}>
-    <TopNavigation title='Sign Up' alignment='center' accessoryLeft={BackAction}/>
-    <Divider/>
-    <Layout style={styles.ChangeMode}>
-      <Button style={{ marginVertical: 4 }} onPress={themeContext.toggleTheme}>CHANGE MODE</Button>
-    </Layout>
+    
 
     <Layout style={styles.header}>
       <Smallerlogo>
@@ -117,22 +114,23 @@ export default function SignUpScreen ({ navigation }) {
       
 
       <Button 
-      style= {styles.SignUpButton}
-      appearance= 'filled'
-      status= 'primary'
-      size = 'giant'
-      //onPress = {navigate}
+      style= {styles.signUpButton}
+      icon = 'pencil-plus'
+      color = {'white'}
+      labelStyle= {{fontSize: 22}}
+        
+      onPress = {() => {}}
       >
       
       SIGN UP 
       </Button>
       <Text 
-      style= {styles.AlreadyHaveAccountText}>
+      style= {styles.alreadyHaveAccountText}>
       Already have an account?  
      
       </Text> 
       <Button
-      style= {styles.Login}
+      style= {styles.login}
       appearance= 'ghost'
       onPress={navigateLogin} 
     >
@@ -150,8 +148,7 @@ export default function SignUpScreen ({ navigation }) {
 const styles = StyleSheet.create({
   container: {
   flex: 1,
-  
-  //justifyContent: 'center',
+  justifyContent: 'center',
  // alignItems:'center'
  }, 
 
@@ -161,7 +158,7 @@ header: {
   alignItems: 'center',
 }, 
 
-ChangeMode: { 
+changeMode: { 
   flex: 0, 
   flexDirection: 'row',
   justifyContent: 'flex-end',
@@ -184,16 +181,16 @@ input:{
   
 }, 
 
-SignUpButton: {
+signUpButton: {
   marginTop: 15,
   marginBottom:-5,
   width: 250,
   backgroundColor: 'teal'
 },
-AlreadyHaveAccountText:{ 
+alreadyHaveAccountText:{ 
   marginTop: 10
 },
-Login: { 
+login: { 
   marginBottom: 20
 },
 captionText: {

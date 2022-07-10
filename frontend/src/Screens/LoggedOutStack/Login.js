@@ -1,26 +1,16 @@
 import React, { useState } from 'react';
 import { SafeAreaView, View, StyleSheet } from 'react-native';
-import {  Button, Divider, Icon, Input, Layout, Text, TopNavigation, TopNavigationAction } from '@ui-kitten/components';
+import {   Divider, Icon, Input, Layout, Text, TopNavigation, TopNavigationAction } from '@ui-kitten/components';
 import {AppLoading} from 'expo';
-import { ThemeContext } from '../../theme-context'
-import Passwordinput from '../Components/Passwordinput'
+import { ThemeContext } from '../../../theme-context'
+import Passwordinput from '../../Components/Passwordinput'
 import { EMaskUnits } from 'react-native-svg';
 //import * as React from 'react';
+import { Button } from 'react-native-paper';
 
-import Logo from '../Components/Logo'
+import Logo from '../../Components/Logo'
 
-import fetch, {
-  Blob,
-  blobFrom,
-  blobFromSync,
-  File,
-  fileFrom,
-  fileFromSync,
-  FormData,
-  Headers,
-  Request,
-  Response,
-} from 'node-fetch'
+
 
 const BackIcon = (props) => (
 <Icon {...props} name='arrow-back' />
@@ -46,7 +36,7 @@ export default function LoginScreen ({ navigation }) {
   };
 
   const navigateForgetPassword = () => {
-    navigation.navigate('ForgetPassword');
+    navigation.navigate('Forget Password');
   };
 
   const navigateProfile = () => {
@@ -58,11 +48,6 @@ export default function LoginScreen ({ navigation }) {
  
   return (
     <SafeAreaView style={styles.container}>
-      <TopNavigation title='Login' alignment='center' accessoryLeft={BackAction}/>
-      <Divider/>
-      <Layout style={styles.ChangeMode}>
-        <Button style={{ marginVertical: 4 }} onPress={themeContext.toggleTheme}>CHANGE MODE</Button>
-      </Layout>
 
       <Layout style={styles.header}>
         <Logo>    
@@ -94,32 +79,32 @@ export default function LoginScreen ({ navigation }) {
 
 
       <Button
-      style= {styles.forgotpassword} 
-      appearance= 'ghost'
-      size='small'
-      status= 'danger'
+      style= {styles.forgotPassword} 
+      labelStyle= {{fontSize: 10}}
+      color={'red'}
       onPress= {navigateForgetPassword}> 
       Forgot your password?
       </Button>
 
       <Button 
-      style= {styles.LoginButton}
-      appearance= 'filled'
-      status= 'primary'
-      size = 'giant'
+      style= {styles.loginButton}
+      icon = 'login-variant'
+      color = {'white'}
+      labelStyle= {{fontSize: 22}}
+      
       onPress = {navigateProfile}
       >
       
       LOGIN 
       </Button>
       <Text 
-      style= {styles.NoAccountText}>
+      style= {styles.noAccountText}>
       Don't have an account?  
      
       </Text> 
       <Button
-      style= {styles.CreateAccount}
-      appearance= 'ghost'
+      style= {styles.createAccount}
+      
       onPress={navigateSignUp}
       > 
 
@@ -140,7 +125,7 @@ container: {
  // alignItems:'center'
  }, 
 
-ChangeMode: { 
+changeMode: { 
   flex: 0, 
   flexDirection: 'row',
   justifyContent: 'flex-end',
@@ -167,21 +152,21 @@ input:{
   alignItems: 'center',
 }, 
 
-forgotpassword:{ 
+forgotPassword:{ 
   marginTop: 1, 
   marginBottom: 20
 },
 
-LoginButton: {
+loginButton: {
   marginTop: 1,
   marginBottom: 5,
   width: 250,
   backgroundColor: 'teal'
 },
-NoAccountText:{ 
+noAccountText:{ 
   marginTop: 5
 },
-CreateAccount: { 
+createAccount: { 
   marginBottom: 20
 },
 

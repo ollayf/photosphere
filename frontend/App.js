@@ -7,7 +7,7 @@ import { default as mapping } from './mapping.json';
 import { EvaIconsPack } from '@ui-kitten/eva-icons';
 //import { AppNavigator } from './src/Navigation/Navigator';
 
-import {AppNavigator} from '../frontend/src/Navigation/Navigator'
+import {LoggedOutNavigator, LoggedInNavigator} from '../frontend/src/Navigation/Navigator'
 
 import { useFonts } from 'expo-font';
 import { ThemeContext } from './theme-context';
@@ -42,10 +42,9 @@ export default function App() {
           {...eva}
           theme={eva[theme]}
           customMapping={mapping}>
-            <AppNavigator />
-          {/* <Layout style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-            <Button>HOME</Button>
-          </Layout> */}
+
+          <LoggedInNavigator /> 
+        
         </ApplicationProvider>
       </ThemeContext.Provider>
     </>

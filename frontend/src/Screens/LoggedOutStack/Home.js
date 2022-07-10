@@ -1,7 +1,8 @@
 import React, {useState} from 'react';
 import { SafeAreaView, StyleSheet, View } from 'react-native';
-import { Button, Divider, Layout, TopNavigation, Text } from '@ui-kitten/components';
-import Logo from '../Components/Logo'
+import { Divider, Layout, TopNavigation, Text } from '@ui-kitten/components';
+import Logo from '../../Components/Logo'
+import { Button } from 'react-native-paper';
 
 export default function HomeScreen ({ navigation }) {
   const navigateLogin = () => {
@@ -29,25 +30,26 @@ export default function HomeScreen ({ navigation }) {
 
   return (
     <View style={styles.container}>
-      <TopNavigation title='PhotoSphere' alignment='center'/>
-      <Divider/>
-
+      
       <Layout style={styles.layout}>
       <Logo></Logo>
         <Button 
         style= {styles.button} 
-        appearance='filled'  
-        size='large'
+        icon = 'login'
+        color = {'white'}
+        labelStyle= {{fontSize: 25}}
         onPress={navigateLogin}>
         LOGIN
         
         </Button>
 
         <Button 
-        style= {styles.button} 
-        size='large'
-        appearance = 'filled'
+        style= {styles.button}  
+        icon = 'account-plus'
+        color = {'white'}
+        labelStyle= {{fontSize: 25}}
         onPress={navigateSignUp}>
+        
         SIGN UP 
         
         </Button>
@@ -67,9 +69,8 @@ const styles = StyleSheet.create({
  },
   button:{
     width: '80%',
-    marginVertical: 10, 
-    paddingVertical: 30, 
-    backgroundColor: 'teal'
+    backgroundColor: 'teal',
+    marginBottom: 20,
   }, 
  /* text: {
     fontWeight: 'bold', 

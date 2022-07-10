@@ -3,7 +3,7 @@ import { View, Text, TouchableOpacity, ImageBackground, Divider, TextInput, Styl
 import  Icon  from 'react-native-vector-icons/MaterialCommunityIcons' 
 import  Feather from 'react-native-vector-icons/Feather'
 import FontAwesome from 'react-native-vector-icons/FontAwesome'
-import { ThemeContext } from '../../theme-context'
+import { ThemeContext } from '../../../theme-context'
 
 
 
@@ -29,7 +29,7 @@ const EditProfileScreen = () => {
                         <View style = {styles.image}>
                             <ImageBackground 
                             style = {styles.image}
-                            source ={require('../Components/Avatar.png')}
+                            source ={require('../../Components/Avatar.png')}
                              size = {100}>
                              </ImageBackground>
                              
