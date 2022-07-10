@@ -6,7 +6,7 @@ import { ThemeContext } from '../../../theme-context';
 import { Avatar, Title, Caption, Text, TouchableRipple } from 'react-native-paper';
 import Icon from 'react-native-vector-icons/Ionicons'
 
-const ExploreScreen = ({navigation}) => {
+const SeeOtherImagesScreen = ({navigation}) => {
   
 
   const navigateLogin = () => {
@@ -32,60 +32,44 @@ const ExploreScreen = ({navigation}) => {
                </View>
              </TouchableRipple>
 
-             <Text style = {{fontSize : '20'}}>
-
-              EXPLORE PAGE
-             </Text> 
-
+             
 
             
   
 
        </View>
 
+       <Text>
+
+              EXPLORE PAGE
+             </Text> 
+
+
        
 
 
       </SafeAreaView> 
 
+
   )
 
 }
 
-export default ExploreScreen; 
-  
-  
-  
-          
+export default SeeOtherImagesScreen;
 
 const styles = StyleSheet.create({
-container: {
-flex: 1,
-marginTop: 20,
+  container: {
+  marginTop: 10,
+  flex: 1,
+  },
 
-//justifyContent: 'center',
-// alignItems:'center'
-}, 
+  searchBarHolder: {
+    flexDirection: 'row',
+  },
 
-searchBarHolder: {
-  flexDirection:'row', 
-  marginTop: 15,
-  alignItems: 'center' ,
-},
-
-searchBar: {
-  width: 250, 
-  alignItems: 'center',
-
-},
-
-changeMode: { 
-flex: 0, 
-flexDirection: 'row',
-justifyContent: 'flex-end',
-},
-
-
-
-
+  searchBar: { 
+    width: 350,
+    marginBottom: 40
+  }
 })
+  

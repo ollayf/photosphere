@@ -7,7 +7,7 @@ import { Avatar, Title, Caption, Text, TouchableRipple, Button } from 'react-nat
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons'
 //import Share from 'react-native-share'
 
-const ViewImageScreen = ({navigation}) => {
+const MenuOf360degreeImagesScreen = ({navigation}) => {
   
   return (
       <SafeAreaView style= {styles.container}>
@@ -145,7 +145,7 @@ const ViewImageScreen = ({navigation}) => {
 
 }
 
-export default ViewImageScreen; 
+export default MenuOf360degreeImagesScreen; 
   
   
   

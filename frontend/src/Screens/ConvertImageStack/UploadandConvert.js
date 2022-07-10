@@ -9,10 +9,7 @@ import Icon from 'react-native-vector-icons/MaterialCommunityIcons'
 
 
 
-const ProfileScreen = ({navigation}) => {
-  const navigateLogin = () => {
-    navigation.navigate('Login');
-  };
+const  UploadandConvertScreen = ({navigation}) => {
   return (
       <SafeAreaView style= {styles.container}>
 
@@ -111,7 +108,7 @@ const ProfileScreen = ({navigation}) => {
 
 }
 
-export default ProfileScreen; 
+export default UploadandConvertScreen; 
   
   
   

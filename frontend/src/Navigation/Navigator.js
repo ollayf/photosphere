@@ -1,4 +1,5 @@
 import React from 'react';
+import { StyleSheet } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native'; 
 import { createStackNavigator } from '@react-navigation/stack';
 import { createAppContainer } from 'react-navigation'
@@ -8,9 +9,9 @@ import LoginScreen from '../Screens/LoggedOutStack/Login';
 import ForgetPasswordScreen from '../Screens/LoggedOutStack/ForgetPassword';
 import ProfileScreen from '../Screens/ProfileStack/Profile';
 import EditProfileScreen from '../Screens/ProfileStack/EditProfile';
-import ConvertImageScreen from '../Screens/ConvertImageStack/ConvertImage'; 
-import ViewImageScreen from '../Screens/ViewImageStack/ViewImage';
-import ExploreScreen from '../Screens/ExploreStack/Explore';
+import MenuOf360degreeImagesScreen from '../Screens/ViewImageStack/MenuOf360degreeImages';
+import SeeOtherImagesScreen from '../Screens/ExploreStack/SeeOthersImages';
+import UploadandConvertScreen from '../Screens/ConvertImageStack/UploadandConvert';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import IonicIcon from 'react-native-vector-icons/Ionicons'
 import { ToastAndroid } from 'react-native';
@@ -29,7 +30,7 @@ function LoggedOutStackScreen () {
     <LoggedOutStack.Screen 
     name = "Home"
     options ={{
-      title:'                               My home',
+      title:'                                  Home',
       headerStyle:{
         backgroundColor: 'teal',
       },
@@ -73,11 +74,11 @@ function LoggedOutStackScreen () {
     options ={{
       title:'              Forget Password',
       headerStyle:{
-        backgroundColor: 'teal',
+      backgroundColor: 'teal',
       },
       headerTintColor: '#fff',
       headerTitleStyle:{
-        fontWeight: 'bold',
+      fontWeight: 'bold',
       }
     }} 
     />
@@ -85,68 +86,85 @@ function LoggedOutStackScreen () {
   )
 }
 
-const LoggedInStack = createStackNavigator(); 
+const ProfileStack = createStackNavigator(); 
 
 function ProfileStackScreen () { 
 
   return (
-  <LoggedInStack.Navigator> 
-    <LoggedInStack.Screen name = "Profile" component={ProfileScreen} />
-    <LoggedInStack.Screen name = "Edit Profile" component={EditProfileScreen}/>
-  </LoggedInStack.Navigator>
+  <ProfileStack.Navigator screenOptions={{headerShown: false}}> 
+    <ProfileStack.Screen name = "Profile Page" component={ProfileScreen} />
+    <ProfileStack.Screen name = "EditProfile" component={EditProfileScreen}/>
+  </ProfileStack.Navigator>
   )
 }
 
+const ViewingStack = createStackNavigator(); 
 
-function ViewImageStackScreen () {
+function ViewStackScreen () {
   return( 
-  <LoggedInStack.Navigator> 
-    <LoggedInStack.Screen name = "Explore" component={ViewImageScreen} />
-  </LoggedInStack.Navigator>
+  <ViewingStack.Navigator screenOptions={{headerShown: false}}> 
+    <ViewingStack.Screen name = "Menu of 360 Degrees Images" component={MenuOf360degreeImagesScreen} />
+  </ViewingStack.Navigator>
   )
 }
+
+const ConversionStack = createStackNavigator(); 
 
 function ConvertImageStackScreen () { 
   return(
-  <LoggedInStack.Navigator> 
-    <LoggedInStack.Screen name = "Convert Image" component={ConvertImageScreen} />
-  </LoggedInStack.Navigator>
+  <ConversionStack.Navigator screenOptions={{headerShown: false}}> 
+    <ConversionStack.Screen name = "Upload and Convert" component={UploadandConvertScreen} />
+  </ConversionStack.Navigator>
   )
 }
 
+const ExpStack = createStackNavigator(); 
 
-function ExploreStackScreen () { 
+function ExploreImagesStackScreen () { 
   return(
-  <ExploreStack.Navigator> 
-    <ExploreStack.Screen name = "Explore" component={ExploreScreen} />
-  </ExploreStack.Navigator>
+  <ExpStack.Navigator screenOptions={{headerShown: false}}> 
+    <ExpStack.Screen name = "See Other Images" component={SeeOtherImagesScreen} />
+  </ExpStack.Navigator>
   )
 }
 
 const Tab = createBottomTabNavigator ();
 
-export function LoggedInNavigation (props) { 
+export function LoggedInScreen () { 
   return (
-    <NavigationContainer> 
+    <NavigationContainer > 
       <Tab.Navigator
+      
+      
+      
       screenOptions={({route}) => ({ 
-        headerTitle: () => <Text>Header</Text>,
+        headerShown: false,
         tabBarIcon: ({focused, color, size, padding}) => {
+          
           let iconName; 
+
           if (route.name === 'View Image') { 
-            iconName = focused ? 'eye' : 'eye-outline'
+            iconName = focused 
+            ? 'eye' 
+            : 'eye-outline'
           }
 
           else if (route.name === 'Convert Image'){ 
-          iconName = focused ? 'swap-horizontal' : 'swap-horizontal-outline'
+          iconName = focused 
+          ? 'swap-horizontal' 
+          : 'swap-horizontal-outline'
           }
 
           else if (route.name === 'Explore'){ 
-            iconName = focused ? 'search' : 'search-outline'
+            iconName = focused 
+            ? 'search' 
+            : 'search-outline'
           }
 
           else if (route.name === 'Profile'){ 
-            iconName = focused ? 'person' : 'person-outline'
+            iconName = focused 
+            ? 'person' 
+            : 'person-outline'
           }
 
           return ( 
@@ -162,19 +180,19 @@ export function LoggedInNavigation (props) {
       })}
       
       tabBarOptions= {{ 
-        activeTintColor: 'lightseagreen', 
+        activeTintColor: 'teal', 
         inactiveTintColor: 'grey', 
-        labelStyle: {fontSize: 16}, 
-        style: {width: fullScreenWidth}
+        labelStyle: {fontSize: 12}, 
+        style: {}
 
       }}> 
         <Tab.Screen name= "Convert Image" component={ConvertImageStackScreen}/> 
-        <Tab.Screen name= "View Image" component={ViewImageStackScreen}/> 
-        <Tab.Screen name= "Explore" component={ExploreStackScreen}/>
-        <Tab.Screen name= "Profile" component={ProfileStackScreen}/>
+        <Tab.Screen name= "View Image" component={ViewStackScreen} /> 
+        <Tab.Screen name= "Explore" component={ExploreImagesStackScreen} />
+        <Tab.Screen name= "Profile" component={ProfileStackScreen} />
 
         
-      </Tab.Navigator>
+      </Tab.Navigator >
     </NavigationContainer>
   )
 } 
@@ -210,7 +228,7 @@ export const LoggedOutNavigator = () => (
 )
 
 export const LoggedInNavigator = () =>  ( 
-  <NavigationContainer> 
-    <LoggedInNavigator/>
-  </NavigationContainer>
+
+    <LoggedInScreen/>
+  
 )
