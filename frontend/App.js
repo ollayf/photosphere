@@ -1,11 +1,14 @@
-import { StatusBar } from 'expo-status-bar';
+import 'react-native-gesture-handler'
 import { SafeAreaView, StyleSheet, View } from 'react-native';
 import * as eva from '@eva-design/eva';
 import { ApplicationProvider, IconRegistry, Layout, Text , Button} from '@ui-kitten/components';
 import { default as theme } from './theme.json';
 import { default as mapping } from './mapping.json';
 import { EvaIconsPack } from '@ui-kitten/eva-icons';
-import { AppNavigator } from './src/Navigation/Navigator';
+//import { AppNavigator } from './src/Navigation/Navigator';
+
+import {AppNavigator} from '../frontend/src/Navigation/Navigator'
+
 import { useFonts } from 'expo-font';
 import { ThemeContext } from './theme-context';
 import React from 'react';

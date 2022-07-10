@@ -9,12 +9,27 @@ import { EMaskUnits } from 'react-native-svg';
 
 import Logo from '../Components/Logo'
 
+import fetch, {
+  Blob,
+  blobFrom,
+  blobFromSync,
+  File,
+  fileFrom,
+  fileFromSync,
+  FormData,
+  Headers,
+  Request,
+  Response,
+} from 'node-fetch'
 
 const BackIcon = (props) => (
 <Icon {...props} name='arrow-back' />
 );
 
 export default function LoginScreen ({ navigation }) {
+
+  const [email, setEmail] = useState('')
+  const [password, setPassword] = useState('')
   
   const themeContext = React.useContext(ThemeContext);
 
@@ -35,6 +50,7 @@ export default function LoginScreen ({ navigation }) {
   };
 
   const navigateProfile = () => {
+    
     navigation.navigate('Profile');
   };
 
@@ -58,12 +74,23 @@ export default function LoginScreen ({ navigation }) {
       style={styles.input}
       placeholder= 'Email'
       keyboardType= 'email-address' 
+      value = {email} 
+      onChangeText= { text => setEmail(text)}
       > 
      
       </Input> 
 
-      <Passwordinput> 
-      </Passwordinput> 
+      <Input 
+      style={styles.input}
+      placeholder= 'Password'
+      //keyboardType= '' 
+      value = {password} 
+      onChangeText= { text => setPassword(text)}
+      secureTextEntry
+      >
+
+      </Input>
+
 
 
       <Button
