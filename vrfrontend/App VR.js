@@ -7,8 +7,8 @@ import {
   ViroVRSceneNavigator
 } from '@viro-community/react-viro';
 
-var backgroundImage = require('./westlake_towers.jpg')
-var MainScene = require('./MainScene')
+var backgroundImage = require('./src/360Images/shutterstock_1.jpg')
+var MainScene = require('./src/Screens/MainScene')
 
 // const HelloWorldSceneVR = () => {
 //   const [text, setText] = useState('Initializing AR...');
