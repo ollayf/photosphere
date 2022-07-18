@@ -5,8 +5,6 @@ import  Feather from 'react-native-vector-icons/Feather'
 import FontAwesome from 'react-native-vector-icons/FontAwesome'
 import { ThemeContext } from '../../../theme-context'
 
-
-
 const BackIcon = (props) => (
   <Icon {...props} name='arrow-back' />
   );

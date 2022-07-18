@@ -18,6 +18,20 @@ import { ToastAndroid } from 'react-native';
 
 import {AuthNavigator} from './auth.navigator'
 
+
+// //to delete
+// const ProfileStack = createStackNavigator(); 
+
+// function ProfileStackScreen () { 
+
+//   return (
+//   <ProfileStack.Navigator screenOptions={{headerShown: false}}> 
+//     <ProfileStack.Screen name = "Profile" component={ProfileScreen} />
+//     <ProfileStack.Screen name = "EditProfile" component={EditProfileScreen}/>
+//   </ProfileStack.Navigator>
+//   )
+// }
+
 const LoggedOutStack = createStackNavigator();
 function LoggedOutStackScreen () { 
   return(
@@ -81,116 +95,111 @@ function LoggedOutStackScreen () {
   )
 }
 
-// const ProfileStack = createStackNavigator(); 
+const ProfileStack = createStackNavigator(); 
 
-// function ProfileStackScreen () { 
+function ProfileStackScreen () { 
 
-//   return (
-//   <ProfileStack.Navigator screenOptions={{headerShown: false}}> 
-//     {/* <ProfileStack.Screen name = "Profile Page" component={ProfileScreen} /> */}
-//     <ProfileStack.Screen name = "EditProfile" component={EditProfileScreen}/>
-//   </ProfileStack.Navigator>
-//   )
-// }
+  return (
+  <ProfileStack.Navigator screenOptions={{headerShown: false}}> 
+    {/* <ProfileStack.Screen name = "Profile Page" component={ProfileScreen} /> */}
+    <ProfileStack.Screen name = "EditProfile" component={EditProfileScreen}/>
+  </ProfileStack.Navigator>
+  )
+}
 
-// const ViewingStack = createStackNavigator(); 
+const ViewingStack = createStackNavigator(); 
 
-// function ViewStackScreen () {
-//   return( 
-//   <ViewingStack.Navigator screenOptions={{headerShown: false}}> 
-//     <ViewingStack.Screen name = "Menu of 360 Degrees Images" component={MenuOf360degreeImagesScreen} />
-//   </ViewingStack.Navigator>
-//   )
-// }
+function ViewStackScreen () {
+  return( 
+  <ViewingStack.Navigator screenOptions={{headerShown: false}}> 
+    <ViewingStack.Screen name = "Menu of 360 Degrees Images" component={MenuOf360degreeImagesScreen}/>
+  </ViewingStack.Navigator>
+  )
+}
 
-// const ConversionStack = createStackNavigator(); 
+const ConversionStack = createStackNavigator(); 
 
-// function ConvertImageStackScreen () { 
-//   return(
-//   <ConversionStack.Navigator screenOptions={{headerShown: false}}> 
-//     <ConversionStack.Screen name = "Upload and Convert" component={UploadandConvertScreen} />
-//   </ConversionStack.Navigator>
-//   )
-// }
+function ConvertImageStackScreen () { 
+  return(
+  <ConversionStack.Navigator screenOptions={{headerShown: false}}> 
+    <ConversionStack.Screen name = "Upload and Convert" component={UploadandConvertScreen}/>
+  </ConversionStack.Navigator>
+  )
+}
 
-// const ExpStack = createStackNavigator(); 
+const ExpStack = createStackNavigator(); 
 
-// function ExploreImagesStackScreen () { 
-//   return(
-//   <ExpStack.Navigator screenOptions={{headerShown: false}}> 
-//     <ExpStack.Screen name = "See Other Images" component={SeeOtherImagesScreen} />
-//   </ExpStack.Navigator>
-//   )
-// }
+function ExploreImagesStackScreen () { 
+  return(
+  <ExpStack.Navigator screenOptions={{headerShown: false}}>
+    <ExpStack.Screen name = "See Other Images" component={SeeOtherImagesScreen}/>
+  </ExpStack.Navigator>
+  )
+}
 
-// const Tab = createBottomTabNavigator ();
+const Tab = createBottomTabNavigator ();
 
-// export function LoggedInScreen () { 
-//   return (
-//     <NavigationContainer > 
-//       <Tab.Navigator
+export function LoggedInScreen () { 
+  return (
+    <NavigationContainer > 
+      <Tab.Navigator
       
-      
-      
-//       screenOptions={({route}) => ({ 
-//         headerShown: false,
-//         tabBarIcon: ({focused, color, size, padding}) => {
+      screenOptions={({route}) => ({ 
+        headerShown: false,
+        tabBarIcon: ({focused, color, size, padding}) => {
           
-//           let iconName; 
+          let iconName; 
 
-//           if (route.name === 'View Image') { 
-//             iconName = focused 
-//             ? 'eye' 
-//             : 'eye-outline'
-//           }
+          if (route.name === 'ViewImage') { 
+            iconName = focused 
+            ? 'eye' 
+            : 'eye-outline'
+          }
 
-//           else if (route.name === 'Convert Image'){ 
-//           iconName = focused 
-//           ? 'swap-horizontal' 
-//           : 'swap-horizontal-outline'
-//           }
+          else if (route.name === 'ConvertImage'){ 
+          iconName = focused 
+          ? 'swap-horizontal' 
+          : 'swap-horizontal-outline'
+          }
 
-//           else if (route.name === 'Explore'){ 
-//             iconName = focused 
-//             ? 'search' 
-//             : 'search-outline'
-//           }
+          else if (route.name === 'Explore'){ 
+            iconName = focused 
+            ? 'search' 
+            : 'search-outline'
+          }
 
-//           else if (route.name === 'Profile'){ 
-//             iconName = focused 
-//             ? 'person' 
-//             : 'person-outline'
-//           }
+          else if (route.name === 'Profile'){ 
+            iconName = focused 
+            ? 'person' 
+            : 'person-outline'
+          }
 
-//           return ( 
-//             <IonicIcon 
-//             name ={iconName} 
-//             size ={size} 
-//             color={color} 
-//             style ={{paddingBottom: padding}} 
-//             />
-//           );
-//         }, 
+          return ( 
+            <IonicIcon 
+            name ={iconName} 
+            size ={size} 
+            color={color} 
+            style ={{paddingBottom: padding}} 
+            />
+          );
+        }, 
 
-//       })}
-      
-//       tabBarOptions= {{ 
-//         activeTintColor: 'teal', 
-//         inactiveTintColor: 'grey', 
-//         labelStyle: {fontSize: 12}, 
-//         style: {}
+      })}
+      tabBarOptions= {{ 
+        activeTintColor: 'teal', 
+        inactiveTintColor: 'grey', 
+        labelStyle: {fontSize: 12}, 
+        style: {}
 
-//       }}> 
-//         <Tab.Screen name= "Convert Image" component={ConvertImageStackScreen}/> 
-//         <Tab.Screen name= "View Image" component={ViewStackScreen} /> 
-//         <Tab.Screen name= "Explore" component={ExploreImagesStackScreen} />
-//         <Tab.Screen name= "Profile" component={ProfileStackScreen} />
-
-        
-//       </Tab.Navigator >
-//     </NavigationContainer>
-//   )
-// } 
+      }}> 
+        <Tab.Screen name= "ConvertImage" component={ConvertImageStackScreen}/>
+        <Tab.Screen name= "ViewImage" component={ViewStackScreen} />
+        <Tab.Screen name= "Explore" component={ExploreImagesStackScreen}/>
+        <Tab.Screen name= "Profile" component={ProfileStackScreen}/>        
+      </Tab.Navigator>
+    </NavigationContainer>
+  )
+} 
 // /*const { Navigator, Screen } = createStackNavigator();
 
 // const LoggedOutNavigator = () => (
@@ -216,14 +225,14 @@ function LoggedOutStackScreen () {
 
 
 export const LoggedOutNavigator = () => (
-  <NavigationContainer> 
+  <NavigationContainer>
     <LoggedOutStackScreen/>
   
   </NavigationContainer>
 )
 
-// export const LoggedInNavigator = () =>  ( 
+export const LoggedInNavigator = () =>  ( 
 
-//     <LoggedInScreen/>
+    <LoggedInScreen/>
   
-// )
+)

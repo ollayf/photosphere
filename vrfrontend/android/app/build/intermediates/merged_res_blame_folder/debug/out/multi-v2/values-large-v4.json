@@ -4,6 +4,23 @@
             "outputFile": "/home/hosea/dev/photosphere/vrfrontend/android/app/build/intermediates/incremental/mergeDebugResources/merged.dir/values-large-v4/values-large-v4.xml",
             "map": [
                 {
+                    "source": "/home/hosea/.gradle/caches/transforms-3/d9a3ea39a981c7afa2f0112a00415ec8/transformed/material-1.1.0/res/values-large-v4/values-large-v4.xml",
+                    "from": {
+                        "startLines": "2,3",
+                        "startColumns": "4,4",
+                        "startOffsets": "55,177",
+                        "endColumns": "121,133",
+                        "endOffsets": "172,306"
+                    },
+                    "to": {
+                        "startLines": "11,12",
+                        "startColumns": "4,4",
+                        "startOffsets": "752,874",
+                        "endColumns": "121,133",
+                        "endOffsets": "869,1003"
+                    }
+                },
+                {
                     "source": "/home/hosea/.gradle/caches/transforms-3/2a54535c43105d51ac1a1664c84be20a/transformed/appcompat-1.2.0/res/values-large-v4/values-large-v4.xml",
                     "from": {
                         "startLines": "2,3,4,5,6,7,8,9,10",

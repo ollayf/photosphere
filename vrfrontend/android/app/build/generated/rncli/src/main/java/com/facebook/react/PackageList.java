@@ -15,6 +15,8 @@ import java.util.ArrayList;
 import com.swmansion.gesturehandler.RNGestureHandlerPackage;
 // react-native-safe-area-context
 import com.th3rdwave.safeareacontext.SafeAreaContextPackage;
+// react-native-screens
+import com.swmansion.rnscreens.RNScreensPackage;
 // react-native-svg
 import com.horcrux.svg.SvgPackage;
 // react-native-vector-icons
@@ -66,6 +68,7 @@ public class PackageList {
       new MainReactPackage(mConfig),
       new RNGestureHandlerPackage(),
       new SafeAreaContextPackage(),
+      new RNScreensPackage(),
       new SvgPackage(),
       new VectorIconsPackage()
     ));

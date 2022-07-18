@@ -17,7 +17,6 @@ def username_exists(req):
     required_data = {
         "username": str
     }
-    print( 'HERE3RERERE',req.data)
     uname = req.data["username"]
 
     db = firestore.client()
@@ -35,6 +34,7 @@ def username_exists(req):
 @parser_classes([JSONParser])
 def add_user(req):
     required_data = {
+        'email': str,
         'username': str,
         'password': str, # raw text
         'firstname': str,

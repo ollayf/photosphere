@@ -1,5 +1,5 @@
-export function login (username, password) { 
-    fetch('http://192.168.10.70:8000/api/verifyPassword/',
+export function login (username, password, navigation) { 
+    fetch('http://34.87.107.21:8000/api/verifyPassword/',
       {
         method: 'POST',
         body: JSON.stringify({ 
@@ -12,44 +12,51 @@ export function login (username, password) {
         },
       }).then((res) => {
         if (res.status == 200) {
-          navigation.navigate('Profile');
+            navigation.navigate("Profile")
+        } else if (res.status == 404) {
+            return false
         }
+        return false
       })
     
 }
 
-export function signup (username, password, firstname, lastname) { 
-    fetch('http://192.168.10.70:8000/api/verifyPassword/',
+export function signup (email, username, password, firstname, lastname, navigation) { 
+    fetch('http://34.87.107.21:8000/api/addUser/',
     {
       method: 'POST',
-      body: JSON.stringify({ 
-        username: "",
-        password: "", 
-        firstname: "", 
-        lastname: ""
+      body: JSON.stringify({
+        email: email, 
+        username: username,
+        password: password, 
+        firstname: firstname, 
+        lastname: lastname
       }),
       headers: {
         'Content-Type': 'application/json'
         // 'Content-Type': 'application/x-www-form-urlencoded',
       },
     }).then((res) => {
-      if (res.status == 200) {
-        navigation.navigate('Login');
+      if (res.status == 201) {
+        console.log("YEETING")
+        navigation.navigate('Profile');
+      } else {
+        return false
       }
     })
 }
 
-export function usernameExists (username, password, firstname, lastname) { 
-    fetch('http://192.168.10.70:8000/api/verifyPassword', 
+export async function usernameExists (username) { 
+    const res = await fetch('http://34.87.107.21:8000/api/usernameExists/',
     {
-        method: 'POST', 
-        body: JSON.stringify({ 
-            username,
-            password,
-            firstname, 
-            lastname
-
-        }), 
-        
+      method: 'POST',
+      body: JSON.stringify({
+        username: username
+      }),
+      headers: {
+        'Content-Type': 'application/json'
+        // 'Content-Type': 'application/x-www-form-urlencoded',
+      },
     })
+    return res.status
 }

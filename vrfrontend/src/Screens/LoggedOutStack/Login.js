@@ -20,6 +20,7 @@ export default function LoginScreen ({ navigation }) {
 
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
+  const [incorrectAuth, setIncorrectAuth] = useState(false)
   
   const themeContext = React.useContext(ThemeContext);
 
@@ -40,7 +41,7 @@ export default function LoginScreen ({ navigation }) {
   };
 
   const navigateProfile = () => {
-    login(email, password)
+    login(email, password, navigation)
   };
 
  

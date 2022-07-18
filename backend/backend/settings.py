@@ -22,7 +22,7 @@ with open('../setup/django_secret_key.txt', 'r') as keyfile:
     SECRET_KEY = keyfile.read()
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = ['*']
 
@@ -66,7 +66,7 @@ MIDDLEWARE = [
 ]
 
 INTERNAL_IPS = [
-    '127.0.0.1',
+    '0.0.0.0',
 ]
 
 ROOT_URLCONF = 'backend.urls'

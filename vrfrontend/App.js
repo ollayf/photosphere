@@ -45,7 +45,7 @@ export default function App() {
             textContent={'Loading...'}
             textStyle={styles.spinnerTextStyle}
           />
-          <LoggedOutNavigator /> 
+          <LoggedInNavigator /> 
           
         
         </ApplicationProvider>
