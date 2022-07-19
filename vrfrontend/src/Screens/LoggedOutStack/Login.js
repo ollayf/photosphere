@@ -9,7 +9,7 @@ import { EMaskUnits } from 'react-native-svg';
 import { Button } from 'react-native-paper';
 
 import Logo from '../../Components/Logo'
-
+import { useDispatch } from 'react-redux';
 import { signup, login, usernameExists } from '../../utils/auth'
 
 const BackIcon = (props) => (
@@ -18,6 +18,7 @@ const BackIcon = (props) => (
 
 export default function LoginScreen ({ navigation }) {
 
+  const dispatch = useDispatch()
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
   const [incorrectAuth, setIncorrectAuth] = useState(false)
@@ -40,8 +41,22 @@ export default function LoginScreen ({ navigation }) {
     navigation.navigate('Forget Password');
   };
 
+  const confirmLogInCreds = (creds) => {
+    dispatch({
+      type: "logIn",
+      payload: creds
+    })
+  }
+
   const navigateProfile = () => {
     login(email, password, navigation)
+    .then((res) => {
+      if (res.status != 200) {
+        return false
+      }
+      return true
+    })
+    
   };
 
  

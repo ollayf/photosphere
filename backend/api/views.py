@@ -82,8 +82,17 @@ def verify_password(req):
     password_input = data['password']
     pw_hash = pbkdf2_sha256.verify(password_input, pw_hash)
 
+    print(data)
+    payload = {
+        "status": status.HTTP_200_OK,
+        "username": data['username'],
+        "email": data['email'],
+        'firstname': data['firstname'],
+        'lastname': data['lastname']
+    }
+
     if pw_hash:
-        return Response(status=status.HTTP_200_OK)
+        return JsonResponse(payload)
     return Response(status=status.HTTP_404_NOT_FOUND)
 
 @api_view(["PUT"])
