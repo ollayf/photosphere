@@ -6,7 +6,7 @@ export default function credsReducer(state, action) {
                 ...state,
                 creds: {
                     userId: payload.user.id,
-                    username: payload.user.name,
+                    username: payload.user.username,
                     firstname: payload.user.firstname,
                     lastname: payload.user.lastname,
                     email: payload.user.email,

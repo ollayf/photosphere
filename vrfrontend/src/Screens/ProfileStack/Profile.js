@@ -6,8 +6,10 @@ import { ThemeContext } from '../../../theme-context';
 import { Avatar, Title, Caption, Text, TouchableRipple } from 'react-native-paper';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons'
 //import Share from 'react-native-share'
+import { useSelector } from 'react-redux'
 
 const ProfileScreen = ({navigation}) => {
+  const creds = useSelector(state => state.creds)
   const navigateLogin = () => {
     navigation.navigate('Login');
   };
@@ -38,11 +40,11 @@ const ProfileScreen = ({navigation}) => {
         <View style = {{marginLeft: 20}}>
           <Title 
           style = {styles.title}> 
-          John Doe 
+          {creds.firstname} {creds.lastname} 
           </Title>
 
           <View style= {{flexDirection:'row'}}>
-              <Caption style = {styles.caption}> @j_doe </Caption> 
+              <Caption style = {styles.caption}> @{creds.username} </Caption> 
               <TouchableRipple 
               onPress= {navigateEditProfile}
 
@@ -65,7 +67,7 @@ const ProfileScreen = ({navigation}) => {
        <Icon 
           name = "map-marker-radius" 
           size ={20} 
-          color = "#777777"
+          color = "black"
           />
         <Text style = {styles.words}> Singapore </Text>
          
@@ -76,9 +78,9 @@ const ProfileScreen = ({navigation}) => {
        <Icon 
           name = "email" 
           size ={20} 
-          color = "#777777"
+          color = "black"
           />
-        <Text style = {styles.words}> hello@world.com </Text>     
+        <Text style = {styles.words}> {creds.email} </Text>     
         </View>    
        </View> 
 
@@ -230,7 +232,7 @@ row:{
 },
 
 words:{ 
-  color: '777777', 
+  color: 'black', 
   marginLeft: 20
 },
 
@@ -247,7 +249,7 @@ Box: {
   width: '50%',
   alignItems: 'center',
   justifyContent: 'center',
-  borderRightColor: '#777777',
+  borderRightColor: '#dddddd',
   borderRightWidth: 1
 },
 
@@ -261,7 +263,7 @@ menuItems: {
   paddingHorizontal: 30, 
 }, 
 menuItemsText:{ 
-  color: '#777777', 
+  color: 'black', 
   marginLeft: 20, 
   fontWeight: '600',
   fontSize: 16,

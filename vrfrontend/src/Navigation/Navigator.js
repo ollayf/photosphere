@@ -9,6 +9,7 @@ import LoginScreen from '../Screens/LoggedOutStack/Login';
 import ForgetPasswordScreen from '../Screens/LoggedOutStack/ForgetPassword';
 // import ProfileScreen from '../Screens/ProfileStack/Profile';
 import EditProfileScreen from '../Screens/ProfileStack/EditProfile';
+import ProfileScreen from '../Screens/ProfileStack/Profile'
 import MenuOf360degreeImagesScreen from '../Screens/ViewImageStack/MenuOf360degreeImages';
 import SeeOtherImagesScreen from '../Screens/ExploreStack/SeeOthersImages';
 import UploadandConvertScreen from '../Screens/ConvertImageStack/UploadandConvert';
@@ -100,8 +101,8 @@ const ProfileStack = createStackNavigator();
 function ProfileStackScreen () { 
 
   return (
-  <ProfileStack.Navigator screenOptions={{headerShown: false}}> 
-    {/* <ProfileStack.Screen name = "Profile Page" component={ProfileScreen} /> */}
+  <ProfileStack.Navigator initialRouteName="ViewProfile" screenOptions={{headerShown: false}}> 
+    <ProfileStack.Screen name = "ViewProfile" component={ProfileScreen} />
     <ProfileStack.Screen name = "EditProfile" component={EditProfileScreen}/>
   </ProfileStack.Navigator>
   )
@@ -141,8 +142,9 @@ const Tab = createBottomTabNavigator ();
 
 export function LoggedInScreen () { 
   return (
-    <NavigationContainer > 
       <Tab.Navigator
+
+      initialRouteName='Profile'
       
       screenOptions={({route}) => ({ 
         headerShown: false,
@@ -197,7 +199,6 @@ export function LoggedInScreen () {
         <Tab.Screen name= "Explore" component={ExploreImagesStackScreen}/>
         <Tab.Screen name= "Profile" component={ProfileStackScreen}/>        
       </Tab.Navigator>
-    </NavigationContainer>
   )
 } 
 // /*const { Navigator, Screen } = createStackNavigator();
@@ -224,15 +225,23 @@ export function LoggedInScreen () {
 // */
 
 
-export const LoggedOutNavigator = () => (
+const OverallStack = createStackNavigator();
+export function OverallStackScreen () {
+  return (
+  
   <NavigationContainer>
-    <LoggedOutStackScreen/>
-  
+    <OverallStack.Navigator initialRouteName='Root'>
+      <OverallStack.Screen
+        name="Root"
+        component={LoggedOutStackScreen}
+        options= {{ headerShown: false }}
+      />
+      <OverallStack.Screen
+        name="LoggedIn"
+        component={LoggedInScreen}
+        options= {{ headerShown: false }}
+      />
+    </OverallStack.Navigator>
   </NavigationContainer>
-)
-
-export const LoggedInNavigator = () =>  ( 
-
-    <LoggedInScreen/>
-  
-)
+  )
+}

@@ -9,7 +9,7 @@ import { EvaIconsPack } from '@ui-kitten/eva-icons';
 import Spinner from 'react-native-loading-spinner-overlay';
 import { Provider } from 'react-redux'
 import store from './src/Redux/store'
-import {LoggedOutNavigator, LoggedInNavigator} from './src/Navigation/Navigator'
+import { OverallStackScreen } from './src/Navigation/Navigator'
 
 import { ThemeContext } from './theme-context';
 import React from 'react';
@@ -46,7 +46,7 @@ export default function App() {
             textContent={'Loading...'}
             textStyle={styles.spinnerTextStyle}
           />
-          <LoggedOutNavigator /> 
+          <OverallStackScreen /> 
           
         
         </ApplicationProvider>

@@ -5,7 +5,7 @@ import credsReducer from './credsReducer'
 const preloadedState = {
     creds: {
         userId: null,
-        username: null,
+        username: "beans",
         email: null,
         firstname: null,
         lastname: null,

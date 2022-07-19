@@ -9,7 +9,7 @@ import { EMaskUnits } from 'react-native-svg';
 import { Button } from 'react-native-paper';
 
 import Logo from '../../Components/Logo'
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { signup, login, usernameExists } from '../../utils/auth'
 
 const BackIcon = (props) => (
@@ -19,6 +19,7 @@ const BackIcon = (props) => (
 export default function LoginScreen ({ navigation }) {
 
   const dispatch = useDispatch()
+  const username = useSelector(state => state.creds.username)
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
   const [incorrectAuth, setIncorrectAuth] = useState(false)
@@ -42,10 +43,10 @@ export default function LoginScreen ({ navigation }) {
   };
 
   const confirmLogInCreds = (creds) => {
-    dispatch({
+    return{
       type: "logIn",
       payload: creds
-    })
+    }
   }
 
   const navigateProfile = () => {
@@ -54,14 +55,27 @@ export default function LoginScreen ({ navigation }) {
       if (res.status != 200) {
         return false
       }
-      res = res.json()
+      return res.json()
     })
     .then( (data) => {
       // assuming res.status == 200
-      console.log(data)
+      if (!data) {
+        return false
+      }
+      const creds = {
+        user: {
+          id: data.userId,
+          email: data.email,
+          username: data.username,
+          firstname: data.firstname,
+          lastname: data.lastname
+        }
+      }
+      console.log(creds)
+      dispatch(confirmLogInCreds(creds))
+      navigation.navigate('LoggedIn')
     }
     )
-    
   };
 
  
