@@ -34,28 +34,30 @@ const MenuOf360degreeImagesScreen = ({navigation}) => {
 
             </View>
           </View>
+          {spheres.map(sphere => (
+            <View style = {styles.listOfImages}>
 
-          <View style = {styles.listOfImages}>
+              <View style = {styles.imageWrapper}> 
+                <Image 
+                  source = {sphere.thumbnail}
+                  style = {styles.image}/>
 
-            <View style = {styles.imageWrapper}> 
-              <Image 
-                source = {require('../../Components/Avatar.png')}
-                style = {styles.image}/>
+                <Text style = {styles.imageLabel}> {sphere.caption} </Text>
 
-               <Text style = {styles.imageLabel}> Image Label (eg. Bali Uluwatu temple) </Text>
+                <Text style = {styles.dateOfImage}> 13/07/2022 (Date converted) </Text>
+                <Text style = {styles.dateOfImage}> Type: {sphere.type} </Text>
+              </View> 
 
-               <Text style = {styles.dateOfImage}> 13/07/2022 (Date converted) </Text>
-            </View> 
+              
 
+              <Button 
             
-
-            <Button 
-           
-            icon = 'panorama-variant'
-            labelStyle = {{fontSize: 12}}
-            onPress ={()=>{}}> Click to view 
-            </Button>
-          </View>
+              icon = 'panorama-variant'
+              labelStyle = {{fontSize: 12}}
+              onPress ={()=>{}}> Click to view 
+              </Button>
+            </View>
+          ))}
         </ScrollView>
       </SafeAreaView> 
 

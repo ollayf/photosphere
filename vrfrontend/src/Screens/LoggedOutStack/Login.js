@@ -84,7 +84,7 @@ export default function LoginScreen ({ navigation }) {
       })
       .then((data) => {
         if (data) {
-          dispatch(loadSpheres(data))
+          dispatch(loadSpheres(data.data))
         }
       })
       navigation.navigate('LoggedIn')
