@@ -13,6 +13,12 @@ export default function credsReducer(state, action) {
                     authenticated: true
                 }
             }
+        
+        case 'loadSpheres':
+            return {
+                ...state,
+                spheres: payload.spheres
+            }
         default:
             return state
     }

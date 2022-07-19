@@ -11,6 +11,8 @@ import { Button } from 'react-native-paper';
 import Logo from '../../Components/Logo'
 import { useDispatch, useSelector } from 'react-redux';
 import { signup, login, usernameExists } from '../../utils/auth'
+import { getSpheres } from '../../utils/spheres';
+import { loadSpheres } from '../../Redux/actions';
 
 const BackIcon = (props) => (
 <Icon {...props} name='arrow-back' />
@@ -73,6 +75,18 @@ export default function LoginScreen ({ navigation }) {
       }
       console.log(creds)
       dispatch(confirmLogInCreds(creds))
+      getSpheres(data.userId)
+      .then( (res) => {
+        if (res.status === 200) {
+          return res.json()
+        }
+        return false
+      })
+      .then((data) => {
+        if (data) {
+          dispatch(loadSpheres(data))
+        }
+      })
       navigation.navigate('LoggedIn')
     }
     )

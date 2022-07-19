@@ -6,8 +6,10 @@ import { ThemeContext } from '../../../theme-context';
 import { Avatar, Title, Caption, Text, TouchableRipple, Button } from 'react-native-paper';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons'
 //import Share from 'react-native-share'
+import { useSelector } from 'react-redux';
 
 const MenuOf360degreeImagesScreen = ({navigation}) => {
+  const spheres = useSelector(state => state.spheres)
   
   return (
       <SafeAreaView style= {styles.container}>
@@ -53,92 +55,8 @@ const MenuOf360degreeImagesScreen = ({navigation}) => {
             labelStyle = {{fontSize: 12}}
             onPress ={()=>{}}> Click to view 
             </Button>
-
-           
-            
-            
-
           </View>
-
-          <View style = {styles.listOfImages}>
-
-            <View style = {styles.imageWrapper}> 
-              <Image 
-                source = {require('../../Components/Avatar.png')}
-                style = {styles.image}/>
-
-               <Text style = {styles.imageLabel}> Sentosa  </Text>
-
-               <Text style = {styles.dateOfImage}> 13/07/2022  </Text>
-            </View> 
-
-            <Button 
-            
-            icon = 'panorama-variant'
-            labelStyle = {{fontSize: 12}}
-            onPress ={()=>{}}> Click to view 
-            </Button>
-            
-            
-
-          </View>
-
-          <View style = {styles.listOfImages}>
-
-            <View style = {styles.imageWrapper}> 
-              <Image 
-                source = {require('../../Components/Avatar.png')}
-                style = {styles.image}/>
-
-               <Text style = {styles.imageLabel}> Mount Fuji </Text>
-
-               <Text style = {styles.dateOfImage}> 13/07/2022 (Date converted) </Text>
-            </View> 
-
-            <View> 
-             <Button 
-              
-              icon = 'panorama-variant'
-              labelStyle = {{fontSize: 12}}
-              onPress ={()=>{}}> Click to view 
-            </Button>
-            </View>
-            
-            
-
-          </View>
-
-          <View style = {styles.listOfImages}>
-
-            <View style = {styles.imageWrapper}> 
-              <Image 
-                source = {require('../../Components/Avatar.png')}
-                style = {styles.image}/>
-
-               <Text style = {styles.imageLabel}> Image Label (eg. Bali Uluwatu temple) </Text>
-
-               <Text style = {styles.dateOfImage}> 13/07/2022 (Date converted) </Text>
-            </View> 
-
-            <Button 
-            
-            icon = 'panorama-variant'
-            labelStyle = {{fontSize: 12}}
-            onPress ={()=>{}}> Click to view 
-            </Button>
-            
-            
-
-          </View>
-
-          
-        
-
         </ScrollView>
-
-       
-
-
       </SafeAreaView> 
 
   )

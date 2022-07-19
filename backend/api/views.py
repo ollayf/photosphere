@@ -147,16 +147,17 @@ def get_spheres_glance(req):
     spheres = user['spheres']
     print(spheres)
 
-    payload = {}
     index = 0
+    payload = []
     for sphere in spheres:
         col_ref = db.collection(u'spheres').document(sphere).get()
         sphere_info = col_ref.to_dict()
-        payload[index] = {
+        payload.append({
+            "id": index,
             "caption": sphere_info['caption'],
             "path": sphere_info['path'],
             "thumbnail": sphere_info["thumbnail"],
             "type": sphere_info["type"]
-        }
+        })
         index += 1
-    return JsonResponse(payload, status= status.HTTP_200_OK)
+    return JsonResponse({"data": payload}, status= status.HTTP_200_OK)
