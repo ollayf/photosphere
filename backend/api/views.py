@@ -74,13 +74,11 @@ def verify_password(req):
     }
     db = firestore.client()
     col_ref = db.collection(u'users')
-
-    if data['username']:
-        data = req.data
+    data = req.data
+    if 'username' in data.keys() and data['username']:
         username = data['username']
         query = col_ref.where(u'username', u'==', u'{}'.format(username))
     else: # use email instead
-        data = req.data
         email = data['email']
         query = col_ref.where(u'email', u'==', u'{}'.format(email))
 
