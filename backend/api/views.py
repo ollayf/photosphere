@@ -64,16 +64,24 @@ def add_user(req):
 @parser_classes([JSONParser])
 def verify_password(req):
     required_data = {
-        'username': str,
-        'password': str, # raw text
+        'email': str,
+        'username': str, # optional
+        'password': str # raw text
     }
-
     data = req.data
-    uname = data['username']
-
+    email = data['email']
     db = firestore.client()
     col_ref = db.collection(u'users')
-    query = col_ref.where(u'username', u'==', u'{}'.format(uname))
+
+    if data['username']:
+        data = req.data
+        username = data['username']
+        query = col_ref.where(u'username', u'==', u'{}'.format(username))
+    else: # use email instead
+        data = req.data
+        email = data['email']
+        query = col_ref.where(u'email', u'==', u'{}'.format(email))
+        
     users = query.get()
     user_ref = users[0]
     user_info = user_ref.to_dict()
@@ -81,7 +89,7 @@ def verify_password(req):
 
     password_input = data['password']
     pw_hash = pbkdf2_sha256.verify(password_input, pw_hash)
-    
+
     payload = {
         "userId": user_ref.id,
         "username": data['username'],
