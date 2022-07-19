@@ -7,7 +7,8 @@ import { default as mapping } from './mapping.json';
 import { EvaIconsPack } from '@ui-kitten/eva-icons';
 //import { AppNavigator } from './src/Navigation/Navigator';
 import Spinner from 'react-native-loading-spinner-overlay';
-
+import { Provider } from 'react-redux'
+import store from './src/Redux/store'
 import {LoggedOutNavigator, LoggedInNavigator} from './src/Navigation/Navigator'
 
 import { ThemeContext } from './theme-context';
@@ -32,7 +33,7 @@ export default function App() {
   };
   
   return (
-    <>
+    <Provider store={store}>
       <IconRegistry icons={EvaIconsPack} />
       <ThemeContext.Provider value={{theme, toggleTheme}}>
         <ApplicationProvider 
@@ -45,12 +46,12 @@ export default function App() {
             textContent={'Loading...'}
             textStyle={styles.spinnerTextStyle}
           />
-          <LoggedInNavigator /> 
+          <LoggedOutNavigator /> 
           
         
         </ApplicationProvider>
       </ThemeContext.Provider>
-    </>
+    </Provider>
   )
 };
 

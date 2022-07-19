@@ -1,5 +1,5 @@
-export function login (username, password, navigation) { 
-    fetch('http://34.87.107.21:8000/api/verifyPassword/',
+export async function login (username, password, navigation) { 
+    const res = await fetch('http://34.87.107.21:8000/api/verifyPassword/',
       {
         method: 'POST',
         body: JSON.stringify({ 
@@ -10,15 +10,8 @@ export function login (username, password, navigation) {
           'Content-Type': 'application/json'
           // 'Content-Type': 'application/x-www-form-urlencoded',
         },
-      }).then((res) => {
-        if (res.status == 200) {
-            navigation.navigate("Profile")
-        } else if (res.status == 404) {
-            return false
-        }
-        return false
       })
-    
+      return res
 }
 
 export function signup (email, username, password, firstname, lastname, navigation) { 
