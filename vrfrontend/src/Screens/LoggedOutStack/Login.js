@@ -54,8 +54,13 @@ export default function LoginScreen ({ navigation }) {
       if (res.status != 200) {
         return false
       }
-      return true
+      res = res.json()
     })
+    .then( (data) => {
+      // assuming res.status == 200
+      console.log(data)
+    }
+    )
     
   };
 
