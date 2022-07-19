@@ -10,7 +10,8 @@ const preloadedState = {
         firstname: null,
         lastname: null,
         authenticated: false
-    }
+    },
+    spheres: []
 }
 
 const store = configureStore({

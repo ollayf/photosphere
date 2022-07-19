@@ -17,7 +17,7 @@ export default function credsReducer(state, action) {
         case 'loadSpheres':
             return {
                 ...state,
-                spheres: payload.spheres
+                spheres: payload
             }
         default:
             return state

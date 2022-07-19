@@ -10,7 +10,7 @@ import { useSelector } from 'react-redux';
 
 const MenuOf360degreeImagesScreen = ({navigation}) => {
   const spheres = useSelector(state => state.spheres)
-  
+  console.log(spheres)
   return (
       <SafeAreaView style= {styles.container}>
 
@@ -39,12 +39,12 @@ const MenuOf360degreeImagesScreen = ({navigation}) => {
 
               <View style = {styles.imageWrapper}> 
                 <Image 
-                  source = {sphere.thumbnail}
+                  source = {{uri: sphere.thumbnail}}
                   style = {styles.image}/>
 
                 <Text style = {styles.imageLabel}> {sphere.caption} </Text>
 
-                <Text style = {styles.dateOfImage}> 13/07/2022 (Date converted) </Text>
+                <Text style = {styles.dateOfImage}> {sphere.dateUploaded} (Date Uploaded) </Text>
                 <Text style = {styles.dateOfImage}> Type: {sphere.type} </Text>
               </View> 
 

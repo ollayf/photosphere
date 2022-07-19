@@ -19,7 +19,7 @@ const BackIcon = (props) => (
 );
 
 export default function LoginScreen ({ navigation }) {
-
+  const spheres = useSelector(state => state.spheres)
   const dispatch = useDispatch()
   const username = useSelector(state => state.creds.username)
   const [email, setEmail] = useState('')
@@ -73,7 +73,6 @@ export default function LoginScreen ({ navigation }) {
           lastname: data.lastname
         }
       }
-      console.log(creds)
       dispatch(confirmLogInCreds(creds))
       getSpheres(data.userId)
       .then( (res) => {

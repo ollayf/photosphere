@@ -155,7 +155,8 @@ def get_spheres_glance(req):
             "caption": sphere_info['caption'],
             "path": sphere_info['path'],
             "thumbnail": sphere_info["thumbnail"],
-            "type": sphere_info["type"]
+            "type": sphere_info["type"],
+            "dateUploaded": sphere_info['dateUploaded']
         })
         index += 1
     return JsonResponse({"data": payload}, status= status.HTTP_200_OK)

@@ -10,6 +10,9 @@ import { useSelector } from 'react-redux'
 
 const ProfileScreen = ({navigation}) => {
   const creds = useSelector(state => state.creds)
+  const spheres = useSelector(state => state.spheres)
+  console.log(creds)
+  console.log(spheres)
   const navigateLogin = () => {
     navigation.navigate('Login');
   };
