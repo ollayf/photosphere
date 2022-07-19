@@ -1,10 +1,11 @@
-export async function login (username, password, navigation) { 
+export async function login (email, password, username=null) { 
     const res = await fetch('http://34.87.107.21:8000/api/verifyPassword/',
       {
         method: 'POST',
         body: JSON.stringify({ 
-          username: username,
-          password: password
+          email: email,
+          password: password,
+          username: null
         }),
         headers: {
           'Content-Type': 'application/json'

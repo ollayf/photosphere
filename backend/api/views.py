@@ -81,7 +81,7 @@ def verify_password(req):
         data = req.data
         email = data['email']
         query = col_ref.where(u'email', u'==', u'{}'.format(email))
-        
+
     users = query.get()
     user_ref = users[0]
     user_info = user_ref.to_dict()
@@ -92,10 +92,10 @@ def verify_password(req):
 
     payload = {
         "userId": user_ref.id,
-        "username": data['username'],
-        "email": data['email'],
-        'firstname': data['firstname'],
-        'lastname': data['lastname']
+        "username": user_info['username'],
+        "email": user_info['email'],
+        'firstname': user_info['firstname'],
+        'lastname': user_info['lastname']
     }
 
     if pw_hash:
