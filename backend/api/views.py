@@ -55,10 +55,14 @@ def add_user(req):
     data['friends'] = []
     data['spheres'] = []
     ref = db.collection(u'users').document().set(data)
+    userId = ref[0].id
+    payload = {
+        'userId': userId
+    }
     # docs = ref.stream()
     # for doc in docs:
     #     print(doc.to_dict())  
-    return Response(status=status.HTTP_201_CREATED)
+    return JsonResponse(payload, status=status.HTTP_201_CREATED)
 
 @api_view(["POST"])
 @parser_classes([JSONParser])
@@ -68,8 +72,6 @@ def verify_password(req):
         'username': str, # optional
         'password': str # raw text
     }
-    data = req.data
-    email = data['email']
     db = firestore.client()
     col_ref = db.collection(u'users')
 
@@ -130,3 +132,31 @@ def edit_user(req):
     col_ref.document(user_ref.id).update({field: data["result"]})
 
     return Response(status=status.HTTP_200_OK)
+
+@api_view(["POST"])
+@parser_classes([JSONParser])
+def get_spheres_glance(req):
+    required_data = {
+        'userId': str,
+    }
+    data = req.data
+    userId = data['userId']
+    db = firestore.client()
+    col_ref = db.collection(u'users').document(userId).get()
+    user = col_ref.to_dict()
+    spheres = user['spheres']
+    print(spheres)
+
+    payload = {}
+    index = 0
+    for sphere in spheres:
+        col_ref = db.collection(u'spheres').document(sphere).get()
+        sphere_info = col_ref.to_dict()
+        payload[index] = {
+            "caption": sphere_info['caption'],
+            "path": sphere_info['path'],
+            "thumbnail": sphere_info["thumbnail"],
+            "type": sphere_info["type"]
+        }
+        index += 1
+    return JsonResponse(payload, status= status.HTTP_200_OK)

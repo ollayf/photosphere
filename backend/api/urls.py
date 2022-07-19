@@ -6,4 +6,6 @@ urlpatterns = [
     path('addUser/', views.add_user),
     path('editUser/', views.edit_user),
     path('verifyPassword/', views.verify_password),
+    path('getSpheresGlance/', views.get_spheres_glance),
+    # path('getSphere/', views.),
 ]
