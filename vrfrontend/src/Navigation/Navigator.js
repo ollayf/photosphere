@@ -16,6 +16,7 @@ import UploadandConvertScreen from '../Screens/ConvertImageStack/UploadandConver
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import IonicIcon from 'react-native-vector-icons/Ionicons'
 import { ToastAndroid } from 'react-native';
+import VRScene from '../Screens/VR/VrScene';
 
 import {AuthNavigator} from './auth.navigator'
 
@@ -239,6 +240,11 @@ export function OverallStackScreen () {
       <OverallStack.Screen
         name="LoggedIn"
         component={LoggedInScreen}
+        options= {{ headerShown: false }}
+      />
+      <OverallStack.Screen
+        name="VR"
+        component={VRScene}
         options= {{ headerShown: false }}
       />
     </OverallStack.Navigator>

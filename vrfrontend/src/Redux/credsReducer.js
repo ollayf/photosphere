@@ -19,6 +19,11 @@ export default function credsReducer(state, action) {
                 ...state,
                 spheres: payload
             }
+        case 'selectSphere':
+            return {
+                ...state,
+                selectedSphere: payload
+            }   
         default:
             return state
     }

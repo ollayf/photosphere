@@ -4,3 +4,10 @@ export function loadSpheres(spheres) {
         payload: spheres
     }
 }
+
+export function selectSphere(sphere) {
+    return {
+        type: "selectSphere",
+        payload: sphere
+    }
+}

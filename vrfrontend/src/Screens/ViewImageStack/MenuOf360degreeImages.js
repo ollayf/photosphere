@@ -6,11 +6,20 @@ import { ThemeContext } from '../../../theme-context';
 import { Avatar, Title, Caption, Text, TouchableRipple, Button } from 'react-native-paper';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons'
 //import Share from 'react-native-share'
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
+import { selectSphere } from '../../Redux/actions';
 
 const MenuOf360degreeImagesScreen = ({navigation}) => {
+  const dispatch = useDispatch()
   const spheres = useSelector(state => state.spheres)
-  console.log(spheres)
+
+  const navigateVR = (sphereId) => {
+    const path = spheres[sphereId].path
+    navigation.navigate("VR", {
+      url: path
+    })
+  }
+
   return (
       <SafeAreaView style= {styles.container}>
 
@@ -34,7 +43,10 @@ const MenuOf360degreeImagesScreen = ({navigation}) => {
 
             </View>
           </View>
-          {spheres.map(sphere => (
+          {spheres.map(sphere => {
+            const dt = new Date(sphere.dateUploaded)
+            const dateStr = `${dt.getHours()}:${dt.getMinutes()}, ${dt.getDate()}/${dt.getMonth()}/${dt.getFullYear()}`
+            return (
             <View style = {styles.listOfImages}>
 
               <View style = {styles.imageWrapper}> 
@@ -44,20 +56,22 @@ const MenuOf360degreeImagesScreen = ({navigation}) => {
 
                 <Text style = {styles.imageLabel}> {sphere.caption} </Text>
 
-                <Text style = {styles.dateOfImage}> {sphere.dateUploaded} (Date Uploaded) </Text>
+                <Text style = {styles.dateOfImage}> {dateStr} (Date Uploaded) </Text>
                 <Text style = {styles.dateOfImage}> Type: {sphere.type} </Text>
               </View> 
 
               
 
               <Button 
-            
               icon = 'panorama-variant'
               labelStyle = {{fontSize: 12}}
-              onPress ={()=>{}}> Click to view 
+              onPress ={() => {
+                selectSphere(sphere.id)
+                navigateVR(sphere.id)
+              }}> Click to view 
               </Button>
             </View>
-          ))}
+          )})}
         </ScrollView>
       </SafeAreaView> 
 
