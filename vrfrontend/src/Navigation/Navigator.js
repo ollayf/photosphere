@@ -153,13 +153,13 @@ export function LoggedInScreen () {
           
           let iconName; 
 
-          if (route.name === 'ViewImage') { 
+          if (route.name === 'View') { 
             iconName = focused 
             ? 'eye' 
             : 'eye-outline'
           }
 
-          else if (route.name === 'ConvertImage'){ 
+          else if (route.name === 'Upload'){ 
           iconName = focused 
           ? 'swap-horizontal' 
           : 'swap-horizontal-outline'
@@ -195,8 +195,8 @@ export function LoggedInScreen () {
         style: {}
 
       }}> 
-        <Tab.Screen name= "ConvertImage" component={ConvertImageStackScreen}/>
-        <Tab.Screen name= "ViewImage" component={ViewStackScreen} />
+        <Tab.Screen name= "Upload" component={ConvertImageStackScreen}/>
+        <Tab.Screen name= "View" component={ViewStackScreen} />
         <Tab.Screen name= "Explore" component={ExploreImagesStackScreen}/>
         <Tab.Screen name= "Profile" component={ProfileStackScreen}/>        
       </Tab.Navigator>

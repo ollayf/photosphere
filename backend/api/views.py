@@ -2,14 +2,18 @@ from email import parser
 from django.shortcuts import render
 from django.http import HttpResponse, JsonResponse
 from rest_framework.decorators import api_view, parser_classes
-from rest_framework.parsers import JSONParser
+from rest_framework.parsers import JSONParser, MultiPartParser
 from rest_framework.response import Response
 from rest_framework import status
 import firebase_admin
-from firebase_admin import firestore
+from firebase_admin import firestore, storage
 import hashlib
 import datetime
 from passlib.hash import pbkdf2_sha256
+from django.core.files.uploadedfile import TemporaryUploadedFile, InMemoryUploadedFile
+import os
+import datetime
+from .Equirec2Perspec import Equirectangular
 
 @api_view(["POST"])
 @parser_classes([JSONParser])
@@ -160,3 +164,61 @@ def get_spheres_glance(req):
         })
         index += 1
     return JsonResponse({"data": payload}, status= status.HTTP_200_OK)
+
+
+@api_view(["POST"])
+@parser_classes([MultiPartParser])
+def upload_image(req):
+    required_data = {
+        'userId': str,
+        'caption': str,
+    }
+    data = req.data
+
+    exts = {
+        '.jpg': 'jpeg',
+        '.jpeg': 'jpeg',
+        '.png': 'png'
+    }
+
+    # get user information
+    print(data)
+    db = firestore.client()
+    doc_ref = db.collection(u'spheres').document()
+    docId = doc_ref.id
+    print(doc_ref.id)
+    file= data['file_attachment'].file
+    name, ext = os.path.splitext(file.name)
+    save_filename = f'{docId}{ext}'
+    payload = {
+        'caption': data['caption'],
+        'dateUploaded': datetime.datetime.now(),
+        'path': None,
+        'thumbnail': None,
+        'type': '360Image'
+    }
+    print(payload)
+    doc_ref.set(payload)
+
+    bucket = storage.bucket()
+    print(bucket)
+    print(type(data['file_attachment']))
+    if type(data['file_attachment']) == InMemoryUploadedFile:
+        image_bytes = file.read()
+        blob = bucket.blob(save_filename)
+        print(blob)
+        blob.upload_from_string(image_bytes, content_type=f'image/{exts[ext]}')
+    else: # for TemporaryUploadedFile
+        image_bytes = file.read()
+        blob = bucket.blob(save_filename)
+        blob.upload_from_filename(file.name)
+
+    blob.make_public()
+    public_url = blob.public_url
+    print("image url:", blob.public_url)
+
+    doc_ref.update({'path': public_url, 'thumbnail': public_url})
+
+    user_ref = db.collection(u'users').document(data['userId'])
+    user_ref.update({'spheres': firestore.ArrayUnion([docId])})
+    return Response(status= status.HTTP_200_OK)

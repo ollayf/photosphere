@@ -13,6 +13,6 @@ class ApiConfig(AppConfig):
             return True
         print("HEre: ", firebase_admin._apps)
         cred = credentials.Certificate(f"{service_acc_key}")
-        firebase_admin.initialize_app(cred)
+        firebase_admin.initialize_app(cred, {'storageBucket': 'photosphere-2c03a.appspot.com'})
 
 
