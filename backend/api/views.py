@@ -222,3 +222,19 @@ def upload_image(req):
     user_ref = db.collection(u'users').document(data['userId'])
     user_ref.update({'spheres': firestore.ArrayUnion([docId])})
     return Response(status= status.HTTP_200_OK)
+
+
+@api_view(["DELETE"])
+@parser_classes([JSONParser])
+def delete_image(req):
+    required_data = {
+        'userId': str,
+        'sphereId': str,
+    }
+    data = req.data
+    # get user information
+    db = firestore.client()
+
+    user_ref = db.collection(u'users').document(data['userId'])
+    user_ref.update({'spheres': firestore.ArrayRemove([data['sphereId']])})
+    return Response(status= status.HTTP_200_OK)

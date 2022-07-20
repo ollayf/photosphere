@@ -19,7 +19,10 @@ import { ToastAndroid } from 'react-native';
 import VRScene from '../Screens/VR/VrScene';
 
 import {AuthNavigator} from './auth.navigator'
+import { useDispatch, useSelector } from 'react-redux';
 
+import { getSpheres } from '../utils/spheres';
+import { loadSpheres } from '../Redux/actions';
 
 // //to delete
 // const ProfileStack = createStackNavigator(); 
@@ -142,6 +145,8 @@ function ExploreImagesStackScreen () {
 const Tab = createBottomTabNavigator ();
 
 export function LoggedInScreen () { 
+  const dispatch = useDispatch()
+  const userId = useSelector(state => state.creds.userId)
   return (
       <Tab.Navigator
 
@@ -153,10 +158,23 @@ export function LoggedInScreen () {
           
           let iconName; 
 
+          // loads all the spheres everytime this button is pressed
           if (route.name === 'View') { 
             iconName = focused 
             ? 'eye' 
             : 'eye-outline'
+            getSpheres(userId)
+              .then( (res) => {
+                if (res.status === 200) {
+                  return res.json()
+                }
+                return false
+              })
+              .then((data) => {
+                if (data) {
+                  dispatch(loadSpheres(data.data))
+                }
+              })
           }
 
           else if (route.name === 'Upload'){ 

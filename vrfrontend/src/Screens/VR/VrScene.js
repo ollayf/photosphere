@@ -75,7 +75,7 @@ const MainScene = ( props ) => {
 const VRScene = ( {route, navigation} ) => {
     console.log("route", route.params)
     const goBack = () => {
-        navigation.goBack()
+        navigation.navigate("LoggedIn")
     }
 
     return (

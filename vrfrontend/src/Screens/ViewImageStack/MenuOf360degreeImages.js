@@ -7,17 +7,28 @@ import { Avatar, Title, Caption, Text, TouchableRipple, Button } from 'react-nat
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons'
 //import Share from 'react-native-share'
 import { useSelector, useDispatch } from 'react-redux';
-import { selectSphere } from '../../Redux/actions';
+import { selectSphere, loadSpheres } from '../../Redux/actions';
+import { deleteSphere } from '../../utils/spheres';
+import { getSpheres } from '../../utils/spheres';
+const path = require('path')
 
 const MenuOf360degreeImagesScreen = ({navigation}) => {
   const dispatch = useDispatch()
   const spheres = useSelector(state => state.spheres)
+  const userId = useSelector(state => state.creds.userId)
 
   const navigateVR = (sphereId) => {
     const path = spheres[sphereId].path
     navigation.navigate("VR", {
       url: path
     })
+  }
+
+  const getSphereId = (index) => {
+    const sphere = spheres[index].thumbnail
+    const ext = path.extname(sphere)
+    const basename = path.basename(sphere, ext)
+    return basename
   }
 
   return (
@@ -60,8 +71,28 @@ const MenuOf360degreeImagesScreen = ({navigation}) => {
                 <Text style = {styles.dateOfImage}> Type: {sphere.type} </Text>
               </View> 
 
-              
+              <View>
+              <Button 
+              icon = 'panorama-variant'
+              labelStyle = {{fontSize: 12}}
+              onPress ={() => {
+                const sphereId = getSphereId(sphere.id)
+                deleteSphere(userId, sphereId)
+                getSpheres(userId)
+                .then( (res) => {
+                  if (res.status === 200) {
+                    return res.json()
+                  }
+                  return false
+                })
+                .then((data) => {
+                  if (data) {
+                    dispatch(loadSpheres(data.data))
+                  }
+                })
 
+              }}> Delete
+              </Button>
               <Button 
               icon = 'panorama-variant'
               labelStyle = {{fontSize: 12}}
@@ -70,6 +101,7 @@ const MenuOf360degreeImagesScreen = ({navigation}) => {
                 navigateVR(sphere.id)
               }}> Click to view 
               </Button>
+              </View>
             </View>
           )})}
         </ScrollView>
