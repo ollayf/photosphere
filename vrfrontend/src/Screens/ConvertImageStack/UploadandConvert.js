@@ -24,7 +24,7 @@ const  UploadandConvertScreen = ({navigation}) => {
       data.append('file_attachment', fileToUpload),
       data.append('userId', userId)
       fetch(
-        'http://192.168.10.70:8000/api/uploadImage/',
+        'http://34.87.107.21:8000/api/uploadImage/',
         {
           method: 'post',
           body: data,
