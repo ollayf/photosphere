@@ -15,7 +15,7 @@ export async function getSpheres (userId) {
 
 export async function deleteSphere (userId, sphereId) { 
   console.log(userId, sphereId)
-  const res = await fetch('http://192.168.10.70:8000/api/deleteImage/',
+  const res = await fetch('http://34.87.107.21:8000/api/deleteImage/',
     {
       method: 'DELETE',
       body: JSON.stringify({ 
