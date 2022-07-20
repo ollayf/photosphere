@@ -78,18 +78,7 @@ const MenuOf360degreeImagesScreen = ({navigation}) => {
               onPress ={() => {
                 const sphereId = getSphereId(sphere.id)
                 deleteSphere(userId, sphereId)
-                getSpheres(userId)
-                .then( (res) => {
-                  if (res.status === 200) {
-                    return res.json()
-                  }
-                  return false
-                })
-                .then((data) => {
-                  if (data) {
-                    dispatch(loadSpheres(data.data))
-                  }
-                })
+                alert("Deleted")
 
               }}> Delete
               </Button>
