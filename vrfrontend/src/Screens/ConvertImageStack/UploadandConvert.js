@@ -34,7 +34,12 @@ const  UploadandConvertScreen = ({navigation}) => {
         }
       )
       .then( (res) => {
-        console.log(res.status)
+        if (res.status == 200) {
+          console.log("Here")
+          alert("Image Uploaded")
+        } else {
+          alert("There was an issue trying to upload this. Please try again later")
+        }
       })
     } else {
       alert('Please Select File first')
