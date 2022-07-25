@@ -108,9 +108,9 @@ def verify_password(req):
 
 @api_view(["PUT"])
 @parser_classes([JSONParser])
-def edit_user(req):
+def edit_field(req):
     required_data = {
-        'username': str,
+        'userId': str,
         'field': str,
         'result': None # the final result of the edit
     }
@@ -118,20 +118,60 @@ def edit_user(req):
     data = req.data
     field = data["field"]
 
-    uname = data["username"]
+    userId = data['userId']
     db = firestore.client()
-    col_ref = db.collection(u'users')
-    query = col_ref.where(u'username', u'==', u'{}'.format(uname))
-    users = query.get()
+    col_ref = db.collection(u'users').document(userId).get()
 
     # end if there are more than one user
-    if len(users) != 1:
-        return Response(status=status.HTTP_300_MULTIPLE_CHOICES)
-    
-    user_ref = users[0]
-    user_info = user_ref.to_dict()
     # TODO Check if the field exists
-    col_ref.document(user_ref.id).update({field: data["result"]})
+    col_ref.document(userId).update({field: data["result"]})
+
+    return Response(status=status.HTTP_200_OK)
+
+@api_view(["PUT"])
+@parser_classes([JSONParser])
+def edit_profile(req):
+    required_data = {
+        'userId': str,
+        'username': str,
+        'email': str,
+        'firstname': str,
+        'lastname': str
+    }
+
+    data = req.data
+
+    userId = data['userId']
+    db = firestore.client()
+
+    new_data = dict()
+
+    for key in data.keys():
+        if (not key == 'userId') and data[key]:
+            new_data[key] = data[key]
+
+    # edit in the database
+    db.collection(u'users').document(userId).update(new_data)
+
+    return Response(status=status.HTTP_200_OK)
+
+@api_view(["PUT"])
+@parser_classes([JSONParser])
+def edit_password(req):
+    required_data = {
+        'userId': str,
+        'new_pw': str
+    }
+
+    data = req.data
+
+    userId = data['userId']
+    password = data['new_pw']
+    db = firestore.client()
+
+    # edit password
+    pw_hash = pbkdf2_sha256.encrypt(password, rounds=12000, salt_size=32)
+    db.collection(u'users').document(userId).update({'pw_hash': pw_hash})
 
     return Response(status=status.HTTP_200_OK)
 

@@ -54,3 +54,40 @@ export async function usernameExists (username) {
     })
     return res.status
 }
+
+export async function editField (userId, field, result) { 
+  const res = await fetch('http://34.87.107.21:8000/api/editField/',
+  {
+    method: 'POST',
+    body: JSON.stringify({
+      userId: userId,
+      field: field,
+      result: result
+
+    }),
+    headers: {
+      'Content-Type': 'application/json'
+      // 'Content-Type': 'application/x-www-form-urlencoded',
+    },
+  })
+  return res.status
+}
+
+export async function editField (userId, username=null, email=null, firstname=null, lastname=null) { 
+  const res = await fetch('http://34.87.107.21:8000/api/editProfile/',
+  {
+    method: 'POST',
+    body: JSON.stringify({
+      userId: userId,
+      username: username,
+      email: email,
+      firstname: firstname,
+      lastname: lastname
+    }),
+    headers: {
+      'Content-Type': 'application/json'
+      // 'Content-Type': 'application/x-www-form-urlencoded',
+    },
+  })
+  return res.status
+}
