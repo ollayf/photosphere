@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { SafeAreaView, StyleSheet } from 'react-native';
+import { SafeAreaView, StyleSheet, View, ActivityIndicator } from 'react-native';
 import { ApplicationProvider, IconRegistry, Divider, Layout, Text, Input, Icon, TopNavigation, TopNavigationAction } from '@ui-kitten/components';
 import {AppLoading} from 'expo';
 import { ThemeContext } from '../../../theme-context';
@@ -11,6 +11,8 @@ import { Button } from 'react-native-paper';
 
 import { EvaIconsPack } from '@ui-kitten/eva-icons';
 import { signup, usernameExists } from '../../utils/auth';
+import { ScrollView } from 'react-native-gesture-handler';
+import { useDispatch } from 'react-redux';
 
 const BackIcon = (props) => (
   <Icon {...props} name='arrow-back' />
@@ -18,8 +20,10 @@ const BackIcon = (props) => (
 
 
 export default function SignUpScreen ({ navigation }) {
-
-  const [name, setName] = useState('')
+  const dispatch = useDispatch()
+  const [username, setUsername] = useState('')
+  const [firstname, setFirstname] = useState('')
+  const [lastname, setLastname] = useState('')
   const [email, setEmail] = useState('')
   const [password1, setPassword1] = useState('')
   const [password2, setPassword2]= useState('')
@@ -49,8 +53,10 @@ export default function SignUpScreen ({ navigation }) {
     navigation.navigate('Login');
   };
 
+
   const navigateProfile = () => {
-    if (!(name, password1, password2, email)) {
+    console.log(username)
+    if (!(username && firstname && lastname && password1 && password2 && email)) {
       setNameState(2)
       return
     }
@@ -59,14 +65,41 @@ export default function SignUpScreen ({ navigation }) {
       setPwMatch(false)
       return
     }
-    usernameExists(name)
+    usernameExists(username)
     .then((status) => {
       if (status == 200) {
+        console.log("Same username")
         setNameState(1)
-        return
+        return false
       } else {
         console.log("Logging in")
-        signup(email, name, password1, "", "", navigation);
+        signup(email, username, password1, firstname, firstname)
+        .then((res) => {
+          if (res.status == 200) {
+            return res.json()
+          } else {
+            alert("Something went wrong with creation of account")
+            return false
+          }
+        }).then((data) => {
+          if (!data) {
+            return
+          }
+          const creds = {
+            id: data.userId,
+            email: email,
+            username: username,
+            firstname: firstname,
+            lastname: lastname,
+            spheres_count: 0
+          }
+          dispatch({
+            type: "loadProfile",
+            payload: creds
+          })
+          navigation.navigate("LoggedIn")
+
+        })
       }
     })
   }
@@ -90,98 +123,119 @@ export default function SignUpScreen ({ navigation }) {
 
   return (
     <SafeAreaView style={styles.container}>
-    
 
-    <Layout style={styles.header}>
-      <Smallerlogo>
-      </Smallerlogo>
-    
+      <ScrollView>
 
-      </Layout>
-
-
-      <Layout style={styles.loginoptions}>
-      <Text 
-        category= 'h5'>
-        Create a new PhotoSphere account!
-
-        </Text>
-
-      <NameComment/>
-      <Input 
-      style={styles.input}
-      placeholder= 'Username'
-      autoCapitalize='none'
-      value = {name} 
-      onChangeText= { text => setName(text)}
-      > 
-      </Input> 
-
-      <Input 
-      style={styles.input}
-      placeholder= 'Email'
-      autoCapitalize='none'
-      keyboardType= 'email-address' 
-      value = {email} 
-      onChangeText= { text => setEmail(text)}
-      > 
-      </Input> 
-    
-     
-      <Input 
-      style={styles.input}
-      placeholder= 'Password'
-      autoCapitalize='none'
-      //keyboardType= '' 
-      value = {password1} 
-      onChangeText= { text => setPassword1(text)}
-      secureTextEntry
-      >
-
-      </Input>
-      <Text style={styles.captionText}>
-      Should contain at least 1 uppercase, 1 lowercase and 1 special character
-      </Text>
-      <Input 
-      style={styles.input}
-      placeholder= 'Re-type your password'
-      //keyboardType= '' 
-      autoCapitalize='none'
-      value = {password2} 
-      onChangeText= { text => setPassword2(text)}
-      secureTextEntry
-      ></Input>
-      
-      {pw_match ? <></> :
-        <Text style={styles.captionText}>
-        The passwords don't match.
-        </Text>
-      }
-
-      <Button 
-      style= {styles.signUpButton}
-      icon = 'pencil-plus'
-      color = {'white'}
-      labelStyle= {{fontSize: 22}}
+        <Layout style={styles.header}>
+          <Smallerlogo>
+          </Smallerlogo>
         
-      onPress = {navigateProfile}
-      >
-      
-      SIGN UP 
-      </Button>
-      <Text 
-      style= {styles.alreadyHaveAccountText}>
-      Already have an account?  
-     
-      </Text> 
-      <Button
-      style= {styles.login}
-      appearance= 'ghost'
-      onPress={navigateLogin} 
-    >
-     Login here </Button>
 
-      </Layout>
+          </Layout>
+
+
+          <Layout style={styles.loginoptions}>
+          <Text 
+            category= 'h5'>
+            Create a new PhotoSphere account!
+
+            </Text>
+
+          <NameComment/>
+          <Input 
+          style={styles.input}
+          placeholder= 'Username'
+          autoCapitalize='none'
+          value = {username} 
+          onChangeText= { text => setUsername(text)}
+          > 
+          </Input> 
+          <Input 
+          style={styles.input}
+          placeholder= 'First Name'
+          autoCapitalize='none'
+          value = {firstname} 
+          onChangeText= { text => setFirstname(text)}
+          > 
+          </Input> 
+
+          <Input 
+          style={styles.input}
+          placeholder= 'Last Name'
+          autoCapitalize='none'
+          value = {lastname} 
+          onChangeText= { text => setLastname(text)}
+          > 
+          </Input> 
+
+          <Input 
+          style={styles.input}
+          placeholder= 'Email'
+          autoCapitalize='none'
+          keyboardType= 'email-address' 
+          value = {email} 
+          onChangeText= { text => setEmail(text)}
+          > 
+          </Input> 
+        
+        
+          <Input 
+          style={styles.input}
+          placeholder= 'Password'
+          autoCapitalize='none'
+          //keyboardType= '' 
+          value = {password1} 
+          onChangeText= { text => setPassword1(text)}
+          secureTextEntry
+          >
+
+          </Input>
+          <Text style={styles.captionText}>
+          Should contain at least 1 uppercase, 1 lowercase and 1 special character
+          </Text>
+          <Input 
+          style={styles.input}
+          placeholder= 'Re-type your password'
+          //keyboardType= '' 
+          autoCapitalize='none'
+          value = {password2} 
+          onChangeText= { text => setPassword2(text)}
+          secureTextEntry
+          ></Input>
+          
+          {pw_match ? <></> :
+            <Text style={styles.captionText}>
+            The passwords don't match.
+            </Text>
+          }
+
+          <Button 
+          style= {styles.signUpButton}
+          icon = 'pencil-plus'
+          color = {'white'}
+          labelStyle= {{fontSize: 22}}
+            
+          onPress = {navigateProfile}
+          >
+          
+          SIGN UP 
+          </Button>
+          <Text 
+          style= {styles.alreadyHaveAccountText}>
+          Already have an account?  
+        
+          </Text> 
+          <Button
+          style= {styles.login}
+          appearance= 'ghost'
+          onPress={navigateLogin} 
+        >
+        Login here </Button>
+
+        </Layout>
+      </ScrollView>
+
+    
 
      
     </SafeAreaView>
@@ -191,6 +245,9 @@ export default function SignUpScreen ({ navigation }) {
 
 
 const styles = StyleSheet.create({
+  spinnerTextStyle: {
+    color: '#FFF'
+  },
   container: {
     flex: 1,
     justifyContent: 'center',

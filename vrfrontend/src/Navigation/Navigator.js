@@ -23,6 +23,7 @@ import { useDispatch, useSelector } from 'react-redux';
 
 import { getSpheres } from '../utils/spheres';
 import { loadSpheres } from '../Redux/actions';
+import { getProfile } from '../utils/auth';
 
 // //to delete
 // const ProfileStack = createStackNavigator(); 
@@ -193,6 +194,33 @@ export function LoggedInScreen () {
             iconName = focused 
             ? 'person' 
             : 'person-outline'
+            getProfile(userId)
+              .then((res) => {
+                if (res.status != 200) {
+                  return false
+                }
+                return res.json()
+              })
+              .then( (data) => {
+                // assuming res.status == 200
+                if (!data) {
+                  return false
+                }
+                const userCreds = {
+                  user: {
+                    id: data.userId,
+                    email: data.email,
+                    username: data.username,
+                    firstname: data.firstname,
+                    lastname: data.lastname,
+                    spheres_count: data.spheres_count
+                  }
+                }
+                dispatch({
+                  type: "loadProfile",
+                  payload: userCreds
+                })
+              })
           }
 
           return ( 

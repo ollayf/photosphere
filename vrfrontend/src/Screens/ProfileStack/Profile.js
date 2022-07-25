@@ -6,27 +6,17 @@ import { ThemeContext } from '../../../theme-context';
 import { Avatar, Title, Caption, Text, TouchableRipple } from 'react-native-paper';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons'
 //import Share from 'react-native-share'
-import { useSelector } from 'react-redux'
+import { useSelector, useDispatch } from 'react-redux'
+import { getProfile } from '../../utils/auth';
 
 const ProfileScreen = ({navigation}) => {
+
   const creds = useSelector(state => state.creds)
   const spheres = useSelector(state => state.spheres)
-  console.log(creds)
-  console.log(spheres)
+  var spheres_count = creds.spheres_count
   const navigateLogin = () => {
     navigation.navigate('Login');
   };
-
-  /*const shareWithFriends = async() => { 
-    const shareOptions = { 
-      message: 'This is a test message',
-    }
-    try{ 
-      const shareResponse = await Share.open(shareOptions); 
-    } catch(error) {
-      console.log('Error =>', error);
-        }
-    }*/
 
   const navigateEditProfile = () => {
     navigation.navigate('EditProfile');
@@ -90,59 +80,17 @@ const ProfileScreen = ({navigation}) => {
 
        <View style = {styles.BoxWrapper}>
         <View style = {styles.Box}> 
-        <Title> {10}  </Title>
+        <Title> {spheres_count}  </Title>
         <Caption> 360 Degree images </Caption>   
         </View>
 
         <View style = {styles.Box}> 
-        <Title> 10  </Title>
+        <Title> 0  </Title>
         <Caption> Images shared </Caption>       
         </View>
        </View> 
 
        <View styles ={styles.menuWrapper}> 
-
-        <TouchableRipple onPress= {() => {}}>
-          <View style = {styles.menuItems}> 
-            <Icon 
-            name = 'heart-outline' 
-            color = 'teal'
-            size = {25}
-            ></Icon>
-            <Text 
-            style = {styles.menuItemsText}>
-            Favourites
-            </Text> 
-          </View>
-        </TouchableRipple>
-
-        <TouchableRipple onPress= {() => {} }> 
-          <View style = {styles.menuItems}> 
-            <Icon 
-            name = 'share-outline' 
-            color = 'teal'
-            size = {25}
-            ></Icon>
-            <Text 
-            style = {styles.menuItemsText}>
-            Share with your friends
-            </Text> 
-          </View>
-        </TouchableRipple>
-
-        <TouchableRipple onPress= {() => {}}>
-          <View style = {styles.menuItems}> 
-            <Icon 
-            name = 'account-check-outline' 
-            color = 'teal'
-            size = {25}
-            ></Icon>
-            <Text 
-            style = {styles.menuItemsText}>
-            Support
-            </Text> 
-          </View>
-        </TouchableRipple>
 
         <TouchableRipple onPress= {() => {}}>
           <View style = {styles.menuItems}> 
@@ -153,7 +101,7 @@ const ProfileScreen = ({navigation}) => {
             ></Icon>
             <Text 
             style = {styles.menuItemsText}>
-            Settings
+            Change Password
             </Text> 
           </View>
         </TouchableRipple>

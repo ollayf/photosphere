@@ -70,7 +70,8 @@ export default function LoginScreen ({ navigation }) {
           email: data.email,
           username: data.username,
           firstname: data.firstname,
-          lastname: data.lastname
+          lastname: data.lastname,
+          spheres_count: data.spheres_count
         }
       }
       dispatch(confirmLogInCreds(creds))

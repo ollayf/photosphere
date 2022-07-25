@@ -5,20 +5,25 @@ import  Feather from 'react-native-vector-icons/Feather'
 import FontAwesome from 'react-native-vector-icons/FontAwesome'
 import { ThemeContext } from '../../../theme-context'
 import { useSelector, useDispatcher } from 'react-redux'
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { editProfile } from '../../utils/auth'
 
 const BackIcon = (props) => (
   <Icon {...props} name='arrow-back' />
   );
   
-const EditProfileScreen = () => {
+const EditProfileScreen = ({navigation}) => {
   const userId = useSelector(state => state.creds.userId)
   const [usernameEdit, usernameEditFn] = useState("")
   const [emailEdit, emailEditFn] = useState("")
   const [firstnameEdit, firstnameEditFn] = useState("")
   const [lastnameEdit, lastnameEditFn] = useState("")
 
+
+  const submitEdit = () => {
+    editProfile(userId, usernameEdit, emailEdit, firstnameEdit, lastnameEdit)
+    navigation.navigate('ViewProfile')
+  }
   const navigateBack = () => {
     navigation.goBack();
   };
@@ -97,7 +102,7 @@ const EditProfileScreen = () => {
                 </View> 
 
                 <TouchableOpacity style = {styles.submitButton}
-                    onPress = {editProfile(userId, usernameEdit, emailEdit, firstnameEdit, lastnameEdit)}> 
+                    onPress = {submitEdit}> 
                 <Text 
                 style={styles.submitText}>
                 Submit

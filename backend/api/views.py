@@ -58,8 +58,9 @@ def add_user(req):
     # empty for a fresh account
     data['friends'] = []
     data['spheres'] = []
-    ref = db.collection(u'users').document().set(data)
-    userId = ref[0].id
+    ref = db.collection(u'users').document()
+    userId = ref.id
+    ref.set(data)
     payload = {
         'userId': userId
     }

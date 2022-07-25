@@ -15,8 +15,8 @@ export async function login (email, password, username=null) {
       return res
 }
 
-export function signup (email, username, password, firstname, lastname, navigation) { 
-    fetch('http://34.87.107.21:8000/api/addUser/',
+export async function signup (email, username, password, firstname, lastname) { 
+    const res = await fetch('http://34.87.107.21:8000/api/addUser/',
     {
       method: 'POST',
       body: JSON.stringify({
@@ -30,14 +30,8 @@ export function signup (email, username, password, firstname, lastname, navigati
         'Content-Type': 'application/json'
         // 'Content-Type': 'application/x-www-form-urlencoded',
       },
-    }).then((res) => {
-      if (res.status == 201) {
-        console.log("YEETING")
-        navigation.navigate('Profile');
-      } else {
-        return false
-      }
     })
+    return res
 }
 
 export async function usernameExists (username) { 
