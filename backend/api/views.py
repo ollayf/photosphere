@@ -332,9 +332,8 @@ def upload_image(req):
         print(blob)
         blob.upload_from_string(image_bytes, content_type=f'image/{exts[ext]}')
     else: # for TemporaryUploadedFile
-        image_bytes = data['file_attachment'].file.read()
         blob = bucket.blob(save_filename)
-        blob.upload_from_filename(file.name)
+        blob.upload_from_filename(data['file_attachment'].temporary_file_path())
 
     blob.make_public()
     public_url = blob.public_url
