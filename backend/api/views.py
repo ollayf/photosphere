@@ -138,6 +138,7 @@ def edit_profile(req):
         'firstname': str,
         'lastname': str
     }
+    print("Inside now")
 
     data = req.data
 
@@ -177,10 +178,38 @@ def edit_password(req):
 
 @api_view(["POST"])
 @parser_classes([JSONParser])
+def get_profile(req):
+    required_data = {
+        'userId': str
+    }
+
+    data = req.data
+
+    userId = data['userId']
+    db = firestore.client()
+
+    # edit password
+    user_ref = db.collection(u'users').document(userId).get()
+    user = user_ref.to_dict()
+    spheres_count = len(user['spheres'])
+    payload = {
+        'userId': userId,
+        'username': user['username'],
+        'email': user['email'],
+        'firstname': user['firstname'],
+        'lastname': user['lastname'],
+        'sphere_count': spheres_count
+    }
+
+    return JsonResponse(payload, status=status.HTTP_200_OK)
+
+@api_view(["POST"])
+@parser_classes([JSONParser])
 def get_spheres_glance(req):
     required_data = {
         'userId': str,
     }
+    print("Inside now")
     data = req.data
     userId = data['userId']
     db = firestore.client()

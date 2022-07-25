@@ -76,7 +76,7 @@ export async function editField (userId, field, result) {
 export async function editProfile (userId, username=null, email=null, firstname=null, lastname=null) { 
   const res = await fetch('http://34.87.107.21:8000/api/editProfile/',
   {
-    method: 'POST',
+    method: 'PUT',
     body: JSON.stringify({
       userId: userId,
       username: username,
@@ -90,4 +90,19 @@ export async function editProfile (userId, username=null, email=null, firstname=
     },
   })
   return res.status
+}
+
+export async function getProfile (userId) { 
+  const res = await fetch('http://34.87.107.21:8000/api/getProfile/',
+  {
+    method: 'POST',
+    body: JSON.stringify({
+      userId: userId,
+    }),
+    headers: {
+      'Content-Type': 'application/json'
+      // 'Content-Type': 'application/x-www-form-urlencoded',
+    },
+  })
+  return res
 }

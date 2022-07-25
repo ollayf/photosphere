@@ -4,12 +4,20 @@ import  Icon  from 'react-native-vector-icons/MaterialCommunityIcons'
 import  Feather from 'react-native-vector-icons/Feather'
 import FontAwesome from 'react-native-vector-icons/FontAwesome'
 import { ThemeContext } from '../../../theme-context'
+import { useSelector, useDispatcher } from 'react-redux'
+import { useState } from 'react'
+import { editProfile } from '../../utils/auth'
 
 const BackIcon = (props) => (
   <Icon {...props} name='arrow-back' />
   );
   
 const EditProfileScreen = () => {
+  const userId = useSelector(state => state.creds.userId)
+  const [usernameEdit, usernameEditFn] = useState("")
+  const [emailEdit, emailEditFn] = useState("")
+  const [firstnameEdit, firstnameEditFn] = useState("")
+  const [lastnameEdit, lastnameEditFn] = useState("")
 
   const navigateBack = () => {
     navigation.goBack();
@@ -23,45 +31,34 @@ const EditProfileScreen = () => {
         <View style = {styles.container}>      
             <View style ={{margin: 20}}> 
                 <View style = { {alignItems: 'center'}}>
-                    <TouchableOpacity onPress = { () => {}} > 
                         <View style = {styles.image}>
                             <ImageBackground 
                             style = {styles.image}
                             source ={require('../../Components/Avatar.png')}
                              size = {100}>
                              </ImageBackground>
-                             
-                                <View> 
-                                    <Icon 
-                                    name= 'camera'
-                                    size= {35}
-                                    color= 'black' 
-                                    style= {styles.camera}
-                                    >
-
-                                    </Icon>
-                                </View>
                         </View>
-                    </TouchableOpacity> 
 
                     <Text style = {styles.name}> 
-                     John Doe
+                     Edit Profile
                      </Text>
                 </View>
                 </View> 
 
+                
+
                 <View style = {styles.inputWrapper}>
                     <FontAwesome name = 'user-o' size = {20} />
                     <TextInput 
-                        placeholder='First Name'
+                        placeholder='Username'
                         placeholderTextColor= '#666666'
                         style = {styles.input}
                         autoCorrect = {false}
+                        onChangeText={text => emailEditFn(text)}
                         >
 
                         </TextInput>                        
                 </View> 
-
                 <View style = {styles.inputWrapper}>
                     <FontAwesome name = 'envelope-o' size = {20} />
                     <TextInput 
@@ -69,37 +66,38 @@ const EditProfileScreen = () => {
                         placeholderTextColor= '#666666'
                         style = {styles.input}
                         autoCorrect = {false}
+                        onChangeText={text => usernameEditFn(text)}
+                        >
+
+                        </TextInput>                        
+                </View> 
+                <View style = {styles.inputWrapper}>
+                    <FontAwesome name = 'user-o' size = {20} />
+                    <TextInput 
+                        placeholder='First Name'
+                        placeholderTextColor= '#666666'
+                        style = {styles.input}
+                        autoCorrect = {false}
+                        onChangeText={text => firstnameEditFn(text)}
+                        >
+
+                        </TextInput>                        
+                </View> 
+                <View style = {styles.inputWrapper}>
+                    <FontAwesome name = 'user-o' size = {20} />
+                    <TextInput 
+                        placeholder='Last Name'
+                        placeholderTextColor= '#666666'
+                        style = {styles.input}
+                        autoCorrect = {false}
+                        onChangeText={text => lastnameEditFn(text)}
                         >
 
                         </TextInput>                        
                 </View> 
 
-                <View style = {styles.inputWrapper}>
-                    <FontAwesome name = 'globe' size = {20} />
-                    <TextInput 
-                        placeholder='Country'
-                        placeholderTextColor= '#666666'
-                        style = {styles.input}
-                        autoCorrect = {false}
-                        >
-
-                        </TextInput>    
-
-                         </View>   
-                        <View style = {styles.inputWrapper}>
-                            <Icon name = 'map-marker-outline' size = {20} />
-                                 <TextInput 
-                                     placeholder='City '
-                                        placeholderTextColor= '#666666'
-                                        style = {styles.input}
-                                         autoCorrect = {false}
-                                 >
-
-                                </TextInput>                        
-                                 
-                </View> 
-
-                <TouchableOpacity style = {styles.submitButton}> 
+                <TouchableOpacity style = {styles.submitButton}
+                    onPress = {editProfile(userId, usernameEdit, emailEdit, firstnameEdit, lastnameEdit)}> 
                 <Text 
                 style={styles.submitText}>
                 Submit
