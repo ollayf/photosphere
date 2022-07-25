@@ -36,6 +36,25 @@ def username_exists(req):
 
 @api_view(["POST"])
 @parser_classes([JSONParser])
+def email_exists(req):
+    required_data = {
+        "email": str
+    }
+    email = req.data["email"]
+
+    db = firestore.client()
+    users_ref = db.collection(u'users')
+    query = users_ref.where(u'email', u'==', u'{}'.format(email))
+    num_res = len(query.get())
+    if not num_res:
+        return Response(status=status.HTTP_404_NOT_FOUND)
+    elif num_res == 1:
+        return Response(status=status.HTTP_200_OK)
+    else:
+        return Response(status=status.HTTP_300_MULTIPLE_CHOICES)
+
+@api_view(["POST"])
+@parser_classes([JSONParser])
 def add_user(req):
     required_data = {
         'email': str,
@@ -107,6 +126,41 @@ def verify_password(req):
     if pw_hash:
         return JsonResponse(payload, status= status.HTTP_200_OK)
     return Response(status=status.HTTP_404_NOT_FOUND)
+
+@api_view(["POST"])
+@parser_classes([JSONParser])
+def check_password(req):
+    required_data = {
+        'userId': str,
+        'pw': str, # raw text
+    }
+    db = firestore.client()
+    data = req.data
+    user_ref = db.collection(u'users').document(data['userId']).get()
+    user_info = user_ref.to_dict()
+    pw_hash = user_info['pw_hash']
+
+    password_input = data['pw']
+    pw_hash = pbkdf2_sha256.verify(password_input, pw_hash)
+
+    if pw_hash:
+        return Response(status= status.HTTP_200_OK)
+    return Response(status=status.HTTP_404_NOT_FOUND)
+
+@api_view(["PUT"])
+@parser_classes([JSONParser])
+def change_password(req):
+    required_data = {
+        'userId': str,
+        'new_pw': str, # raw text
+    }
+    db = firestore.client()
+    data = req.data
+    password = data['new_pw']
+    user_ref = db.collection(u'users').document(data['userId'])
+    user_ref.update({'pw_hash': pbkdf2_sha256.encrypt(password, rounds=12000, salt_size=32)})
+
+    return Response(status= status.HTTP_200_OK)
 
 @api_view(["PUT"])
 @parser_classes([JSONParser])

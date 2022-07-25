@@ -6,6 +6,7 @@ import { createAppContainer } from 'react-navigation'
 import HomeScreen from '../Screens/LoggedOutStack/Home';
 import SignUpScreen from '../Screens/LoggedOutStack/Sign Up';
 import LoginScreen from '../Screens/LoggedOutStack/Login';
+import ChangePasswordScreen from '../Screens/LoggedOutStack/ChangePassword';
 import ForgetPasswordScreen from '../Screens/LoggedOutStack/ForgetPassword';
 // import ProfileScreen from '../Screens/ProfileStack/Profile';
 import EditProfileScreen from '../Screens/ProfileStack/EditProfile';
@@ -109,6 +110,7 @@ function ProfileStackScreen () {
   <ProfileStack.Navigator initialRouteName="ViewProfile" screenOptions={{headerShown: false}}> 
     <ProfileStack.Screen name = "ViewProfile" component={ProfileScreen} />
     <ProfileStack.Screen name = "EditProfile" component={EditProfileScreen}/>
+    <ProfileStack.Screen name = "ChangePassword" component={ChangePasswordScreen}/>
   </ProfileStack.Navigator>
   )
 }

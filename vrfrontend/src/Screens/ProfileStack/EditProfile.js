@@ -59,7 +59,7 @@ const EditProfileScreen = ({navigation}) => {
                         placeholderTextColor= '#666666'
                         style = {styles.input}
                         autoCorrect = {false}
-                        onChangeText={text => emailEditFn(text)}
+                        onChangeText={text => usernameEditFn(text)}
                         >
 
                         </TextInput>                        
@@ -71,7 +71,7 @@ const EditProfileScreen = ({navigation}) => {
                         placeholderTextColor= '#666666'
                         style = {styles.input}
                         autoCorrect = {false}
-                        onChangeText={text => usernameEditFn(text)}
+                        onChangeText={text => emailEditFn(text)}
                         >
 
                         </TextInput>                        

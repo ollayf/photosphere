@@ -19,16 +19,12 @@ const BackIcon = (props) => (
 );
 
 
-export default function SignUpScreen ({ navigation }) {
+export default function ChangePasswordScreen ({ navigation }) {
   const dispatch = useDispatch()
-  const [username, setUsername] = useState('')
-  const [firstname, setFirstname] = useState('')
-  const [lastname, setLastname] = useState('')
-  const [email, setEmail] = useState('')
+  const [old_password, setOldPassword] = useState('')
   const [password1, setPassword1] = useState('')
   const [password2, setPassword2]= useState('')
-  const [pw_match, setPwMatch] = useState(true)
-  const [nameState, setNameState] = useState(0)
+  const [PWState, setPWState] = useState(0)
   
   
  // const onChange = (e) => {
@@ -56,20 +52,19 @@ export default function SignUpScreen ({ navigation }) {
 
   const navigateProfile = () => {
     console.log(username)
-    if (!(username && firstname && lastname && password1 && password2 && email)) {
-      setNameState(2)
+    if (!(old_password && password1 && password2)) {
+      setPWState(2)
       return
     }
 
     if (password1 != password2) {
-      setPwMatch(false)
       return
     }
     usernameExists(username)
     .then((status) => {
       if (status == 200) {
         console.log("Same username")
-        setNameState(1)
+        setPWState(1)
         return false
       } else {
         console.log("Logging in")
@@ -106,13 +101,13 @@ export default function SignUpScreen ({ navigation }) {
     })
   }
 
-  function NameComment () {
-    switch (nameState) {
+  function PWComment () {
+    switch (PWState) {
       case 0:
         return (<></>);
       case 1:
         return (<Text style={styles.captionText}>
-        Username Taken.
+        Same Password.
         </Text>);
       case 2:
         return (<Text style={styles.captionText}>
@@ -139,51 +134,27 @@ export default function SignUpScreen ({ navigation }) {
           <Layout style={styles.loginoptions}>
           <Text 
             category= 'h5'>
-            Create a new PhotoSphere account!
+            Change Password {'\n'}
 
             </Text>
 
-          <NameComment/>
+          <PWComment/>
+
+          
           <Input 
           style={styles.input}
-          placeholder= 'Username'
+          placeholder= 'Old Password'
           autoCapitalize='none'
-          value = {username} 
-          onChangeText= { text => setUsername(text)}
-          > 
-          </Input> 
-          <Input 
-          style={styles.input}
-          placeholder= 'First Name'
-          autoCapitalize='none'
-          value = {firstname} 
-          onChangeText= { text => setFirstname(text)}
-          > 
-          </Input> 
+          //keyboardType= '' 
+          value = {old_password} 
+          onChangeText= { text => setOldPassword(text)}
+          secureTextEntry
+          >
+          </Input>
 
           <Input 
           style={styles.input}
-          placeholder= 'Last Name'
-          autoCapitalize='none'
-          value = {lastname} 
-          onChangeText= { text => setLastname(text)}
-          > 
-          </Input> 
-
-          <Input 
-          style={styles.input}
-          placeholder= 'Email'
-          autoCapitalize='none'
-          keyboardType= 'email-address' 
-          value = {email} 
-          onChangeText= { text => setEmail(text)}
-          > 
-          </Input> 
-        
-        
-          <Input 
-          style={styles.input}
-          placeholder= 'Password'
+          placeholder= 'New Password'
           autoCapitalize='none'
           //keyboardType= '' 
           value = {password1} 
@@ -205,7 +176,7 @@ export default function SignUpScreen ({ navigation }) {
           secureTextEntry
           ></Input>
           
-          {pw_match ? <></> :
+          {password1 === password2 ? <></> :
             <Text style={styles.captionText}>
             The passwords don't match.
             </Text>

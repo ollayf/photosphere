@@ -100,3 +100,38 @@ export async function getProfile (userId) {
   })
   return res
 }
+
+export async function changePasswordBE (userId, old_pw, new_pw) { 
+  const res = await fetch('http://34.87.107.21:8000/api/changePassword/',
+  {
+    method: 'PUT',
+    body: JSON.stringify({
+      userId: userId,
+      old_pw: old_pw,
+      new_pw: new_pw
+
+    }),
+    headers: {
+      'Content-Type': 'application/json'
+      // 'Content-Type': 'application/x-www-form-urlencoded',
+    },
+  })
+  return res.status
+}
+
+export async function checkPasswordBE (userId, old_pw, new_pw) { 
+  const res = await fetch('http://34.87.107.21:8000/api/checkPassword/',
+  {
+    method: 'POST',
+    body: JSON.stringify({
+      userId: userId,
+      pw: pw,
+
+    }),
+    headers: {
+      'Content-Type': 'application/json'
+      // 'Content-Type': 'application/x-www-form-urlencoded',
+    },
+  })
+  return res.status
+}

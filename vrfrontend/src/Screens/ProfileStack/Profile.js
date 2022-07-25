@@ -21,6 +21,11 @@ const ProfileScreen = ({navigation}) => {
   const navigateEditProfile = () => {
     navigation.navigate('EditProfile');
   };
+
+  const navigateChangePassword = () => {
+    navigation.navigate('ChangePassword');
+  };
+
   return (
       <SafeAreaView style={styles.container}>
         <View style = {styles.userInfoSection}>
@@ -80,7 +85,7 @@ const ProfileScreen = ({navigation}) => {
 
        <View style = {styles.BoxWrapper}>
         <View style = {styles.Box}> 
-        <Title> {spheres_count}  </Title>
+        <Title> {spheres_count ? spheres_count : 0}  </Title>
         <Caption> 360 Degree images </Caption>   
         </View>
 
@@ -92,7 +97,7 @@ const ProfileScreen = ({navigation}) => {
 
        <View styles ={styles.menuWrapper}> 
 
-        <TouchableRipple onPress= {() => {}}>
+        <TouchableRipple onPress= {navigateChangePassword}>
           <View style = {styles.menuItems}> 
             <Icon 
             name = 'cog-outline'
