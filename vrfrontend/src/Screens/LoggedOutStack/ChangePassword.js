@@ -12,7 +12,8 @@ import { Button } from 'react-native-paper';
 import { EvaIconsPack } from '@ui-kitten/eva-icons';
 import { signup, usernameExists } from '../../utils/auth';
 import { ScrollView } from 'react-native-gesture-handler';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+import { checkPasswordBE, changePasswordBE } from '../../utils/auth';
 
 const BackIcon = (props) => (
   <Icon {...props} name='arrow-back' />
@@ -21,6 +22,7 @@ const BackIcon = (props) => (
 
 export default function ChangePasswordScreen ({ navigation }) {
   const dispatch = useDispatch()
+  const userId = useSelector(state => state.creds.userId)
   const [old_password, setOldPassword] = useState('')
   const [password1, setPassword1] = useState('')
   const [password2, setPassword2]= useState('')
@@ -51,7 +53,6 @@ export default function ChangePasswordScreen ({ navigation }) {
 
 
   const navigateProfile = () => {
-    console.log(username)
     if (!(old_password && password1 && password2)) {
       setPWState(2)
       return
@@ -60,45 +61,30 @@ export default function ChangePasswordScreen ({ navigation }) {
     if (password1 != password2) {
       return
     }
-    usernameExists(username)
-    .then((status) => {
-      if (status == 200) {
-        console.log("Same username")
-        setPWState(1)
-        return false
-      } else {
-        console.log("Logging in")
-        signup(email, username, password1, firstname, firstname)
-        .then((res) => {
-          if (res.status == 201) {
-            return res.json()
-          } else {
-            alert("Something went wrong with creation of account")
-            return false
-          }
-        }).then((data) => {
-          if (!data) {
-            return
-          }
-          const creds = {
-            user: {
-              id: data.userId,
-              email: email,
-              username: username,
-              firstname: firstname,
-              lastname: lastname,
-              spheres_count: 0
-            }
-          }
-          dispatch({
-            type: "loadProfile",
-            payload: creds
-          })
-          navigation.navigate("LoggedIn")
 
-        })
+    if (old_password == password1) {
+      setPWState(1)
+      return
+    }
+    checkPasswordBE(userId, old_password)
+    .then(
+      (status) => {
+        if (status == 200) {
+          changePasswordBE(userId, password1)
+          .then((status) => {
+            if (status != 200) {
+              alert("Something went wrong with changing passwords")
+              return
+            } else {
+              alert("Password changed successfully")
+              navigation.navigate("ViewProfile")
+            }
+          })
+        } else {
+          setPWState(3)
+        }
       }
-    })
+    )
   }
 
   function PWComment () {
@@ -112,6 +98,10 @@ export default function ChangePasswordScreen ({ navigation }) {
       case 2:
         return (<Text style={styles.captionText}>
         Some of the fields are empty
+        </Text>);
+      case 3:
+        return (<Text style={styles.captionText}>
+        Wrong Password
         </Text>);
     }
   }
@@ -191,7 +181,7 @@ export default function ChangePasswordScreen ({ navigation }) {
           onPress = {navigateProfile}
           >
           
-          SIGN UP 
+          CONFIRM 
           </Button>
           <Text 
           style= {styles.alreadyHaveAccountText}>

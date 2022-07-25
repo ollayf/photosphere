@@ -49,6 +49,21 @@ export async function usernameExists (username) {
     return res.status
 }
 
+export async function emailExists (email) { 
+  const res = await fetch('http://34.87.107.21:8000/api/emailExists/',
+  {
+    method: 'POST',
+    body: JSON.stringify({
+      email: email
+    }),
+    headers: {
+      'Content-Type': 'application/json'
+      // 'Content-Type': 'application/x-www-form-urlencoded',
+    },
+  })
+  return res.status
+}
+
 export async function editField (userId, field, result) { 
   const res = await fetch('http://34.87.107.21:8000/api/editField/',
   {
@@ -101,13 +116,12 @@ export async function getProfile (userId) {
   return res
 }
 
-export async function changePasswordBE (userId, old_pw, new_pw) { 
+export async function changePasswordBE (userId, new_pw) { 
   const res = await fetch('http://34.87.107.21:8000/api/changePassword/',
   {
     method: 'PUT',
     body: JSON.stringify({
       userId: userId,
-      old_pw: old_pw,
       new_pw: new_pw
 
     }),
@@ -119,13 +133,13 @@ export async function changePasswordBE (userId, old_pw, new_pw) {
   return res.status
 }
 
-export async function checkPasswordBE (userId, old_pw, new_pw) { 
+export async function checkPasswordBE (userId, old_pw) { 
   const res = await fetch('http://34.87.107.21:8000/api/checkPassword/',
   {
     method: 'POST',
     body: JSON.stringify({
       userId: userId,
-      pw: pw,
+      pw: old_pw,
 
     }),
     headers: {

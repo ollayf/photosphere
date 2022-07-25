@@ -6,7 +6,7 @@ import FontAwesome from 'react-native-vector-icons/FontAwesome'
 import { ThemeContext } from '../../../theme-context'
 import { useSelector, useDispatcher } from 'react-redux'
 import { useState, useEffect } from 'react'
-import { editProfile } from '../../utils/auth'
+import { editProfile, usernameExists, emailExists  } from '../../utils/auth'
 
 const BackIcon = (props) => (
   <Icon {...props} name='arrow-back' />
@@ -18,9 +18,19 @@ const EditProfileScreen = ({navigation}) => {
   const [emailEdit, emailEditFn] = useState("")
   const [firstnameEdit, firstnameEditFn] = useState("")
   const [lastnameEdit, lastnameEditFn] = useState("")
+  const [usernameTaken, setUsernameTaken] = useState(false)
+  const [emailTaken, setEmailTaken] = useState(false)
 
 
   const submitEdit = () => {
+    if (usernameExists(usernameEdit)) {
+        setUsernameTaken(true)
+        return
+    }
+    if (emailExists(emailEdit)) {
+        setEmailTaken(true)
+        return
+    }
     editProfile(userId, usernameEdit, emailEdit, firstnameEdit, lastnameEdit)
     navigation.navigate('ViewProfile')
   }
@@ -31,6 +41,8 @@ const EditProfileScreen = ({navigation}) => {
   const BackAction = () => (
     <TopNavigationAction icon={BackIcon} onPress={navigateBack}/>
   );
+
+ 
     return ( 
       
         <View style = {styles.container}>      
@@ -51,7 +63,9 @@ const EditProfileScreen = ({navigation}) => {
                 </View> 
 
                 
-
+                {usernameTaken && <Text style={styles.captionText}>
+                    Username Taken.
+                </Text>}
                 <View style = {styles.inputWrapper}>
                     <FontAwesome name = 'user-o' size = {20} />
                     <TextInput 
@@ -64,6 +78,9 @@ const EditProfileScreen = ({navigation}) => {
 
                         </TextInput>                        
                 </View> 
+                {emailTaken && <Text style={styles.captionText}>
+                    Email Taken.
+                </Text>}
                 <View style = {styles.inputWrapper}>
                     <FontAwesome name = 'envelope-o' size = {20} />
                     <TextInput 
@@ -170,5 +187,10 @@ const styles = StyleSheet.create({
     submitText: {
         fontSize: 20,
 
+    },
+    captionText: {
+        fontSize: 11,
+        fontWeight: "800",
+        color: "#8F9BB3",
     },
     })

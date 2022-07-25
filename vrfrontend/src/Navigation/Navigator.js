@@ -24,7 +24,7 @@ import { useDispatch, useSelector } from 'react-redux';
 
 import { getSpheres } from '../utils/spheres';
 import { loadSpheres } from '../Redux/actions';
-import { getProfile } from '../utils/auth';
+import { getProfile} from '../utils/auth';
 
 // //to delete
 // const ProfileStack = createStackNavigator(); 
