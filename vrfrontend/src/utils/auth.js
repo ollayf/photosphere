@@ -73,7 +73,7 @@ export async function editField (userId, field, result) {
   return res.status
 }
 
-export async function editField (userId, username=null, email=null, firstname=null, lastname=null) { 
+export async function editProfile (userId, username=null, email=null, firstname=null, lastname=null) { 
   const res = await fetch('http://34.87.107.21:8000/api/editProfile/',
   {
     method: 'POST',
