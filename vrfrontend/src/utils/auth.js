@@ -35,6 +35,9 @@ export async function signup (email, username, password, firstname, lastname) {
 }
 
 export async function usernameExists (username) { 
+    if (!username) {
+      return 404
+    }
     const res = await fetch('http://34.87.107.21:8000/api/usernameExists/',
     {
       method: 'POST',
@@ -50,6 +53,9 @@ export async function usernameExists (username) {
 }
 
 export async function emailExists (email) { 
+  if (!email) {
+    return 404
+  }
   const res = await fetch('http://34.87.107.21:8000/api/emailExists/',
   {
     method: 'POST',

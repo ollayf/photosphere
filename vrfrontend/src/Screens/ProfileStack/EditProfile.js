@@ -23,16 +23,24 @@ const EditProfileScreen = ({navigation}) => {
 
 
   const submitEdit = () => {
-    if (usernameExists(usernameEdit)) {
-        setUsernameTaken(true)
-        return
-    }
-    if (emailExists(emailEdit)) {
-        setEmailTaken(true)
-        return
-    }
-    editProfile(userId, usernameEdit, emailEdit, firstnameEdit, lastnameEdit)
-    navigation.navigate('ViewProfile')
+    usernameExists(usernameEdit)
+        .then((status) => {
+            if (status != 404) {
+                setUsernameTaken(true)
+                return false
+            }
+            emailExists(emailEdit)
+            .then((status) => {
+                if (status != 404) {
+                    setEmailTaken(true)
+                    return false
+                }
+                editProfile(userId, usernameEdit, emailEdit, firstnameEdit, lastnameEdit)
+                navigation.navigate('ViewProfile')
+                console.log("Passed all checks")
+            })
+        })
+    return true
   }
   const navigateBack = () => {
     navigation.goBack();

@@ -10,7 +10,7 @@ import IonicIcon from 'react-native-vector-icons/Ionicons'
 import { Button } from 'react-native-paper';
 
 import { EvaIconsPack } from '@ui-kitten/eva-icons';
-import { signup, usernameExists } from '../../utils/auth';
+import { signup, usernameExists, emailExists } from '../../utils/auth';
 import { ScrollView } from 'react-native-gesture-handler';
 import { useDispatch } from 'react-redux';
 
@@ -29,6 +29,8 @@ export default function SignUpScreen ({ navigation }) {
   const [password2, setPassword2]= useState('')
   const [pw_match, setPwMatch] = useState(true)
   const [nameState, setNameState] = useState(0)
+
+  const [emailTaken, setEmailTaken] = useState(false)
   
   
  // const onChange = (e) => {
@@ -65,7 +67,13 @@ export default function SignUpScreen ({ navigation }) {
       setPwMatch(false)
       return
     }
-    usernameExists(username)
+    emailExists(email)
+    .then((status) => {
+      if (status != 404) {
+        setEmailTaken(true)
+        return false
+      }
+      usernameExists(username)
     .then((status) => {
       if (status == 200) {
         console.log("Same username")
@@ -104,6 +112,8 @@ export default function SignUpScreen ({ navigation }) {
         })
       }
     })
+    })
+    
   }
 
   function NameComment () {
@@ -169,7 +179,9 @@ export default function SignUpScreen ({ navigation }) {
           onChangeText= { text => setLastname(text)}
           > 
           </Input> 
-
+          {emailTaken && <Text style={styles.captionText}>
+          Email Taken
+          </Text>}
           <Input 
           style={styles.input}
           placeholder= 'Email'
