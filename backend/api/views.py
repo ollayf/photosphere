@@ -312,7 +312,7 @@ def upload_image(req):
     doc_ref = db.collection(u'spheres').document()
     docId = doc_ref.id
     print(doc_ref.id)
-    file= data['file_attachment'].file
+    file= data['file_attachment']
     name, ext = os.path.splitext(file.name)
     save_filename = f'{docId}{ext}'
     payload = {
@@ -326,8 +326,6 @@ def upload_image(req):
     doc_ref.set(payload)
 
     bucket = storage.bucket()
-    print(bucket)
-    print(type(data['file_attachment']))
     if type(data['file_attachment']) == InMemoryUploadedFile:
         image_bytes = file.read()
         blob = bucket.blob(save_filename)

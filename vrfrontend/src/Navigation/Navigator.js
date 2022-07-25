@@ -12,7 +12,7 @@ import ForgetPasswordScreen from '../Screens/LoggedOutStack/ForgetPassword';
 import EditProfileScreen from '../Screens/ProfileStack/EditProfile';
 import ProfileScreen from '../Screens/ProfileStack/Profile'
 import MenuOf360degreeImagesScreen from '../Screens/ViewImageStack/MenuOf360degreeImages';
-import SeeOtherImagesScreen from '../Screens/ExploreStack/SeeOthersImages';
+// import SeeOtherImagesScreen from '../Screens/ExploreStack/SeeOthersImages';
 import UploadandConvertScreen from '../Screens/ConvertImageStack/UploadandConvert';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import IonicIcon from 'react-native-vector-icons/Ionicons'
@@ -186,11 +186,11 @@ export function LoggedInScreen () {
           : 'swap-horizontal-outline'
           }
 
-          else if (route.name === 'Explore'){ 
-            iconName = focused 
-            ? 'search' 
-            : 'search-outline'
-          }
+          // else if (route.name === 'Explore'){ 
+          //   iconName = focused 
+          //   ? 'search' 
+          //   : 'search-outline'
+          // }
 
           else if (route.name === 'Profile'){ 
             iconName = focused 
@@ -245,7 +245,7 @@ export function LoggedInScreen () {
       }}> 
         <Tab.Screen name= "Upload" component={ConvertImageStackScreen}/>
         <Tab.Screen name= "View" component={ViewStackScreen} />
-        <Tab.Screen name= "Explore" component={ExploreImagesStackScreen}/>
+        {/* <Tab.Screen name= "Explore" component={ExploreImagesStackScreen}/> */}
         <Tab.Screen name= "Profile" component={ProfileStackScreen}/>        
       </Tab.Navigator>
   )
