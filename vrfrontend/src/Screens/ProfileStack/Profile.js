@@ -90,7 +90,7 @@ const ProfileScreen = ({navigation}) => {
 
        <View style = {styles.BoxWrapper}>
         <View style = {styles.Box}> 
-        <Title> 10  </Title>
+        <Title> {10}  </Title>
         <Caption> 360 Degree images </Caption>   
         </View>
 

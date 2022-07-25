@@ -46,7 +46,7 @@ export default function LoginScreen ({ navigation }) {
 
   const confirmLogInCreds = (creds) => {
     return{
-      type: "logIn",
+      type: "loadProfile",
       payload: creds
     }
   }

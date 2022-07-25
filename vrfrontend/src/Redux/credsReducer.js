@@ -1,7 +1,7 @@
 export default function credsReducer(state, action) {
     payload = action.payload
     switch (action.type) {
-        case 'logIn':
+        case 'loadProfile':
             return {
                 ...state,
                 creds: {
@@ -10,6 +10,7 @@ export default function credsReducer(state, action) {
                     firstname: payload.user.firstname,
                     lastname: payload.user.lastname,
                     email: payload.user.email,
+                    spheres_count: payload.user.spheres_count,
                     authenticated: true
                 }
             }

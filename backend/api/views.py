@@ -99,7 +99,8 @@ def verify_password(req):
         "username": user_info['username'],
         "email": user_info['email'],
         'firstname': user_info['firstname'],
-        'lastname': user_info['lastname']
+        'lastname': user_info['lastname'],
+        'spheres_count': len(user_info['spheres'])
     }
 
     if pw_hash:
