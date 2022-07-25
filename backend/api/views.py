@@ -332,7 +332,7 @@ def upload_image(req):
         print(blob)
         blob.upload_from_string(image_bytes, content_type=f'image/{exts[ext]}')
     else: # for TemporaryUploadedFile
-        image_bytes = file.read()
+        image_bytes = data['file_attachment'].file.read()
         blob = bucket.blob(save_filename)
         blob.upload_from_filename(file.name)
 
